@@ -14,7 +14,7 @@ import { Circle } from "rc-progress";
 //TODO db startdate and enddate/time
 
 const CountdownDisplay=(props)=>(
-    <div className="countdownCircle"><Circle percent={props.total/1.296*100000000000}/>
+    <div className="countdownCircle"><Circle percent={props.total/(1.296)*100000000000}/>
     <p className="countdownCircle__innerText">
     {props.hours}:{props.minutes}:{props.seconds}</p></div>
 )
