@@ -14,11 +14,11 @@ import { Circle } from "rc-progress";
 //TODO db startdate and enddate/time
 
 const CountdownDisplay=(props)=>(
-    <div className="countdownCircle"><Circle percent={props.total/259200000*100}/>
+    <div className="countdownCircle"><Circle percent={props.total/1.296*100000000000}/>
     <p className="countdownCircle__innerText">
     {props.hours}:{props.minutes}:{props.seconds}</p></div>
 )
 
-const Countdown=()=>(<CountdownTimer date={Date.parse("6/28/2023")} renderer={CountdownDisplay}/>)
+const Countdown=()=>(<CountdownTimer date={Date.parse("7/10/2023")} renderer={CountdownDisplay}/>)
 
 export default Countdown
