@@ -1,4 +1,4 @@
-import jquery, { data } from "jquery"
+import jquery from "jquery"
 
 
 export default (dispatch)=>{jquery.get("data/data.php",(dataOb)=>{

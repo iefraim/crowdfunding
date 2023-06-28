@@ -7,7 +7,7 @@ const teams=itemsJson.teams*/
 
 const defaultFilters={text:"",sort:"date"}
 
-const newDonation=(state=[],action)=>action.type=="BASE_DONATIONS"?action.item:action.type=="NEW_DONATION"?[...state,action.item]:state
+const newDonation=(state=[],action)=>action.type=="BASE_DONATIONS"?action.item:state
 const presetTeams=(state=[],action)=>action.type=="BASE_TEAMS"?action.item:state
 const switchModal=(state=-1,action)=>typeof action.item=='number'?action.item:state
 const switchTeam=(state="",action)=>typeof action.item=='string'?action.item:state
