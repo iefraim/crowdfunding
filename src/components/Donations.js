@@ -5,8 +5,6 @@ import getTeam from "../functions/getTeam"
 import TotalDisplay from "./TotalDisplay"
 import TeamTotal from "./TeamTotal"
 import { NavLink } from "react-router-dom"
-//TODO add filters
-//default:recent
 
 
 
@@ -32,7 +30,7 @@ const checkTextFilter=(i)=>{
 
 const sorter=(a,b)=>{
     if(filters.sort=="recent"){
-        return a.id<b.id?-1:1
+        return a.id<b.id?1:-1
     }else if(filters.sort=="name"){
         return a.name.localeCompare(b.name)
     }else{
@@ -60,7 +58,7 @@ const Donations=()=>{
     <input onChange={changeFilters} id="filterTextInput" className="form-control" placeholder="search donations"></input>
     <select id="sortFilter" onChange={changeFilters}>
         <option value="recent">recent</option>
-        <option value="name">first name</option>
+        <option value="name">name</option>
         </select>
     <ul className="" id="" style={{overflowY:"scroll", height:"600px"}}>
         {donations.map((item,key)=>(<Donation key={key} item={item}/>))}
