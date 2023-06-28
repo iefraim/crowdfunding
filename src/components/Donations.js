@@ -15,6 +15,9 @@ const changeFilters=()=>{
 
 let filters,dispatch
 const checkTextFilter=(i)=>{
+    if(!filters.text){//no text filter
+        return true
+    }
     for(let key of Object.keys(i)){
         const currText=i[key]+""
        if(currText.includes(filters.text)){
@@ -24,7 +27,7 @@ const checkTextFilter=(i)=>{
     return false
 }
 
-const Donations=(props)=>{
+const Donations=()=>{
     filters=useSelector((state)=>state.filters)
     dispatch=useDispatch()
     const team=getTeam({link:useSelector((state)=>state.openTeam)})
