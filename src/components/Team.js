@@ -4,8 +4,8 @@ import {Line} from "rc-progress"
 import {NavLink} from "react-router-dom"
 
 const Team=(props)=>{
-    const donations=useSelector((state)=>state.donations).filter((i)=>i.team==props.item.id)
-    const totalDonations=donations.reduce((prev,curr)=>prev+curr.amount,0)
+    const donations=useSelector((state)=>state.donations).filter((i)=>i.teamid==props.item.id)
+    const totalDonations=donations.reduce((prev,curr)=>prev+parseInt(curr.amount),0)
 //TODO  make thicker line. tag on what percentage , outline border 
     return (
      
