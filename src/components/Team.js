@@ -1,6 +1,5 @@
 import React from "react"
 import { useSelector } from "react-redux/es/hooks/useSelector"
-import {Line} from "rc-progress"
 import {NavLink} from "react-router-dom"
 import ProgressBar from "@ramonak/react-progress-bar";
 
