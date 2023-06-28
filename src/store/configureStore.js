@@ -5,7 +5,7 @@ const intDonationState=itemsJson.donations
 
 const teams=itemsJson.teams*/
 
-const defaultFilters={text:"",by:"date"}
+const defaultFilters={text:"",sort:"date"}
 
 const newDonation=(state=[],action)=>action.type=="BASE_DONATIONS"?action.item:action.type=="NEW_DONATION"?[...state,action.item]:state
 const presetTeams=(state=[],action)=>action.type=="BASE_TEAMS"?action.item:state
