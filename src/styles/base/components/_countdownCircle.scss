@@ -1,0 +1,17 @@
+.countdownCircle{
+    width:300px;
+    height:300px;
+    position: relative;
+}
+
+.countdownCircle__innerText{position: absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    margin: auto;
+    text-align: center;
+    line-height: 100px;
+    font-size: 20px;
+    font-weight: bold;
+}

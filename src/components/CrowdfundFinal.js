@@ -1,0 +1,45 @@
+import React from "react";
+import {Provider} from "react-redux"
+import {BrowserRouter} from "react-router-dom"
+
+//components
+import Header from "./Header"
+import LeftColumn from "./LeftColumn"
+import RightColumn from "./RightColumn"
+import HeaderText from "./HeaderText"
+import DonationModal from "./DonationModal"
+
+//store
+import donationStore from "../store/configureStore"
+import getDbToStore from "../json/info"
+
+//router
+import TeamRouter from "../routers/TeamRouter";
+
+
+const dispatch=donationStore.dispatch
+
+donationStore.subscribe(()=>{
+    console.log(donationStore.getState())
+})
+
+getDbToStore(dispatch)
+
+export default class CrowdfundFinal extends React.Component{
+    render=()=>(<div>
+        <Header/>
+        <Provider store={donationStore}>
+        <div className="container">
+            <HeaderText/>
+            <BrowserRouter>
+            <TeamRouter/>
+            <div className="row">
+                <LeftColumn dispatch={dispatch}/>
+                <RightColumn/>
+                </div>
+            </BrowserRouter>
+        </div>
+        <DonationModal dispatch={dispatch}/>
+        </Provider>
+    </div>)
+}

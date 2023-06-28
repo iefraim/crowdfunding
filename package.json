@@ -1,0 +1,42 @@
+{
+  "name": "crowdfund",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/plugin-transform-class-properties": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "@reduxjs/toolkit": "^1.9.5",
+    "asset": "^0.4.13",
+    "babel-loader": "^9.1.2",
+    "bootstrap": "^5.3.0",
+    "css-loader": "^6.8.1",
+    "jquery": "^3.7.0",
+    "loader-utils": "^3.2.1",
+    "node-sass": "^9.0.0",
+    "normalize.css": "^8.0.1",
+    "php-loader": "^0.2.0",
+    "rc-progress": "^3.4.2",
+    "react": "^18.2.0",
+    "react-aria-components": "^1.0.0-alpha.5",
+    "react-countdown": "^2.3.5",
+    "react-dom": "^18.2.0",
+    "react-modal": "^3.16.1",
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.13.0",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.87.0",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-php-loader": "^0.5.0"
+  },
+  "scripts": {
+    "build": "cls & webpack --watch",
+    "server": "cls & webpack-dev-server"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
+  }
+}

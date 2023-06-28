@@ -1,0 +1,39 @@
+import React from "react"
+import { useSelector } from "react-redux"
+import {Line} from "rc-progress"
+import getTeam from "../functions/getTeam"
+
+const TeamTotal=()=>{
+    const team=getTeam({link:useSelector((state)=>state.openTeam)})
+    
+    const allDonations=useSelector((state)=>state.donations)
+
+    if(!team){
+        return false
+    }
+
+    const donations=allDonations.filter((i)=>i.team==team.id)
+    const totalDonations=donations.reduce((prev,curr)=>prev+curr.amount,0)
+    
+    return (
+        
+        
+<div id="teamamount">
+		
+<div className="teamname">
+    <p className="col-sm-12">Team {team.name}</p></div>
+    
+    <div >
+    <Line percent={totalDonations/team.goal*100}/>
+
+    
+    <div className="teamsum"> ${totalDonations.toLocaleString()} out of ${team.goal.toLocaleString()} raised</div>
+    </div>
+        
+        
+    
+
+    </div>)
+}
+
+export default TeamTotal
