@@ -20,7 +20,7 @@ import TeamRouter from "../routers/TeamRouter";
 const dispatch=donationStore.dispatch
 
 donationStore.subscribe(()=>{
-    console.log(donationStore.getState())
+    // console.log(donationStore.getState())
 })
 
 getDbToStore(dispatch)

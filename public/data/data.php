@@ -7,6 +7,7 @@ $teams=query("SELECT * FROM `teams`");?>
 foreach ($teams as $itemNum=>$team) {
     echo "{";//start next object
         foreach ($team as $key => $value) {
+            $key=strtolower($key);
              echo "\"$key\":\"$value\"";//pass in item into json
              if($key!="active")echo ",";
         }
