@@ -8,7 +8,7 @@ const TotalDisplay = () => {
     (prev, curr) => prev + parseInt(curr.amount),
     0
   );
-  const goal = useSelector((state) => state.data.goal);
+  const goal = parseInt(useSelector((state) => state.data.goal));
 
   return (
     <div>
