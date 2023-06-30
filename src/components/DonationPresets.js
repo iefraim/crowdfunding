@@ -1,9 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
+let dispatch;
+
+const donateNow = () => {
+  dispatch({ type: "", item: 0 });
+};
 
 const DonationPresets = (props) => {
-  const donateNow = () => {
-    props.dispatch({ type: "", item: 0 });
-  };
+  dispatch = useDispatch();
 
   return (
     <div className="mt-4 text-center">
