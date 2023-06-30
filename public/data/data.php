@@ -1,7 +1,9 @@
 <?php require_once("./functions/mysql.php");
 
 $teams=query("SELECT * FROM `teams`");
-$donations=query("SELECT * FROM `donations`")?>
+$donations=query("SELECT * FROM `donations`");
+$data=query("SELECT * FROM `fundraiser_data`");
+?>
 
 {"teams":[
 <?php
@@ -29,4 +31,10 @@ foreach ($teams as $itemNum=>$team) {
     if($itemNum!=count($donations)-1)echo ",\n";
     }
     ?>
-]}
+],
+"data":{<?php
+    foreach ($data as $row) {
+        echo "\"$row[name]\":\"$row[value]\"";
+        if($row['id']!==$data[count($data)-1]['id'])echo ",";
+    }
+?>}}
