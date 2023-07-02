@@ -1,8 +1,9 @@
 <?php require_once("./functions/mysql.php");
 
-$teams=query("SELECT * FROM `teams`");
-$donations=query("SELECT * FROM `donations`");
-$data=query("SELECT * FROM `fundraiser_data`");
+
+$data=query("SELECT * FROM `fundraiser_data` WHERE `active`=1")[0];
+$teams=query("SELECT * FROM `teams` WHERE `campaign_id`=$data[id] ");
+$donations=query("SELECT * FROM `donations`   WHERE `campaign_id`=$data[id]");
 ?>
 
 {"teams":[
@@ -12,7 +13,7 @@ foreach ($teams as $itemNum=>$team) {
         foreach ($team as $key => $value) {
             $key=strtolower($key);
              echo "\"$key\":\"$value\"";//pass in item into json
-             if($key!="active")echo ",";
+             if($key!="campaign_id")echo ",";
         }
     echo "}";//close object
     if($itemNum!=count($teams)-1)echo ",\n";
@@ -25,7 +26,7 @@ foreach ($teams as $itemNum=>$team) {
             foreach ($donation as $key => $value) {
                 $key=strtolower($key);
                  echo "\"$key\":\"$value\"";//pass in item into json
-                 if($key!="phone")echo ",";
+                 if($key!="campaign_id")echo ",";
             }
     echo "}";    
     if($itemNum!=count($donations)-1)echo ",\n";
@@ -33,8 +34,9 @@ foreach ($teams as $itemNum=>$team) {
     ?>
 ],
 "data":{<?php
-    foreach ($data as $row) {
-        echo "\"$row[name]\":\"$row[value]\"";
-        if($row['id']!==$data[count($data)-1]['id'])echo ",";
-    }
-?>}}
+    foreach ($data as $key => $value) {
+                $key=strtolower($key);
+                 echo "\"$key\":\"$value\"";//pass in item into json
+                 if($key!="active")echo ",";
+            }
+    ?>}}

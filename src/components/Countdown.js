@@ -24,8 +24,8 @@ const CountdownDisplay = (props) => {
   );
 };
 const Countdown = () => {
-  const startDate = useSelector((state) => state.data.startDate);
-  const endDate = useSelector((state) => state.data.endDate);
+  const startDate = useSelector((state) => state.data.start_date);
+  const endDate = useSelector((state) => state.data.end_date);
   if (!startDate) {
     return false;
   }
