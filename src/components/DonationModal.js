@@ -5,6 +5,8 @@ import $ from "jquery";
 
 let dispatch;
 
+const closeModal = () => dispatch({ type: "", item: -1 });
+
 const formSubmitHandler = (e) => {
   e.preventDefault();
   const input = $("#donationForm").serialize();
@@ -20,7 +22,7 @@ const DonationModal = (props) => {
   return (
     <Modal
       isOpen={useSelector((state) => state.modalInput) >= 0}
-      onRequestClose={() => dispatch({ type: "", item: -1 })}
+      onRequestClose={closeModal}
     >
       {/* TODO stick in react form 
  
@@ -33,7 +35,17 @@ adn email is sent to team leader as a thank you
       <div>
         <div>
           <div>
-            <div>
+            <div className="modal-header">
+              <button
+                type="button"
+                className="btn btn-secondary btn-sm"
+                data-dismiss="modal"
+                onClick={closeModal}
+              >
+                X
+              </button>
+            </div>
+            <div className="modal-body">
               <form
                 noValidate
                 style={{ width: "100%" }}
@@ -338,6 +350,7 @@ adn email is sent to team leader as a thank you
                 type="button"
                 className="btn btn-secondary btn-sm"
                 data-dismiss="modal"
+                onClick={closeModal}
               >
                 X
               </button>

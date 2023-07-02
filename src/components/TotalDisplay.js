@@ -21,7 +21,7 @@ const TotalDisplay = () => {
       {totalDonations >= goal && (
         <h6>Goal reached with ${totalDonations.toLocaleString()} raised!</h6>
       )}
-      <ProgressBar completed={(totalDonations / goal) * 100} />
+      <ProgressBar completed={Math.round((totalDonations / goal) * 100)} />
     </div>
   );
 };
