@@ -1,16 +1,27 @@
-import React from "react"
-import {Route,Routes,useParams} from "react-router-dom"
-import {useDispatch} from "react-redux"
+import React from "react";
+import { Route, Routes, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-const TeamSwitch=()=>{
-    const params=useParams()
-    const teamName=params.teamName===undefined?"":params.teamName
-    useDispatch()({type:"",item:teamName})
-}
+let dispatch;
 
-const Router=(props)=>(<Routes>
-        <Route path="/crowdfund/public/:teamName?" element={<TeamSwitch/>} exact/>
-    </Routes>)
+const TeamSwitch = (props) => {
+  const params = useParams();
+  const teamName = params.teamName === undefined ? "" : params.teamName;
+  dispatch({ type: "", item: teamName });
+  return props.children;
+};
 
+const Router = (props) => {
+  dispatch = useDispatch();
+  return (
+    <Routes>
+      <Route
+        path="/:teamName?"
+        element={<TeamSwitch>{props.children}</TeamSwitch>}
+        exact
+      />
+    </Routes>
+  );
+};
 
-export default Router
+export default Router;

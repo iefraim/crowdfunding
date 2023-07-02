@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 //components
 import Header from "./Header";
@@ -26,23 +26,24 @@ setInterval(() => {
   getDbToStore(dispatch);
 }, 10000);
 
-export default class CrowdfundFinal extends React.Component {
-  render = () => (
-    <div>
-      <Header />
-      <Provider store={donationStore}>
-        <div className="container">
-          <HeaderText />
-          <BrowserRouter>
-            <TeamRouter />
+const CrowdfundFinal = () => (
+  <div>
+    <Header />
+    <Provider store={donationStore}>
+      <div className="container">
+        <HeaderText />
+        <HashRouter>
+          <TeamRouter>
             <div className="row">
               <LeftColumn />
               <RightColumn />
             </div>
-          </BrowserRouter>
-        </div>
-        <DonationModal />
-      </Provider>
-    </div>
-  );
-}
+          </TeamRouter>
+        </HashRouter>
+      </div>
+      <DonationModal />
+    </Provider>
+  </div>
+);
+
+export default CrowdfundFinal;
