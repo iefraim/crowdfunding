@@ -42,7 +42,7 @@ const Donations = () => {
   dispatch = useDispatch();
   const team = getTeam({ link: useSelector((state) => state.openTeam) });
   const donations = useSelector((state) => state.donations) //gets full donation list
-    .filter((i) => !team || i.team == team.id) //filter out open team's donations
+    .filter((i) => !team || i.teamid == team.id) //filter out open team's donations
     .filter(checkTextFilter) //search
     .sort(sorter); //sort by selected
   console.log(donations);
