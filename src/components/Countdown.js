@@ -30,6 +30,12 @@ const Countdown = () => {
     return false;
   }
   console.log(startDate, endDate);
+  if (Date.parse(startDate) > new Date()) {
+    return <h6>This event hasn't started yet</h6>;
+  }
+  if (Date.parse(endDate) < new Date()) {
+    return <h6>This event has ended</h6>;
+  }
   return <CountdownTimer date={endDate} renderer={CountdownDisplay} />;
 };
 
