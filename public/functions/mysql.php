@@ -4,9 +4,8 @@ function query($query){
     global $db;
     $response=$db->query($query);
     if(gettype($response)==="boolean"){
-        echo "failed";
         echo $db->error;
-        die();
+        return;
     }
     $responseArray=$response->fetch_all(MYSQLI_ASSOC);
     return $responseArray;
