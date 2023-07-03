@@ -1,4 +1,4 @@
-<?php require_once("./functions/mysql.php");
+<?php require_once("../functions/mysql.php");
 
 
 $data=query("SELECT * FROM `fundraiser_data` WHERE `active`=1")[0];

@@ -26,10 +26,7 @@ const DonationModal = (props) => {
     >
       {/* TODO stick in react form 
  
-find all information on other form
-where is code once form is submitted. 
-need to add email is sent to donor 
-adn email is sent to team leader as a thank you 
+make them required
 
 */}
       <div>

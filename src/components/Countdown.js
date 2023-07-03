@@ -10,8 +10,6 @@ import { useSelector } from "react-redux";
 //     <CountdownCircle number={props.minutes} total={60} item="minute"/>
 //     <CountdownCircle number={props.seconds} total={60} item="second"/>
 // </div>)
-//TODO message before start and after finish
-//TODO db startdate and enddate/time
 
 const CountdownDisplay = (props) => {
   return (
