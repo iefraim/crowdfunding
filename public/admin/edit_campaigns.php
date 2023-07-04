@@ -18,14 +18,12 @@ if(isset($_POST["name"])){
     foreach ($_POST as $key => $value) {
         $$key=$db->real_escape_string($value);
     }
-    //TODO: set up edit and insert handlers
     if(isset($_GET["id"])){
-        $query="UPDATE `fundraiser_data` SET `name`='$name',`goal`='$goal',`bonus_goal`='$bonus_goal',`start_date`='$start_date',`end_date`='$end_date'";
+        $query="UPDATE `fundraiser_data` SET `name`='$name',`goal`='$goal',`bonus_goal`='$bonus_goal',`start_date`='$start_date',`end_date`='$end_date' WHERE `id`=$id";
     }
     else{
         $query="INSERT INTO `fundraiser_data` (`name`,`goal`,`bonus_goal`,`start_date`,`end_date`) VALUES ('$name','$goal','$bonus_goal','$start_date','$end_date' )";
     }
-    if(isset($_GET["id"]))$query.="WHERE `id`=$id";
     query($query);
     header("Location:./campaigns.php");
 }
