@@ -1,7 +1,10 @@
 <?php
 require_once("./check_login.php");
-$teams=query("SELECT * FROM `teams`");
-$donors=query("SELECT * FROM `donations`");
+function getTeam($i){
+    return !isset($_GET["campaignId"])||$i["campaign_id"]==$_GET["campaignId"];
+}
+$teams=array_filter(query("SELECT * FROM `teams`"),"getTeam");
+$donors=array_filter(query("SELECT * FROM `donations`"),"getTeam");
 ?>
 <!DOCTYPE html>
 <html>

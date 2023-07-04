@@ -24,9 +24,7 @@ const DonationModal = (props) => {
       isOpen={useSelector((state) => state.modalInput) >= 0}
       onRequestClose={closeModal}
     >
-      {/* TODO stick in react form 
- 
-make them required
+      {/* TODO make them required
 
 */}
       <div>
