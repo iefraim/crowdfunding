@@ -1,10 +1,11 @@
 <?php
 require_once("./check_login.php");
-function getTeam($i){
+function getCampaign($i){
     return !isset($_GET["campaignId"])||$i["campaign_id"]==$_GET["campaignId"];
 }
-$teams=array_filter(query("SELECT * FROM `teams`"),"getTeam");
-$donors=array_filter(query("SELECT * FROM `donations`"),"getTeam");
+$teams=array_filter(query("SELECT * FROM `teams`"),"getCampaign");
+$donors=array_filter(query("SELECT * FROM `donations`"),"getCampaign");
+$campaigns=query("SELECT * FROM `fundraiser_data`");
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,6 +30,7 @@ $donors=array_filter(query("SELECT * FROM `donations`"),"getTeam");
                 <th>Multiple</th>
                 <th>Team</th>
                 <th>Comment</th>
+                <th>Campaign</th>
                 <th>Email</th>
                 <th>Phone #</th>
                 <th>Adress</th>
@@ -52,6 +54,10 @@ $donors=array_filter(query("SELECT * FROM `donations`"),"getTeam");
                         return $row["teamID"]==$i["ID"]?$i:null;
                     },$teams)[0]["name"]?></td>
                     <td><?=$row["comment"]?></td>
+                    <td><?=array_filter($campaigns,function($i){
+                    global $row;
+                    return $row['campaign_id']==$i["ID"];
+                })[0]["name"]?></td>
                     <td><?=$row["email"]?></td>
                     <td><?=$row["phone"]?></td>
                     <td><?=$row["adress"]?></td>

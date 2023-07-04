@@ -6,7 +6,6 @@ $campaignList=query("SELECT * FROM `fundraiser_data`");
 $donations=query("SELECT * FROM `donations`");
 $teams=query("SELECT * FROM `teams`")
 
-//TODO  link each line to list of teams and donations
 
 ?>
 <!DOCTYPE html>
