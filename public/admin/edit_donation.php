@@ -5,10 +5,15 @@ $id=$db->real_escape_string($_GET["id"]);
 $data=query("SELECT * FROM `donations` WHERE `id`=$id")[0];
 if(!$data)header("Location:./donations.php");
 $teams=query("SELECT * FROM `teams`");
-if(isset($_POST["name"])){
+if(isset($_POST["firstName"])){
     foreach ($_POST as $key => $value) {
         $$key=$db->real_escape_string($value);
+        if(!$$key)$$key="";
     }
+    if(!$shownName)$shownName="$firstName $lastName";
+    $updateQuery="UPDATE `donations` SET `first_name`='$firstName', `last_name`='$lastName',`shown_name`='$shownName',`amount`='$amount',`multiple`=$multiple,`teamId`=$team,`comment`='$note',`email`='$email',`phone`='$phone',`adress`='$adress',`city`='$city',`state`='$state',`zip`='$zip' WHERE `ID`=$id";
+    query($updateQuery);
+     header("Location:./donations.php");
 }
 
 ?>
@@ -26,7 +31,7 @@ if(isset($_POST["name"])){
 
       
   <div class="mb-3">
-            <label for="firstName" class="form-label"> Name</label>
+            <label for="firstName" class="form-label"> First Name</label>
             <input name="firstName"  class="form-control" type="text" value="<?=$data["first_name"]?>">
             </div><div class="mb-3">  
             <label for="lastName"  class="form-label" >Last Name</label>
