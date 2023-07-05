@@ -6,7 +6,7 @@ function query($query){
     if(gettype($response)==="boolean"){
          return;
     }
-     echo $db->error;
+    echo $db->error;
     $responseArray=$response->fetch_all(MYSQLI_ASSOC);
     return $responseArray;
 }

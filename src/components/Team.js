@@ -16,7 +16,9 @@ const Team = (props) => {
       <NavLink to={`/${props.item.link}`}>
         <span className="col-xs-12 teambox">
           <h5>{props.item.name}</h5>
-          <ProgressBar completed={(totalDonations / props.item.goal) * 100} />
+          <ProgressBar
+            completed={Math.round(totalDonations / props.item.goal) * 100}
+          />
 
           <p className="teamgoallisting">
             <strong>${totalDonations.toLocaleString()}</strong>

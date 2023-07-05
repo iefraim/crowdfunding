@@ -1,6 +1,6 @@
 <?php
 
-require_once("./functions/mysql.php");
+require_once("../functions/mysql.php");
 
 var_dump($_POST);
 
@@ -15,3 +15,8 @@ $query="INSERT INTO `donations` (`amount`,`first_name`,`last_name`,`shown_name`,
 echo $query;
 
 query($query);
+
+// mail($email,"thank you","thank you for your donation!",[
+//     "From"=>"efraimf.task@gmail.com"
+// ]);
+//can't set up on localhost

@@ -2,8 +2,8 @@
 
 
 $data=query("SELECT * FROM `fundraiser_data` WHERE `active`=1")[0];
-$teams=query("SELECT * FROM `teams` WHERE `campaign_id`=$data[id] ");
-$donations=query("SELECT * FROM `donations`   WHERE `campaign_id`=$data[id]");
+$teams=query("SELECT * FROM `teams` WHERE `campaign_id`=$data[ID] ");
+$donations=query("SELECT * FROM `donations`   WHERE `campaign_id`=$data[ID]");
 ?>
 
 {"teams":[
