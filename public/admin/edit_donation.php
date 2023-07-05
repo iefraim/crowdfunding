@@ -26,6 +26,7 @@ if(isset($_POST["firstName"])){
     </head>
     <body>
         <div class="container pt-4" > 
+        <?php require("./outline.php");?>
             <div class="row"><h1>EDIT DONATION</h1></div>
         <form method="post">
 

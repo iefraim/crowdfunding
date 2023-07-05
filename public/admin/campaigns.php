@@ -18,6 +18,7 @@ $teams=query("SELECT * FROM `teams`")
     </head>
     <body>
         <div class="container mt-4">
+        <?php require("./outline.php");?>
         <div class="row"><h1>CAMPAIGNS</h1></div>
         <div class="row">
         <table id="datatable"   class="mt-4"     >

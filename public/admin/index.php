@@ -9,6 +9,7 @@ require_once("./check_login.php")
         <meta charset="utf-8">
     </head>
     <body>
+        <?php require("./outline.php");?>
         <p><a href="./campaigns.php">campaign list</a></p>
         <p><a href="./teams.php">team list</a></p>
         <p><a href="./donations.php">donation list</a></p>

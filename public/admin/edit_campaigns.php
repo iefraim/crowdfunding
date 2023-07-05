@@ -35,6 +35,7 @@ if(isset($_POST["name"])){
         <meta charset="utf-8">
     </head>
     <body>
+        <?php require("./outline.php");?>
         <form method="post">
             <label for="name">Name</label>
             <input type="text" name="name" required value="<?=$data["name"]?>">
