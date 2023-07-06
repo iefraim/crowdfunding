@@ -9,6 +9,7 @@ const TotalDisplay = () => {
     0
   );
   const goal = parseInt(useSelector((state) => state.data.goal));
+  const bonusGoal = parseInt(useSelector((state) => state.data.bonus_goal));
   //TODO between first and second goal add a line that says 'new goal: _____
   //TODO after after second goal write 'we've reach our goal
   return (
@@ -19,7 +20,17 @@ const TotalDisplay = () => {
           raised!
         </h6>
       )}
-      {totalDonations >= goal && (
+
+      {totalDonations >= goal && totalDonations < bonusGoal && (
+        <div>
+          <h5>NEW GOAL!</h5>
+          <h6>
+            ${totalDonations.toLocaleString()} out of $
+            {bonusGoal.toLocaleString()} raised!
+          </h6>
+        </div>
+      )}
+      {totalDonations >= bonusGoal && (
         <h6>Goal reached with ${totalDonations.toLocaleString()} raised!</h6>
       )}
       <ProgressBar completed={Math.round((totalDonations / goal) * 100)} />
