@@ -6,6 +6,7 @@ let dispatch;
 
 const TeamSwitch = (props) => {
   const params = useParams();
+  console.log(params);
   const teamName = params.teamName === undefined ? "" : params.teamName;
   dispatch({ type: "TEAM", item: teamName });
   return props.children;

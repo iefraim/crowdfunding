@@ -28,8 +28,6 @@ setInterval(() => {
 
 getDbToStore(dispatch);
 
-
-
 const CrowdfundFinal = () => (
   <div>
     <Header />

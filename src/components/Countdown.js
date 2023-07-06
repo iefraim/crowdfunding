@@ -10,6 +10,13 @@ import { useSelector } from "react-redux";
 //     <CountdownCircle number={props.minutes} total={60} item="minute"/>
 //     <CountdownCircle number={props.seconds} total={60} item="second"/>
 // </div>)
+//tod0: all numbers need to stay 2 digits
+//TODO: why is it blinking
+//when it ends, on the spot needs to see finishied message
+/*TODO: test with mommy to make sure it stays in our timezone
+	var hrs = -(new Date().getTimezoneOffset() / 60) ;
+	var 	endingHr=18 +(-6+ hrs+12);
+ */
 
 const CountdownDisplay = (props) => {
   return (

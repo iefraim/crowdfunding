@@ -18,6 +18,8 @@ const TeamTotal = () => {
     0
   );
 
+  //TODO add commas to numbers
+  //veiw all shouldb e visible only i fteams
   return (
     <div id="teamamount">
       <div className="teamname">

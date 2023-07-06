@@ -16,7 +16,7 @@ const setData = (state = {}, action) =>
 const switchModal = (state = -1, action) =>
   typeof action.item == "number" ? action.item : state;
 const switchTeam = (state = "", action) =>
-  action.tpye == "TEAM" ? action.item : state;
+  action.type == "TEAM" ? action.item : state;
 const changeFilters = (state = defaultFilters, action) =>
   typeof action.item == "object" && !action.type ? action.item : state;
 const formError = (state = "", action) =>

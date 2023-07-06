@@ -28,15 +28,12 @@ const formSubmitHandler = (e) => {
 const DonationModal = () => {
   dispatch = useDispatch();
   const error = useSelector((state) => state.error);
-  const multiple=useSelector((state)=>state.data.multiple)
+  const multiple = useSelector((state) => state.data.multiple);
   return (
     <Modal
       isOpen={useSelector((state) => state.modalInput) >= 0}
       onRequestClose={closeModal}
     >
-      {/* TODO make them required
-
-*/}
       <div>
         <div>
           <div>
@@ -69,7 +66,11 @@ const DonationModal = () => {
                     name="amount"
                     className="totaldue"
                   />
-                  {multiple>1&&(<>x <span id="modalamtduplicate">{multiple}</span></>)}
+                  {multiple > 1 && (
+                    <>
+                      x <span id="modalamtduplicate">{multiple}</span>
+                    </>
+                  )}
                   <span id="newtotal"></span>
                 </div>
                 <input type="hidden" name="childnames" id="childnames" />

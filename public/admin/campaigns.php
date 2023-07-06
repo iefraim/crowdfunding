@@ -5,7 +5,10 @@ require_once("./check_login.php");
 $campaignList=query("SELECT * FROM `fundraiser_data`");
 $donations=query("SELECT * FROM `donations`");
 $teams=query("SELECT * FROM `teams`")
+//TODO, clicking on campgaign name should open edit screen
 
+//TODO: timeline should show amount of hours left
+//TODO, get how many days left x 24 
 
 ?>
 <!DOCTYPE html>
