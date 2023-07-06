@@ -16,9 +16,11 @@ const setData = (state = {}, action) =>
 const switchModal = (state = -1, action) =>
   typeof action.item == "number" ? action.item : state;
 const switchTeam = (state = "", action) =>
-  typeof action.item == "string" ? action.item : state;
+  action.tpye == "TEAM" ? action.item : state;
 const changeFilters = (state = defaultFilters, action) =>
   typeof action.item == "object" && !action.type ? action.item : state;
+const formError = (state = "", action) =>
+  action.type == "ERROR" ? action.item : state;
 
 const reducers = combineReducers({
   donations: newDonation,
@@ -27,6 +29,7 @@ const reducers = combineReducers({
   teams: presetTeams,
   filters: changeFilters,
   data: setData,
+  error: formError,
 });
 
 export default configureStore({ reducer: reducers, devTools: true });

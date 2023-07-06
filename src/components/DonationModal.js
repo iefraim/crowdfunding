@@ -10,15 +10,24 @@ const closeModal = () => dispatch({ type: "", item: -1 });
 const formSubmitHandler = (e) => {
   e.preventDefault();
   const input = $("#donationForm").serialize();
-  console.log(input);
+  // console.log(input);
   $.post("./data/submission.php", input, (data) => {
     console.log(data);
+    if (data == "true") {
+      dispatch({ type: "ERROR", item: "" });
+      dispatch({ type: "", item: -1 });
+    } else {
+      dispatch({
+        type: "ERROR",
+        item: "there was an error with your donation",
+      });
+    }
   });
-  dispatch({ type: "", item: -1 });
 };
 
-const DonationModal = (props) => {
+const DonationModal = () => {
   dispatch = useDispatch();
+  const error = useSelector((state) => state.error);
   return (
     <Modal
       isOpen={useSelector((state) => state.modalInput) >= 0}
@@ -39,6 +48,7 @@ const DonationModal = (props) => {
               >
                 X
               </button>
+              {!!error && <p className="error">{error}</p>}
             </div>
             <div className="modal-body">
               <form
@@ -47,6 +57,8 @@ const DonationModal = (props) => {
                 onSubmit={formSubmitHandler}
                 id="donationForm"
               >
+                <input type="hidden" name="campaignId" value="5" />
+                <input type="hidden" name="multiple" value="3" />
                 <div className="copysponsorinfo donatebox">
                   <label htmlFor="totaldue">Donation Amount: </label>
                   <input
@@ -55,7 +67,6 @@ const DonationModal = (props) => {
                     id="totaldue"
                     name="amount"
                     className="totaldue"
-                    required
                   />
                   x <span id="modalamtduplicate">3</span>
                   <span id="newtotal"></span>

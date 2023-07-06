@@ -17,7 +17,7 @@ const Team = (props) => {
         <span className="col-xs-12 teambox">
           <h5>{props.item.name}</h5>
           <ProgressBar
-            completed={Math.round(totalDonations / props.item.goal) * 100}
+            completed={Math.round((totalDonations / props.item.goal) * 100)}
           />
 
           <p className="teamgoallisting">
