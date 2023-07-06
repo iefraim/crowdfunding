@@ -4,7 +4,6 @@ import Donation from "./Donation";
 import getTeam from "../functions/getTeam";
 import TotalDisplay from "./TotalDisplay";
 import TeamTotal from "./TeamTotal";
-import { NavLink } from "react-router-dom";
 
 let filters, dispatch;
 
@@ -52,11 +51,6 @@ const Donations = () => {
         <TotalDisplay />
         <TeamTotal />
 
-        <div className="close-team">
-          <p className="text-center">
-            <NavLink to="/">VIEW ALL</NavLink>
-          </p>
-        </div>
         <div>
           <p>Total Donors: {donations.length}</p>
         </div>

@@ -10,8 +10,6 @@ const TotalDisplay = () => {
   );
   const goal = parseInt(useSelector((state) => state.data.goal));
   const bonusGoal = parseInt(useSelector((state) => state.data.bonus_goal));
-  //TODO between first and second goal add a line that says 'new goal: _____
-  //TODO after after second goal write 'we've reach our goal
   return (
     <div>
       {totalDonations < goal && (

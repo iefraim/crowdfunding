@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import getTeam from "../functions/getTeam";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { NavLink } from "react-router-dom";
 
 const TeamTotal = () => {
   const team = getTeam({ link: useSelector((state) => state.openTeam) });
@@ -17,23 +18,28 @@ const TeamTotal = () => {
     (prev, curr) => prev + parseInt(curr.amount),
     0
   );
-
-  //TODO veiw all shouldb e visible only i fteams
   return (
-    <div id="teamamount">
-      <div className="teamname">
-        <p className="col-sm-12">Team {team.name}</p>
+    <div>
+      <div className="close-team">
+        <p className="text-center">
+          <NavLink to="/">VIEW ALL</NavLink>
+        </p>
       </div>
+      <div id="teamamount">
+        <div className="teamname">
+          <p className="col-sm-12">Team {team.name}</p>
+        </div>
 
-      <div>
-        <ProgressBar
-          completed={Math.round((totalDonations / team.goal) * 100)}
-        />
+        <div>
+          <ProgressBar
+            completed={Math.round((totalDonations / team.goal) * 100)}
+          />
 
-        <div className="teamsum">
-          {" "}
-          ${totalDonations.toLocaleString()} out of $
-          {parseInt(team.goal).toLocaleString()} raised
+          <div className="teamsum">
+            {" "}
+            ${totalDonations.toLocaleString()} out of $
+            {parseInt(team.goal).toLocaleString()} raised
+          </div>
         </div>
       </div>
     </div>
