@@ -28,6 +28,7 @@ const formSubmitHandler = (e) => {
 const DonationModal = () => {
   dispatch = useDispatch();
   const error = useSelector((state) => state.error);
+  const multiple=useSelector((state)=>state.data.multiple)
   return (
     <Modal
       isOpen={useSelector((state) => state.modalInput) >= 0}
@@ -58,7 +59,7 @@ const DonationModal = () => {
                 id="donationForm"
               >
                 <input type="hidden" name="campaignId" value="5" />
-                <input type="hidden" name="multiple" value="3" />
+                <input type="hidden" name="multiple" value={multiple} />
                 <div className="copysponsorinfo donatebox">
                   <label htmlFor="totaldue">Donation Amount: </label>
                   <input
@@ -68,7 +69,7 @@ const DonationModal = () => {
                     name="amount"
                     className="totaldue"
                   />
-                  x <span id="modalamtduplicate">3</span>
+                  {multiple>1&&(<>x <span id="modalamtduplicate">{multiple}</span></>)}
                   <span id="newtotal"></span>
                 </div>
                 <input type="hidden" name="childnames" id="childnames" />

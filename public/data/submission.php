@@ -7,6 +7,8 @@ require_once("../functions/mysql.php");
 foreach ($_POST as $key => $value) {
     $$key=$db->real_escape_string($value);
 }
+if($amount==="")die( "false");
+ else echo "true";
 
 $adultnames=$adultnames===""?"$firstname $lastname":$adultnames;
 
@@ -19,6 +21,5 @@ query($query);
 //     "From"=>"efraimf.task@gmail.com"
 // ]);
 
-if($amount==="")echo "false";
- else echo "true";
+
 //can't set up on localhost

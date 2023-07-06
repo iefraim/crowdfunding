@@ -37,6 +37,6 @@ foreach ($teams as $itemNum=>$team) {
     foreach ($data as $key => $value) {
                 $key=strtolower($key);
                  echo "\"$key\":\"$value\"";//pass in item into json
-                 if($key!="active")echo ",";
+                 if($key!="multiple")echo ",";
             }
     ?>}}
