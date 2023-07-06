@@ -22,7 +22,7 @@ const Team = (props) => {
 
           <p className="teamgoallisting">
             <strong>${totalDonations.toLocaleString()}</strong>
-            <br /> out of ${props.item.goal.toLocaleString()}
+            <br /> out of ${parseInt(props.item.goal).toLocaleString()}
           </p>
         </span>{" "}
       </NavLink>

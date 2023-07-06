@@ -18,8 +18,7 @@ const TeamTotal = () => {
     0
   );
 
-  //TODO add commas to numbers
-  //veiw all shouldb e visible only i fteams
+  //TODO veiw all shouldb e visible only i fteams
   return (
     <div id="teamamount">
       <div className="teamname">
@@ -34,7 +33,7 @@ const TeamTotal = () => {
         <div className="teamsum">
           {" "}
           ${totalDonations.toLocaleString()} out of $
-          {team.goal.toLocaleString()} raised
+          {parseInt(team.goal).toLocaleString()} raised
         </div>
       </div>
     </div>
