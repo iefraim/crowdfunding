@@ -7,7 +7,6 @@ $teams=array_filter(query("SELECT * FROM `teams`"),"getCampaign");
 $donors=array_filter(query("SELECT * FROM `donations`"),"getCampaign");
 $campaigns=query("SELECT * FROM `fundraiser_data`");
 
-//TODO : find plugin that jquery to download table into excel
 ?>
 <!DOCTYPE html>
 <html>

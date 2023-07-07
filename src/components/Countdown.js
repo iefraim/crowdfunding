@@ -15,7 +15,6 @@ import { useSelector } from "react-redux";
 //when it ends, on the spot needs to see finishied message
 /*TODO: test with mommy to make sure it stays in our timezone
 	var hrs = -(new Date().getTimezoneOffset() / 60) ;
-	var 	endingHr=18 +(-6+ hrs+12);
  */
 
 const CountdownDisplay = (props) => {
@@ -23,7 +22,9 @@ const CountdownDisplay = (props) => {
     <div className="countdownCircle">
       <Circle percent={props.total} />
       <p className="countdownCircle__innerText">
-        {props.hours}:{props.minutes}:{props.seconds}
+        {props.hours + props.days * 24}:{props.minutes < 10 && "0"}
+        {props.minutes}:{props.seconds < 10 && "0"}
+        {props.seconds}
       </p>
     </div>
   );
