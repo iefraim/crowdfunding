@@ -53,6 +53,8 @@ $campaigns=query("SELECT * FROM `fundraiser_data`");
             </tbody>
         </table>
         <a href="./edit_team.php">New team</a>
+        
+        <?php require("./export.php") ?>
             </div></div>
             </body>
         <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>

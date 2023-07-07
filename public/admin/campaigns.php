@@ -39,7 +39,7 @@ $teams=query("SELECT * FROM `teams`")
             <?php
             foreach ($campaignList as $row) {?>
             <tr>
-                <td><?=$row["name"]?></td>
+                <td><a href="./edit_campaigns.php?id=<?=$row["ID"]?>"><?=$row["name"]?></a></td>
                 <td><?=$row["goal"]?></td>
                 <td><?=$row["bonus_goal"]?></td>
                 <td><?=$row["start_date"]?></td>
@@ -60,6 +60,7 @@ $teams=query("SELECT * FROM `teams`")
             <?php }?>
         </table>
         <a href="./edit_campaigns.php">Create new</a>
+        <?php require("./export.php") ?>
         </div>
         </div>
     </body>

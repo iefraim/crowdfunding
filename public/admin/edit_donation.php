@@ -1,14 +1,14 @@
 <?php 
 require_once("./check_login.php");
-if(!isset($_GET["id"]))header("Location:./donations.php");
+if(isset($_GET["id"])){
 $id=$db->real_escape_string($_GET["id"]);
 $data=query("SELECT * FROM `donations` WHERE `id`=$id")[0];
-if(!$data)$data=["first_name"=>"",
+}else $data=["first_name"=>"",
 "last_name"=>"",
 "shown_name"=>"",
 "amount"=>"",
 "multiple"=>"",
-"teamId"=>"",
+"teamID"=>"",
 "comment"=>"",
 "email"=>"",
 "phone"=>"",
