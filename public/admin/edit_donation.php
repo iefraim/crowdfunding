@@ -3,8 +3,23 @@ require_once("./check_login.php");
 if(!isset($_GET["id"]))header("Location:./donations.php");
 $id=$db->real_escape_string($_GET["id"]);
 $data=query("SELECT * FROM `donations` WHERE `id`=$id")[0];
-if(!$data)header("Location:./donations.php");
+if(!$data)$data=["first_name"=>"",
+"last_name"=>"",
+"shown_name"=>"",
+"amount"=>"",
+"multiple"=>"",
+"teamId"=>"",
+"comment"=>"",
+"email"=>"",
+"phone"=>"",
+"adress"=>"",
+"city"=>"",
+"state"=>"",
+"zip"=>"",
+"campaign_id"=>""];
+
 $teams=query("SELECT * FROM `teams`");
+$campaigns=query("SELECT * FROM `fundraiser_data`");
 if(isset($_POST["firstName"])){
     foreach ($_POST as $key => $value) {
         $$key=$db->real_escape_string($value);
@@ -12,7 +27,9 @@ if(isset($_POST["firstName"])){
     }
     if(!$shownName)$shownName="$firstName $lastName";
     $updateQuery="UPDATE `donations` SET `first_name`='$firstName', `last_name`='$lastName',`shown_name`='$shownName',`amount`='$amount',`multiple`=$multiple,`teamId`=$team,`comment`='$note',`email`='$email',`phone`='$phone',`adress`='$adress',`city`='$city',`state`='$state',`zip`='$zip', `campaign_id`='$campaign' WHERE `ID`=$id";
-    query($updateQuery);
+    $insertQuery="INSERT INTO `donations` (`first_name`,`last_name`,`shown_name`,`amount`,`multiple`,`teamId`,`comment`,`email`,`phone`,`adress`,`city`,`state`,`zip`,`campaign_id`) VALUES ('$firstName','$lastName','$shownName','$amount','$multiple',$team,'$note','$email','$phone','$adress','$city','$state','$zip',$campaign";
+    if($data["first_name"])query($updateQuery);
+    else query($insertQuery);
      header("Location:./donations.php");
 }
 
@@ -49,6 +66,7 @@ if(isset($_POST["firstName"])){
                         <option value="<?=$value["ID"]?>" <?= $data["teamID"]==$value["ID"]?"selected":""?>><?=$value["name"]?></option>
                     <?php }?>
             </select>    </div><div class="mb-3">  
+                <label for="campaign">campaign</label>
             <select name="campaign">
                 <?php
                     foreach ($campaigns as $campaign ) {?>

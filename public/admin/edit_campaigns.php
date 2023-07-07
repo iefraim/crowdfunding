@@ -31,7 +31,7 @@ if(isset($_POST["name"])){
 <!DOCTYPE html>
 <html>
     <head>
-        <title><?php if($data['id']){echo "Edit";}else{echo "Create new";}?> campaign</title>
+        <title><?php if($data['ID']){echo "Edit";}else{echo "Create new";}?> campaign</title>
         <meta charset="utf-8">
     </head>
     <body>
