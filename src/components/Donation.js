@@ -11,7 +11,7 @@ const Donation = (props) => {
     <li>
       {props.item.shown_name}
       <span className="rtamt donation__amount">
-        {parseInt(props.item.amount * props.item.multiple).toLocaleString()}
+        ${parseInt(props.item.amount * props.item.multiple).toLocaleString()}
       </span>
       <br />
       <small>
