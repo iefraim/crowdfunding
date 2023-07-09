@@ -1,6 +1,5 @@
 import React from "react";
 import CountdownTimer from "react-countdown";
-import CountdownCircle from "./CountdownCircle";
 import { Circle } from "rc-progress";
 import { useSelector } from "react-redux";
 
@@ -12,7 +11,7 @@ import { useSelector } from "react-redux";
 // </div>)
 //tod0: all numbers need to stay 2 digits
 //TODO: why is it blinking
-//when it ends, on the spot needs to see finishied message
+//TODOwhen it ends, on the spot needs to see finishied message
 /*TODO: test with mommy to make sure it stays in our timezone
 	var hrs = -(new Date().getTimezoneOffset() / 60) ;
  */
