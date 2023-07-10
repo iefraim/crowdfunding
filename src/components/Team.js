@@ -21,6 +21,7 @@ const Team = (props) => {
             <ProgressBar
               completed={Math.round((totalDonations / props.item.goal) * 100)}
               completedClassName="barCompleted"
+              barContainerClassName="barUncompleted"
             />
 
             <p className="teamgoallisting">
