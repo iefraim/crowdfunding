@@ -25,7 +25,6 @@ const checkTextFilter = (i) => {
   }
   return false;
 };
-//TODO get highest amount to sort properly
 
 const sorter = (a, b) => {
   if (filters.sort == "recent") {
@@ -33,7 +32,9 @@ const sorter = (a, b) => {
   } else if (filters.sort == "name") {
     return a.shown_name.localeCompare(b.shown_name);
   } else if (filters.sort == "highest") {
-    return a.amount < b.amount ? 1 : -1;
+    return parseInt(a.amount) * a.multiple < parseInt(b.amount) * b.multiple
+      ? 1
+      : -1;
   } else {
     return 0;
   }
