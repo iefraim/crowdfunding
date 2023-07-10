@@ -4,3 +4,4 @@ yarn.lock
 .gitignore
 public/bundle.js
 public/bundle.js
+/backup

@@ -1,14 +1,17 @@
 //modules
-import React from "react";
-import ReactDOM from "react-dom/client"
+import React, { StrictMode } from "react";
+import ReactDOM from "react-dom/client";
 //stylesheets
-import "normalize.css/normalize.css"
-import "bootstrap/scss/bootstrap.scss"
-import "./styles/styles.scss"
+import "normalize.css/normalize.css";
+import "bootstrap/scss/bootstrap.scss";
+import "./styles/styles.scss";
 //components
-import CrowdfundFinal from "./components/CrowdfundFinal"
-import { StrictMode } from "react";
+import Crowdfund from "./components/Crowdfund";
 
-const appRoot=ReactDOM.createRoot(document.getElementById("app"))
+const appRoot = ReactDOM.createRoot(document.getElementById("app"));
 
-appRoot.render(<StrictMode><CrowdfundFinal/></StrictMode>)
+appRoot.render(
+  <StrictMode>
+    <Crowdfund />
+  </StrictMode>
+);
