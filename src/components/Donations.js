@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Donation from "./Donation";
 import getTeam from "../functions/getTeam";
-import TotalDisplay from "./TotalDisplay";
+
 import TeamTotal from "./TeamTotal";
 
 let filters, dispatch;
@@ -25,12 +25,15 @@ const checkTextFilter = (i) => {
   }
   return false;
 };
+//TODO get highest amount to sort properly
 
 const sorter = (a, b) => {
   if (filters.sort == "recent") {
     return parseInt(a.id) < parseInt(b.id) ? 1 : -1;
   } else if (filters.sort == "name") {
     return a.shown_name.localeCompare(b.shown_name);
+  } else if (filters.sort == "highest") {
+    return a.amount < b.amount ? 1 : -1;
   } else {
     return 0;
   }
@@ -46,31 +49,40 @@ const Donations = () => {
     .sort(sorter); //sort by selected
   console.log(donations);
   return (
-    <div>
+    <>
       <div className="col-xs-12 donatebox donors">
-        <TotalDisplay />
         <TeamTotal />
-
-        <div>
-          <p>Total Donors: {donations.length}</p>
+        <div className="title-box">Total Donors: {donations.length}</div>
+        <div className="row" id="search-div">
+          <div className="col-sm-12 col-md-8">
+            <input
+              onChange={changeFilters}
+              type="search"
+              id="filterTextInput"
+              className="form-control"
+              placeholder="search "
+            ></input>
+          </div>
+          <div className="col-sm-12 col-md-4">
+            <select
+              id="sortFilter"
+              onChange={changeFilters}
+              className="form-control"
+            >
+              <option>Sort By</option>
+              <option value="recent">Latest</option>
+              <option value="highest">Highest</option>
+              <option value="name">Name</option>
+            </select>
+          </div>
         </div>
-        <input
-          onChange={changeFilters}
-          id="filterTextInput"
-          className="form-control"
-          placeholder="search donations"
-        ></input>
-        <select id="sortFilter" onChange={changeFilters}>
-          <option value="recent">recent</option>
-          <option value="name">name</option>
-        </select>
-        <ul className="" id="" style={{ overflowY: "scroll", height: "600px" }}>
+        <ul className="" id="donation-list">
           {donations.map((item, key) => (
             <Donation key={key} item={item} />
           ))}
         </ul>
-      </div>{" "}
-    </div>
+      </div>
+    </>
   );
 };
 

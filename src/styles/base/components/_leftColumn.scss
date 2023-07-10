@@ -1,48 +1,61 @@
 .donatebox {
-
-border: solid 1px black;
-padding: 10px;
-margin-top:20px;
-font-size: 18px;
-text-align: center;
-border-radius: 8px;
--webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  border: solid 1px black;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 8px;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 #teams-list {
-    margin: 0;
-    padding: 0;
-    height: 400px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    overflow-y: scroll;
+  margin: 0;
+  padding: 0;
+  height: 400px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  overflow-y: scroll;
 }
 
 #teams-list li {
-    list-style: none;
-    min-height: 100px;
-    float: left;
-    margin-top: 15px;
-    vertical-align: middle;
+  list-style: none;
+  min-height: 100px;
+  float: left;
+  margin-top: 15px;
+  vertical-align: middle;
 }
 .teambox {
-    border: solid thin #bbb;
-    padding: 15px;
-    display: block;
-    border-radius: 10px;
-    height: 100%;
-    letter-spacing: .5px;
-    font-size: 16px;
-    line-height: 1.25;
-    text-align: center;
+  border: solid thin $muted;
+  padding: 15px;
+  display: block;
+  border-radius: 10px;
+  height: 100%;
+  letter-spacing: 0.5px;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+}
+.teambox h5 {
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: capitalize;
+  color: $primary;
+  padding-bottom: 3px;
+}
+.teambox h5:hover {
+  text-decoration: underline;
+}
+.teamgoallisting {
+  padding-top: 10px;
+  color: $primary;
 }
 .teamgoallisting strong {
-    font-size: 22px;
-    line-height: 1.5;
+  font-size: 22px;
+  line-height: 1.5;
 }
 #teams-list a {
-    text-decoration: none;;
+  text-decoration: none;
 }

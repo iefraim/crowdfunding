@@ -8,15 +8,19 @@ const TotalDisplay = () => {
     (prev, curr) => prev + parseInt(curr.amount),
     0
   );
+  //TODO check all styles before countdown starts and after goal is reached
+  //TODO Make progres bar double as thick
+  //TODO color on bar should be $primary
   const goal = parseInt(useSelector((state) => state.data.goal));
   const bonusGoal = parseInt(useSelector((state) => state.data.bonus_goal));
   return (
     <div>
       {totalDonations < goal && (
-        <h6>
-          ${totalDonations.toLocaleString()} out of ${goal.toLocaleString()}{" "}
-          raised!
-        </h6>
+        <>
+          <div className="totalAmount">${totalDonations.toLocaleString()}</div>{" "}
+          of
+          <div className="goal"> ${goal.toLocaleString()} </div>
+        </>
       )}
 
       {totalDonations >= goal && totalDonations < bonusGoal && (

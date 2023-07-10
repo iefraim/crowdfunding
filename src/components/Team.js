@@ -11,21 +11,25 @@ const Team = (props) => {
     (prev, curr) => prev + parseInt(curr.amount),
     0
   );
+  //TODO: Get background of only completed part to be primary
   return (
     <li className="col-xs-12 col-sm-6">
-      <NavLink to={`/${props.item.link}`}>
-        <span className="col-xs-12 teambox">
-          <h5>{props.item.name}</h5>
-          <ProgressBar
-            completed={Math.round((totalDonations / props.item.goal) * 100)}
-          />
+      <div className="teamdiv">
+        <NavLink to={`/${props.item.link}`}>
+          <span className="col-xs-12 teambox">
+            <h5>Team {props.item.name}</h5>
+            <ProgressBar
+              completed={Math.round((totalDonations / props.item.goal) * 100)}
+              completedClassName="barCompleted"
+            />
 
-          <p className="teamgoallisting">
-            <strong>${totalDonations.toLocaleString()}</strong>
-            <br /> out of ${parseInt(props.item.goal).toLocaleString()}
-          </p>
-        </span>{" "}
-      </NavLink>
+            <p className="teamgoallisting">
+              <strong>${totalDonations.toLocaleString()}</strong>
+              <br /> out of ${parseInt(props.item.goal).toLocaleString()} raised
+            </p>
+          </span>{" "}
+        </NavLink>
+      </div>
     </li>
   );
 };

@@ -1,3 +1,48 @@
-.donation__amount{
-    font-weight: bold;
+.title-box {
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: $primary;
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
+  letter-spacing: 1px;
+  margin: 0.5rem;
+  font-size: 1.25rem;
+}
+#search-div {
+  padding: 0.5rem;
+}
+#filterTextInput {
+  font-size: 14px;
+  background-image: url(https://cdn2.hubspot.net/hubfs/4004166/bioticresearch_website_assets/images/search_icon.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 40px;
+  background-color: #fff;
+  border: 1px solid #000;
+  box-shadow: none;
+  -webkit-appearance: none;
+}
+.barCompleted {
+  background-color: $primary;
+}
+#donation-list {
+  overflow-y: scroll;
+  height: 600px;
+  list-style: none;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+#donation-list li {
+  border-bottom: thin solid #bbb;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  text-align: left;
+}
+#donation-list li .rtamt {
+  float: right;
+  font-weight: bold;
+  color: #000;
 }

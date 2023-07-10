@@ -11,37 +11,46 @@ import { useSelector } from "react-redux";
 // </div>)
 //tod0: all numbers need to stay 2 digits
 //TODO: why is it blinking
-//TODOwhen it ends, on the spot needs to see finishied message
 /*TODO: test with mommy to make sure it stays in our timezone
 	var hrs = -(new Date().getTimezoneOffset() / 60) ;
  */
 
+let endDate;
 const CountdownDisplay = (props) => {
+  if (props.completed) {
+    return <h6>This event has ended</h6>;
+  }
   return (
     <div className="countdownCircle">
-      <Circle percent={props.total} />
+      <Circle
+        percent={props.total}
+        strokeWidth={4}
+        trailWidth={4}
+        strokeColor={"$primary"}
+      />
       <p className="countdownCircle__innerText">
-        {props.hours + props.days * 24}:{props.minutes < 10 && "0"}
-        {props.minutes}:{props.seconds < 10 && "0"}
+        {props.hours + props.days * 24}H <br />
+        {props.minutes < 10 && "0"}
+        {props.minutes}m {props.seconds < 10 && "0"}
         {props.seconds}
       </p>
     </div>
   );
 };
-const Countdown = () => {
-  const startDate = useSelector((state) => state.data.start_date);
-  const endDate = useSelector((state) => state.data.end_date);
-  if (!startDate) {
-    return false;
-  }
-  console.log(startDate, endDate);
-  if (Date.parse(startDate) > new Date()) {
+const Countdown = (props) => {
+  if (!props.completed) {
     return <h6>This event hasn't started yet</h6>;
-  }
-  if (Date.parse(endDate) < new Date()) {
-    return <h6>This event has ended</h6>;
   }
   return <CountdownTimer date={endDate} renderer={CountdownDisplay} />;
 };
 
-export default Countdown;
+const PreCountdown = () => {
+  const startDate = useSelector((state) => state.data.start_date);
+  endDate = useSelector((state) => state.data.end_date);
+  if (!startDate) {
+    return false;
+  }
+  return <CountdownTimer date={startDate} renderer={Countdown} />;
+};
+
+export default PreCountdown;
