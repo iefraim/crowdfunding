@@ -25,12 +25,16 @@ const formSubmitHandler = (e) => {
   });
 };
 
-//TODO: show result after multiplied
+const inputChange = () => {
+  const input = parseInt($("#totaldue").val());
+  dispatch({ type: "", item: input });
+};
 
 const DonationModal = () => {
   dispatch = useDispatch();
   const error = useSelector((state) => state.error);
   const multiple = useSelector((state) => state.data.multiple);
+  const input = useSelector((state) => state.modalInput);
   return (
     <Modal
       isOpen={useSelector((state) => state.modalInput) >= 0}
@@ -67,11 +71,13 @@ const DonationModal = () => {
                     id="totaldue"
                     name="amount"
                     className="totaldue"
+                    onChange={inputChange}
                   />
                   {multiple > 1 && (
-                    <>
-                      x <span id="modalamtduplicate">{multiple}</span>
-                    </>
+                    <div>
+                      x <span id="modalamtduplicate">{multiple}</span> ={" "}
+                      {input * multiple}
+                    </div>
                   )}
                   <span id="newtotal"></span>
                 </div>
