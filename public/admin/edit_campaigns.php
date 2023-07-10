@@ -11,7 +11,8 @@ if(isset($_GET["id"])){
         "goal"=>"",
         "bonus_goal"=>"",
         'start_date'=>"",
-        "end_date"=>""
+        "end_date"=>"",
+        "multiple"=>1
     ];
 }
 if(isset($_POST["name"])){
@@ -19,10 +20,10 @@ if(isset($_POST["name"])){
         $$key=$db->real_escape_string($value);
     }
     if(isset($_GET["id"])){
-        $query="UPDATE `fundraiser_data` SET `name`='$name',`goal`='$goal',`bonus_goal`='$bonus_goal',`start_date`='$start_date',`end_date`='$end_date' WHERE `ID`=$id";
+        $query="UPDATE `fundraiser_data` SET `name`='$name',`goal`='$goal',`bonus_goal`='$bonus_goal',`start_date`='$start_date',`end_date`='$end_date',`multiple`=$multiple WHERE `ID`=$id";
     }
     else{
-        $query="INSERT INTO `fundraiser_data` (`name`,`goal`,`bonus_goal`,`start_date`,`end_date`) VALUES ('$name','$goal','$bonus_goal','$start_date','$end_date' )";
+        $query="INSERT INTO `fundraiser_data` (`name`,`goal`,`bonus_goal`,`start_date`,`end_date`,`multiple`) VALUES ('$name','$goal','$bonus_goal','$start_date','$end_date',$multiple )";
     }
     query($query);
     header("Location:./campaigns.php");
@@ -47,6 +48,8 @@ if(isset($_POST["name"])){
             <input type="datetime-local" name="start_date" required  value="<?=$data["start_date"]?>">
             <label for="end_date">End Date</label>
             <input type="datetime-local" name="end_date" required  value="<?=$data["end_date"]?>">
+            <label for="multiple">Multiple</label>
+            <input type="number" name="multiple" min="1" value="<?=$data["multiple"]?>">
             <button type="submit">Save</button>
         </form>
     </body>

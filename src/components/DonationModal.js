@@ -25,6 +25,8 @@ const formSubmitHandler = (e) => {
   });
 };
 
+//TODO: show result after multiplied
+
 const DonationModal = () => {
   dispatch = useDispatch();
   const error = useSelector((state) => state.error);
