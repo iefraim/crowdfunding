@@ -16,11 +16,11 @@ const TotalDisplay = () => {
   return (
     <div>
       {totalDonations < goal && (
-        <>
+        <div>
           <div className="totalAmount">${totalDonations.toLocaleString()}</div>{" "}
           of
           <div className="goal"> ${goal.toLocaleString()} </div>
-        </>
+        </div>
       )}
 
       {totalDonations >= goal && totalDonations < bonusGoal && (

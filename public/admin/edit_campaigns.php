@@ -36,21 +36,31 @@ if(isset($_POST["name"])){
         <meta charset="utf-8">
     </head>
     <body>
+        <div class="container pt-4">
         <?php require("./outline.php");?>
         <form method="post">
-            <label for="name">Name</label>
-            <input type="text" name="name" required value="<?=$data["name"]?>">
-            <label for="goal">Goal</label>
-            <input type="number" name="goal" required  value="<?=$data["goal"]?>">
-            <label for="bonus_goal">Bonus Goal</label>
-            <input type="number" name="bonus_goal"  value="<?=$data["bonus_goal"]?>">
-            <label for="start_date">Start Date</label>
-            <input type="datetime-local" name="start_date" required  value="<?=$data["start_date"]?>">
-            <label for="end_date">End Date</label>
-            <input type="datetime-local" name="end_date" required  value="<?=$data["end_date"]?>">
-            <label for="multiple">Multiple</label>
-            <input type="number" name="multiple" min="1" value="<?=$data["multiple"]?>">
+            <div class="mb-3">
+            <label class="form-label" for="name">Name</label>
+            <input class="form-control" type="text" name="name" required value="<?=$data["name"]?>">
+            </div><div class="mb-3">
+            <label class="form-label" for="goal">Goal</label>
+            <input class="form-control" type="number" name="goal" required  value="<?=$data["goal"]?>">
+            </div><div class="mb-3">
+            <label class="form-label" for="bonus_goal">Bonus Goal</label>
+            <input class="form-control" type="number" name="bonus_goal"  value="<?=$data["bonus_goal"]?>">
+            </div><div class="mb-3">
+            <label class="form-label" for="start_date">Start Date</label>
+            <input class="form-control" type="datetime-local" name="start_date" required  value="<?=$data["start_date"]?>">
+            </div><div class="mb-3">
+            <label class="form-label" for="end_date">End Date</label>
+            <input class="form-control" type="datetime-local" name="end_date" required  value="<?=$data["end_date"]?>">
+            </div><div class="mb-3">
+            <label class="form-label" for="multiple">Multiple</label>
+            <input class="form-control" type="number" name="multiple" min="1" value="<?=$data["multiple"]?>">
+            </div><div class="mb-3">
             <button type="submit">Save</button>
+</div>
         </form>
+</div>
     </body>
 </html>
