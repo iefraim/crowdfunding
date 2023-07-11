@@ -25,15 +25,16 @@ const Provider = ({ children }) => {
       setUp(JsonData);
       updateDonations(JsonData.donations);
     });
-  }, []);
 
-  setInterval(() => {
-    jquery.get("data/data.php", (dataOb) => {
-      //update donations
-      const JsonData = JSON.parse(dataOb);
-      updateDonations(JsonData.donations);
-    });
-  }, 10000); //every 10 secs
+    setInterval(() => {
+      jquery.get("data/data.php", (dataOb) => {
+        //update donations
+        const JsonData = JSON.parse(dataOb);
+        updateDonations(JsonData.donations);
+      });
+    }, 10000);
+  }, []);
+  //every 10 secs
 
   return (
     <DonationContext.Provider value={donations}>
