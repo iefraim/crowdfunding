@@ -12,7 +12,7 @@ const Filters = () => {
 
   return (
     <div className="row" id="search-div">
-      <form onSubmit={(e) => e.preventDefault()} onChange={updateFilters}>
+      <div onChange={updateFilters}>
         <div className="col-sm-12 col-md-8">
           <input
             type="search"
@@ -29,7 +29,7 @@ const Filters = () => {
             <option value="name">Name</option>
           </select>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

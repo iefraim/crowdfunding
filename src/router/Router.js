@@ -1,12 +1,14 @@
 import React, { createContext } from "react";
 import { HashRouter, Route, Routes, useParams } from "react-router-dom";
 
-export const TeamContext = createContext(undefined);
+export const TeamLinkContext = createContext(undefined);
 
 const SetTeam = ({ children }) => {
   const { teamName } = useParams();
   return (
-    <TeamContext.Provider value={teamName}>{children}</TeamContext.Provider>
+    <TeamLinkContext.Provider value={teamName}>
+      {children}
+    </TeamLinkContext.Provider>
   );
 };
 

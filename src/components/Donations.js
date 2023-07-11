@@ -11,7 +11,7 @@ const Donations = () => {
   const [filters, setFilters] = useState({ text: "", sort: "recent" });
 
   //TODO: set up filters
-
+  //include fitlre bya ctive team
   return (
     <FiltersContext.Provider value={{ setFilters }}>
       <Filters />
