@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import jquery from "jquery";
 
-export const DonationContext = React.createContext();
-export const TeamContext = React.createContext();
-export const DataContext = React.createContext();
+export const DonationContext = createContext();
+export const TeamContext = createContext();
+export const DataContext = createContext();
 
 const Provider = ({ children }) => {
   const [donations, updateDonations] = useState([]);
