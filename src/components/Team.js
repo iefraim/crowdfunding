@@ -1,5 +1,5 @@
 import React from "react";
-//TODO
+//TODO:style
 import useTeamGetDonations from "../functions/useGetTeamDonations";
 import { NavLink } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
