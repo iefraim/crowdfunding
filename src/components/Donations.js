@@ -13,7 +13,7 @@ const Donations = () => {
   //TODO: set up filters
 
   return (
-    <FiltersContext.Provider value={{ filters, setFilters }}>
+    <FiltersContext.Provider value={{ setFilters }}>
       <Filters />
       <ul>
         {donations.map((i) => (
