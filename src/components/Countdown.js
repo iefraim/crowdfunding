@@ -26,7 +26,7 @@ const Countdown = () => {
               const totalTime = endDate - startDate;
               const totalHours = days * 24 + hours;
               return (
-                <div>
+                <>
                   <Circle
                     percent={(total / totalTime) * 100}
                     strokeWidth={4}
@@ -39,7 +39,7 @@ const Countdown = () => {
                     {minutes}m {seconds < 10 && "0"}
                     {seconds}
                   </p>
-                </div>
+                </>
               );
             }}
           />

@@ -3,7 +3,7 @@ import React from "react";
 import Countdown from "./Countdown";
 import Total from "./Total";
 import Donations from "./Donations";
-import TeamTotal from "./components/TeamTotal";
+import TeamTotal from "./TeamTotal";
 
 const RightColumn = () => {
   //TODO: styling

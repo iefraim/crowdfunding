@@ -14,7 +14,7 @@ import Router from "../router/Router";
 
 const Crowdfund = () => {
   return (
-    <div>
+    <>
       <Header />
       <div className="container">
         <HeaderText />
@@ -27,7 +27,7 @@ const Crowdfund = () => {
           </Provider>
         </Router>
       </div>
-    </div>
+    </>
   );
 };
 

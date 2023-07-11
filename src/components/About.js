@@ -2,7 +2,7 @@ import React from "react";
 //TODO:styling
 const About = () => {
   return (
-    <div>
+    <>
       <h3>ABOUT ZERA AVRAHAM</h3>
       <div>
         Congregation Zera Abraham is well defined by its byline: Warm and
@@ -13,7 +13,7 @@ const About = () => {
         opportunities for continued personal and collective growth, all while
         maintaining its age old authenticity.
       </div>
-    </div>
+    </>
   );
 };
 
