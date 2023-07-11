@@ -14,7 +14,7 @@ const Teams = () => {
           <div id="teams">
             <ul id="teams-list" className="row">
               {teams.map((item) => (
-                <Team key={item.id} item={item} />
+                <Team key={item.id} team={item} />
               ))}
             </ul>
           </div>

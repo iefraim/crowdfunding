@@ -4,14 +4,14 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { TeamLinkContext } from "../router/Router";
 import useTeamGetDonations from "../functions/useGetTeamDonations";
 import useFindTeams from "../functions/useFindTeam";
-import { redirect } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 //TODO
 const TeamTotal = () => {
   const link = useContext(TeamLinkContext);
   if (!link) return false; //no open team
-  const team = useFindTeams({ link });
-  if (!team[id]) return redirect("/"); //team doesn't exist
-  const donations = useTeamGetDonations(team);
+  const { id, name, goal } = useFindTeams({ link });
+  if (!id) return useNavigate()("/"); //team doesn't exist
+  const donations = useTeamGetDonations(id);
   const donationsTotal = donations.reduce(
     (prev, curr) => prev + parseInt(curr.amount),
     0
@@ -25,17 +25,15 @@ const TeamTotal = () => {
       </div>
       <div id="teamamount">
         <div className="teamname">
-          <p className="col-sm-12">Team {team.name}</p>
+          <p className="col-sm-12">Team {name}</p>
         </div>
 
         <div>
-          <ProgressBar
-            completed={Math.round((donationsTotal / team.goal) * 100)}
-          />
+          <ProgressBar completed={Math.round((donationsTotal / goal) * 100)} />
 
           <div className="teamsum">
             ${donationsTotal.toLocaleString()} out of $
-            {parseInt(team.goal).toLocaleString()} raised
+            {parseInt(goal).toLocaleString()} raised
           </div>
         </div>
       </div>

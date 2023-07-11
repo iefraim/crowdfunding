@@ -4,9 +4,9 @@ import { HashRouter, Route, Routes, useParams } from "react-router-dom";
 export const TeamLinkContext = createContext(undefined);
 
 const SetTeam = ({ children }) => {
-  const { teamName } = useParams();
+  const { teamLink } = useParams();
   return (
-    <TeamLinkContext.Provider value={teamName}>
+    <TeamLinkContext.Provider value={teamLink}>
       {children}
     </TeamLinkContext.Provider>
   );
@@ -17,7 +17,7 @@ const Router = ({ children }) => {
     <HashRouter>
       <Routes>
         <Route
-          path="/:teamName?"
+          path="/:teamLink?"
           element={<SetTeam>{children}</SetTeam>}
           exact
         />
