@@ -3,6 +3,7 @@ import React from "react";
 import Countdown from "./Countdown";
 import Total from "./Total";
 import Donations from "./Donations";
+import TeamTotal from "./components/TeamTotal";
 
 const RightColumn = () => {
   //TODO: styling
@@ -12,8 +13,10 @@ const RightColumn = () => {
         <Countdown />
         <Total />
       </div>
-
-      <Donations />
+      <div className="col-xs-12 donatebox donors">
+        <TeamTotal />
+        <Donations />
+      </div>
     </div>
   );
 };
