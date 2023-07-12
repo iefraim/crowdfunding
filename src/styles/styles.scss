@@ -2,5 +2,10 @@
 @import "./base/base";
 
 //components
-
+@import "./base/components/leftColumn";
+@import "./base/components/rightColumn";
+@import "./base/components/countdown_circle";
+@import "./base/components/teams";
+@import "./base/components/donations";
+@import "./base/components/filters";
 @import url("https://fonts.googleapis.com/css?family=Roboto");

@@ -11,13 +11,13 @@ const Filters = () => {
   };
 
   return (
-    <div className="row" id="search-div">
+    <div className="row filters__searchDiv">
       <div onChange={updateFilters}>
         <div className="col-sm-12 col-md-8">
           <input
             type="search"
             id="filterTextInput"
-            className="form-control"
+            className="form-control filter_textBox"
             placeholder="search "
           ></input>
         </div>

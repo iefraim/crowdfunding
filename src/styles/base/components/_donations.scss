@@ -1,0 +1,22 @@
+.donations {
+  overflow-y: scroll;
+  height: 600px;
+  list-style: none;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.donation {
+  border-bottom: thin solid #bbb;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  text-align: left;
+}
+
+.donation__amount {
+  float: right;
+  font-weight: bold;
+  color: #000;
+}

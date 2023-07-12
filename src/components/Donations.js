@@ -15,7 +15,7 @@ const Donations = () => {
   return (
     <FiltersContext.Provider value={{ setFilters }}>
       <Filters />
-      <ul>
+      <ul className="donations">
         {donations.map((i) => (
           <Donation item={i} key={i.id} />
         ))}

@@ -8,7 +8,7 @@ const Donations = ({
   const { name: teamName } = useFindTeam({ id: teamid });
 
   return (
-    <li>
+    <li className="donation">
       {shown_name}
       <span className="rtamt donation__amount">
         ${(amount * multiple).toLocaleString()}

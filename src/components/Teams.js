@@ -10,7 +10,7 @@ const Teams = () => {
     <div className="donatebox teams">
       <div className="row">
         <div className="col-12">
-          <div className="title-box">{teams.length} teams</div>
+          <div className="teams__header">{teams.length} teams</div>
           <div id="teams">
             <ul id="teams-list" className="row">
               {teams.map((item) => (
