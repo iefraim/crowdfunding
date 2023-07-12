@@ -15,9 +15,14 @@ const Total = () => {
     <>
       {totalDonations < goal && (
         <>
-          <div className="totalAmount">${totalDonations.toLocaleString()}</div>{" "}
+          <div className="total__amount">
+            ${totalDonations.toLocaleString()}
+          </div>{" "}
           of
-          <div className="goal"> ${parseInt(goal).toLocaleString()} </div>
+          <div className="total__goal">
+            {" "}
+            ${parseInt(goal).toLocaleString()}{" "}
+          </div>
         </>
       )}
 

@@ -12,3 +12,9 @@
   box-shadow: none;
   -webkit-appearance: none;
 }
+
+@media (max-width: 768px) {
+  .filters__text {
+    padding-top: 5px;
+  }
+}

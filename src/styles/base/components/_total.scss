@@ -1,0 +1,22 @@
+.total__amount {
+  font-size: 36px;
+  color: $primary;
+
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.total__goal {
+  font-size: 36px;
+  color: $primary;
+  margin-bottom: 15px;
+}
+
+@media (min-width: 768px) {
+  .total__amount,
+  .total__goal {
+    display: inline;
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+}

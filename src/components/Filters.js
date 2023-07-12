@@ -22,7 +22,7 @@ const Filters = () => {
           ></input>
         </div>
         <div className="col-sm-12 col-md-4">
-          <select id="sortFilter" className="form-control">
+          <select id="sortFilter" className="form-control filters__text">
             <option>Sort By</option>
             <option value="recent">Latest</option>
             <option value="highest">Highest</option>
