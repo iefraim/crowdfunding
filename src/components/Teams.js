@@ -7,7 +7,7 @@ import { TeamContext } from "../context/Provider";
 const Teams = () => {
   const teams = useContext(TeamContext);
   return (
-    <div className="donatebox teams">
+    <div className="div--box teams">
       <div className="row">
         <div className="col-12">
           <div className="teams__header">{teams.length} teams</div>

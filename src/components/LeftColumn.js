@@ -8,7 +8,7 @@ const LeftColumn = () => {
   //TODO: styling
   return (
     <div className="leftColumn col-md-8 col-xs-12 col-md-pull-4 ">
-      <div className="donatebox donors">
+      <div className="div--box donors">
         <About />
         <Donate />
       </div>

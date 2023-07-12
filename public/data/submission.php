@@ -7,12 +7,11 @@ require_once("../functions/mysql.php");
 foreach ($_POST as $key => $value) {
     $$key=$db->real_escape_string($value);
 }
-if($amount==="")die( "false");
- else echo "true";
+if($firstname==="test")die( "bad first name");//TODO:insert validtor here
 
-$adultnames=$adultnames===""?"$firstname $lastname":$adultnames;
+$shownname=$shownname===""?"$firstname $lastname":$shownname;
 
-$query="INSERT INTO `donations` (`amount`,`first_name`,`last_name`,`shown_name`,`adress`,`city`,`state`,`zip`,`phone`,`email`,`comment`,`teamID`,`campaign_id`,`multiple`) VALUES ('$amount','$firstname','$lastname','$adultnames','$address','$city','$state','$zip','$phone','$email','$notes','$team',$campaignId,$multiple)";
+$query="INSERT INTO `donations` (`amount`,`first_name`,`last_name`,`shown_name`,`adress`,`city`,`state`,`zip`,`phone`,`email`,`comment`,`teamID`,`campaign_id`,`multiple`) VALUES ('$amount','$firstname','$lastname','$shownname','$address','$city','$state','$zip','$phone','$email','$notes','$team',$campaignId,$multiple)";
 
 
 query($query);

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Modal from "react-modal";
 import jQuery from "jquery";
 
@@ -8,6 +8,7 @@ import { ModalContext } from "./Donate";
 import { DataContext, TeamContext } from "../context/Provider";
 //TODO
 const FormModal = () => {
+  const [error, setError] = useState("");
   const { inputValue, setValue } = useContext(ModalContext);
   const { multiple, id } = useContext(DataContext);
   const teams = useContext(TeamContext);
@@ -21,8 +22,15 @@ const FormModal = () => {
   };
 
   const formSubmitHandler = (e) => {
-    //TODO
-    closeModal();
+    const input = jQuery("#donationForm").serialize();
+
+    e.preventDefault();
+    jQuery.post("./data/submission.php", input, (error) => {
+      setError(error);
+      if (error === "") {
+        closeModal();
+      }
+    });
   };
 
   return (
@@ -35,10 +43,10 @@ const FormModal = () => {
         <ModalCloseButton />
       </div>
       <div className="modal-body">
-        <form onSubmit={formSubmitHandler}>
+        <form onSubmit={formSubmitHandler} id="donationForm">
           <input type="hidden" name="campaignId" value={id} />
-          <input type="hidden" name="multiple" value={multiple} />{" "}
-          <div className="copysponsorinfo donatebox">
+          <input type="hidden" name="multiple" value={multiple} />
+          <div className="copysponsorinfo div--box">
             <label htmlFor="totaldue">Donation Amount: </label>
             <input
               type="number"
@@ -52,7 +60,7 @@ const FormModal = () => {
             />
             {multiple > 1 && (
               <div>
-                x <span id="modalamtduplicate">{multiple}</span> ={" "}
+                x <span id="modalamtduplicate">{multiple}</span> =
                 {inputValue * multiple}
               </div>
             )}
@@ -137,7 +145,7 @@ const FormModal = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="phone">Phone:</label>{" "}
+              <label htmlFor="phone">Phone:</label>
               <input
                 type="tel"
                 id="phone"
@@ -147,7 +155,7 @@ const FormModal = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="email">Email Address:</label>{" "}
+              <label htmlFor="email">Email Address:</label>
               <input
                 type="email"
                 id="email"
@@ -213,7 +221,7 @@ const FormModal = () => {
             </div>
             <div className="form-group">
               <label htmlFor="notes">
-                Message or Dedication (75 characters maximum):{" "}
+                Message or Dedication (75 characters maximum):
               </label>
               <input
                 type="text"
@@ -243,6 +251,7 @@ const FormModal = () => {
                 DONATE NOW
               </button>
             </div>
+            {!!error && <p>{error}</p>}
           </div>
         </form>
       </div>
