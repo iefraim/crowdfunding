@@ -59,14 +59,14 @@ const FormModal = () => {
               value={inputValue}
             />
             {multiple > 1 && (
-              <div>
+              <>
                 x <span id="modalamtduplicate">{multiple}</span> =
                 {inputValue * multiple}
-              </div>
+              </>
             )}
             <span id="newtotal"></span>
           </div>
-          <div>
+          <>
             <div className="form-group">
               <label htmlFor="firstname">First Name:</label>
               <input
@@ -252,7 +252,7 @@ const FormModal = () => {
               </button>
             </div>
             {!!error && <p>{error}</p>}
-          </div>
+          </>
         </form>
       </div>
       <div className="modal-footer">

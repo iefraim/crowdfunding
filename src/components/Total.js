@@ -14,21 +14,21 @@ const Total = () => {
   return (
     <>
       {totalDonations < goal && (
-        <div>
+        <>
           <div className="totalAmount">${totalDonations.toLocaleString()}</div>{" "}
           of
           <div className="goal"> ${parseInt(goal).toLocaleString()} </div>
-        </div>
+        </>
       )}
 
       {totalDonations >= goal && totalDonations < bonus_goal && (
-        <div>
+        <>
           <h5>NEW GOAL!</h5>
           <h6>
             ${totalDonations.toLocaleString()} out of $
             {parseInt(bonus_goal).toLocaleString()} raised!
           </h6>
-        </div>
+        </>
       )}
       {totalDonations >= bonus_goal && (
         <h6>Goal reached with ${totalDonations.toLocaleString()} raised!</h6>

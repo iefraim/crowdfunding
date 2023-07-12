@@ -4,7 +4,7 @@ const About = () => {
   return (
     <>
       <h3>ABOUT ZERA AVRAHAM</h3>
-      <div>
+      <>
         Congregation Zera Abraham is well defined by its byline: Warm and
         Authentic Torah Living for Over a Century. It is a Shul- strongly Torah
         oriented, and a community of Torah Living. With vibrant minyanim,
@@ -12,7 +12,7 @@ const About = () => {
         year, one century through another, to provide enjoyable Yiddishkeit and
         opportunities for continued personal and collective growth, all while
         maintaining its age old authenticity.
-      </div>
+      </>
     </>
   );
 };

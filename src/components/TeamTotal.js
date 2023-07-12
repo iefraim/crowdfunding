@@ -28,14 +28,14 @@ const TeamTotal = () => {
           <p className="col-sm-12">Team {name}</p>
         </div>
 
-        <div>
+        <>
           <ProgressBar completed={Math.round((donationsTotal / goal) * 100)} />
 
           <div className="teamsum">
             ${donationsTotal.toLocaleString()} out of $
             {parseInt(goal).toLocaleString()} raised
           </div>
-        </div>
+        </>
       </div>
     </>
   );
