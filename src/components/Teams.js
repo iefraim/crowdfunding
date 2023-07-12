@@ -12,7 +12,7 @@ const Teams = () => {
         <div className="col-12">
           <div className="teams__header">{teams.length} teams</div>
           <div id="teams">
-            <ul id="teams-list" className="row">
+            <ul id="teams__ul" className="row">
               {teams.map((item) => (
                 <Team key={item.id} team={item} />
               ))}

@@ -9,3 +9,59 @@
   margin: 0.5rem;
   font-size: 1.25rem;
 }
+
+.teams__ul {
+  margin: 0;
+  padding: 0;
+  height: 400px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  overflow-y: scroll;
+}
+
+.team__li {
+  list-style: none;
+  min-height: 100px;
+  float: left;
+  margin-top: 15px;
+  vertical-align: middle;
+}
+
+.team__li a {
+  text-decoration: none;
+}
+
+.team__div {
+  border: solid thin $muted;
+  padding: 15px;
+  display: block;
+  border-radius: 10px;
+  height: 100%;
+  letter-spacing: 0.5px;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.team__name {
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: capitalize;
+  color: $primary;
+  padding-bottom: 3px;
+}
+
+.team__name:hover {
+  text-decoration: underline;
+}
+
+.team__goal {
+  padding-top: 10px;
+  color: $primary;
+}
+
+.team__goal__strong {
+  font-size: 22px;
+  line-height: 1.5;
+}

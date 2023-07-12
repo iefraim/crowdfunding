@@ -10,22 +10,22 @@ const Team = ({ team: { id, name, link, goal } }) => {
     0
   );
   return (
-    <li className="col-xs-12 col-sm-6">
-      <div className="teamdiv">
+    <li className="col-xs-12 col-sm-6 team__li">
+      <div className="col-xs-12 team__div">
         <NavLink to={`/${link}`}>
-          <span className="col-xs-12 teambox">
-            <h5>Team {name}</h5>
-            <ProgressBar
-              completed={Math.round((donationsTotal / goal) * 100)}
-              completedClassName="barCompleted"
-              barContainerClassName="barUncompleted"
-            />
+          <h5 className="team__name">Team {name}</h5>
+          <ProgressBar
+            completed={Math.round((donationsTotal / goal) * 100)}
+            // completedClassName="barCompleted"
+            // barContainerClassName="barUncompleted"
+          />
 
-            <p className="teamgoallisting">
-              <strong>${donationsTotal.toLocaleString()}</strong>
-              <br /> out of ${parseInt(goal).toLocaleString()} raised
-            </p>
-          </span>
+          <p className="team__goal">
+            <strong className="team__goal__strong">
+              ${donationsTotal.toLocaleString()}
+            </strong>
+            <br /> out of ${parseInt(goal).toLocaleString()} raised
+          </p>
         </NavLink>
       </div>
     </li>
