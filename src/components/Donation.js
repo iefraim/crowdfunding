@@ -14,7 +14,7 @@ const Donations = ({
         ${(amount * multiple).toLocaleString()}
       </span>
       <br />
-      <small>
+      <small className="donation__small">
         {comment && (
           <>
             {comment} <br />

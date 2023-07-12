@@ -21,8 +21,8 @@ const Crowdfund = () => {
         <Router>
           <Provider>
             <div className="row">
-              <RightColumn />
               <LeftColumn />
+              <RightColumn />
             </div>
           </Provider>
         </Router>
