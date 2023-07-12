@@ -6,7 +6,6 @@ import ModalCloseButton from "./ModalCloseButton";
 
 import { ModalContext } from "./Donate";
 import { DataContext, TeamContext } from "../context/Provider";
-//TODO
 const FormModal = () => {
   const [error, setError] = useState("");
   const { inputValue, setValue } = useContext(ModalContext);
@@ -50,8 +49,6 @@ const FormModal = () => {
             <label htmlFor="totaldue">Donation Amount: </label>
             <input
               type="number"
-              //TODO move style into scss
-              style={{ width: "90px" }}
               id="amount"
               name="amount"
               className="amount"

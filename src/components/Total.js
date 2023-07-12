@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 import { DonationContext, DataContext } from "../context/Provider";
-//TODO
 const Total = () => {
   const donations = useContext(DonationContext);
   const { goal, bonus_goal } = useContext(DataContext);

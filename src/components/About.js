@@ -1,5 +1,4 @@
 import React from "react";
-//TODO:styling
 const About = () => {
   return (
     <>

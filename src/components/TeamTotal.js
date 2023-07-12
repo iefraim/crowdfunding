@@ -5,7 +5,6 @@ import { TeamLinkContext } from "../router/Router";
 import useTeamGetDonations from "../functions/useGetTeamDonations";
 import useFindTeams from "../functions/useFindTeam";
 import { NavLink, useNavigate } from "react-router-dom";
-//TODO
 const TeamTotal = () => {
   const link = useContext(TeamLinkContext);
   if (!link) return false; //no open team

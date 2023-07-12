@@ -4,7 +4,6 @@ import { Circle } from "rc-progress";
 
 import { DataContext } from "../context/Provider";
 
-//TODO: styling
 const Countdown = () => {
   const { start_date, end_date } = useContext(DataContext);
   const startDate = new Date(start_date);

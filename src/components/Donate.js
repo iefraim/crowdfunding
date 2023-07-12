@@ -4,7 +4,6 @@ import jQuery from "jquery";
 import FormModal from "./FormModal";
 
 export const ModalContext = createContext();
-//TODO styling
 const Donate = () => {
   const [inputValue, setValue] = useState(-1);
   const openModal = () => {

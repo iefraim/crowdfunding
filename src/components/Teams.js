@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import Team from "./Team";
 
 import { TeamContext } from "../context/Provider";
-//TODO:style
 const Teams = () => {
   const teams = useContext(TeamContext);
   return (

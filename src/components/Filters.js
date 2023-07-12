@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 
 import { FiltersContext } from "./Donations";
-//TODO:Styling
 const Filters = () => {
   const { setFilters } = useContext(FiltersContext);
   const updateFilters = () => {

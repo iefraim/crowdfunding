@@ -1,7 +1,6 @@
 import React from "react";
 
 import useFindTeam from "../functions/useFindTeam";
-//TODO styling
 const Donations = ({
   item: { shown_name, amount, multiple, teamid, comment },
 }) => {
