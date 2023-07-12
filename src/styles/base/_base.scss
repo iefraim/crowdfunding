@@ -14,3 +14,15 @@ body {
 .btn-primary:hover {
   background-color: $secondary;
 }
+
+.div--box {
+  border: solid 1px black;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 8px;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
