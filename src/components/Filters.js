@@ -1,6 +1,26 @@
 import React, { useContext } from "react";
 
 import { FiltersContext } from "./Donations";
+
+export const useFilters = (donations, filters) => {
+  const { text, sort } = filters;
+  donations = donations.filter((i) => {
+    const keys = Object.entries(i);
+    const resArray = keys.map(([, item]) =>
+      item.toLowerCase().includes(text.toLowerCase())
+    );
+    return resArray.indexOf(true) !== -1;
+  });
+
+  donations = donations.sort((a, b) => {
+    if (sort == "recent") return a.id > b.id ? -1 : 1;
+    if (sort == "highest")
+      return a.amount * a.multiple > b.amount * b.multiple ? -1 : 1;
+    if (sort == "name") return a.shown_name < b.shown_name ? -1 : 1;
+  });
+
+  return donations;
+};
 const Filters = () => {
   const { setFilters } = useContext(FiltersContext);
   const updateFilters = () => {

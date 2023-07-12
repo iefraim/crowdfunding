@@ -5,7 +5,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 const Team = ({ team: { id, name, link, goal } }) => {
   const donations = useTeamGetDonations(id);
   const donationsTotal = donations.reduce(
-    (prev, curr) => prev + parseInt(curr.amount),
+    (prev, curr) => prev + curr.amount * curr.multiple,
     0
   );
   return (

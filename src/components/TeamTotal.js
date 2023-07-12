@@ -12,7 +12,7 @@ const TeamTotal = () => {
   if (!id) return useNavigate()("/"); //team doesn't exist
   const donations = useTeamGetDonations(id);
   const donationsTotal = donations.reduce(
-    (prev, curr) => prev + parseInt(curr.amount),
+    (prev, curr) => prev + curr.amount * curr.multiple,
     0
   );
   return (
