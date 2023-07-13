@@ -7,10 +7,8 @@ import Teams from "./Teams";
 const LeftColumn = () => {
   return (
     <div className="leftColumn col-md-8 col-xs-12 col-md-pull-4 ">
-      <div className="div--box donors">
-        <About />
-        <Donate />
-      </div>
+      <About />
+      <Donate />
       <Teams />
     </div>
   );

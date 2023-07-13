@@ -1,7 +1,7 @@
 import React from "react";
 const About = () => {
   return (
-    <>
+    <div className="div--box">
       <h3>ABOUT ZERA AVRAHAM</h3>
       <>
         Congregation Zera Abraham is well defined by its byline: Warm and
@@ -12,7 +12,7 @@ const About = () => {
         opportunities for continued personal and collective growth, all while
         maintaining its age old authenticity.
       </>
-    </>
+    </div>
   );
 };
 
