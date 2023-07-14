@@ -8,7 +8,7 @@ const Donate = () => {
   const [inputValue, setValue] = useState(-1);
   const openModal = (e) => {
     e.preventDefault();
-    setValue(parseInt(0 + jQuery("#donationInput").val()));
+    setValue(jQuery("#donationInput").val());
     jQuery("#donationInput").val("");
   };
   return (

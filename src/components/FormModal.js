@@ -16,7 +16,7 @@ const FormModal = () => {
     setValue(-1);
   };
   const inputChange = () => {
-    const input = parseInt(jQuery("#amount").val());
+    const input = jQuery("#amount").val();
     setValue(input);
   };
 
@@ -31,10 +31,10 @@ const FormModal = () => {
       }
     });
   };
-
+  //TODO mammy
   return (
     <Modal
-      isOpen={inputValue >= 0}
+      isOpen={!inputValue || inputValue >= 0}
       onRequestClose={closeModal}
       ariaHideApp={false}
     >

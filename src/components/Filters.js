@@ -16,7 +16,8 @@ export const useFilters = (donations, filters) => {
     if (sort == "recent") return a.id > b.id ? -1 : 1;
     if (sort == "highest")
       return a.amount * a.multiple > b.amount * b.multiple ? -1 : 1;
-    if (sort == "name") return a.shown_name < b.shown_name ? -1 : 1;
+    if (sort == "name")
+      return a.shown_name.toLowerCase() < b.shown_name.toLowerCase() ? -1 : 1;
   });
 
   return donations;
