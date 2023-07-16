@@ -1,0 +1,11 @@
+.barUncompleted {
+  height: 20px;
+  background: rgb(224, 224, 222);
+  border-radius: 50px;
+  width: 100%;
+  overflow: hidden;
+  background: $secondary;
+}
+.barUncompleted div {
+  background: $primary !important;
+}

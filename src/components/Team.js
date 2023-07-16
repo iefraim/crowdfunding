@@ -15,8 +15,7 @@ const Team = ({ team: { id, name, link, goal } }) => {
           <h5 className="team__name">Team {name}</h5>
           <ProgressBar
             completed={Math.round((donationsTotal / goal) * 100)}
-            // completedClassName="barCompleted"
-            // barContainerClassName="barUncompleted"
+            barContainerClassName="barUncompleted"
           />
 
           <p className="team__goal">

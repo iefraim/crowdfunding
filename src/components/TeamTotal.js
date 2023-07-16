@@ -28,7 +28,10 @@ const TeamTotal = () => {
         </div>
 
         <>
-          <ProgressBar completed={Math.round((donationsTotal / goal) * 100)} />
+          <ProgressBar
+            completed={Math.round((donationsTotal / goal) * 100)}
+            barContainerClassName="barUncompleted"
+          />
 
           <div className="teamsum">
             ${donationsTotal.toLocaleString()} out of $
