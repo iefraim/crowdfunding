@@ -5,11 +5,8 @@ import { FiltersContext } from "./Donations";
 export const useFilters = (donations, filters) => {
   const { text, sort } = filters;
   donations = donations.filter((i) => {
-    const keys = Object.entries(i);
-    const resArray = keys.map(([, item]) =>
-      item.toLowerCase().includes(text.toLowerCase())
-    );
-    return resArray.indexOf(true) !== -1;
+    if (i.shown_name.toLowerCase().includes(text.toLowerCase())) return true;
+    else return false;
   });
 
   donations = donations.sort((a, b) => {
