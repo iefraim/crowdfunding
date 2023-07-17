@@ -7,6 +7,9 @@ $teams=array_filter(query("SELECT * FROM `teams`"),"getCampaign");
 $donors=array_filter(query("SELECT * FROM `donations`"),"getCampaign");
 $campaigns=query("SELECT * FROM `fundraiser_data`");
 
+$campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){
+    return $_GET["campaignId"]=$i["ID"];
+})[0]["name"]:false;
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,6 +23,9 @@ $campaigns=query("SELECT * FROM `fundraiser_data`");
     <div class="container mt-4">
         <?php require("./outline.php");?>
         <div class="row"><h1>DONATIONS</h1></div>
+        <?php if($campaign){?>
+        <div class="row"><h2><?=$campaign?></h2></div>
+        <?php }?>
         <div class="row">
      
         <table id="datatable"   class="mt-4"     >

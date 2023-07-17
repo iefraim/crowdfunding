@@ -3,6 +3,10 @@ require_once("./check_login.php");
 $teams=query("SELECT * FROM `teams`");
 $donors=query("SELECT `teamID` FROM `donations`");
 $campaigns=query("SELECT * FROM `fundraiser_data`");
+$campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){
+    return $_GET["campaignId"]=$i["ID"];
+})[0]["name"]:false;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,10 +19,13 @@ $campaigns=query("SELECT * FROM `fundraiser_data`");
     <body>
     <div class="container mt-4">
         <?php require("./outline.php");?>
-        <div class="row"><h1>CAMPAIGNS</h1></div>
+        <div class="row"><h1>Teams</h1></div>
+        <?php if($campaign){?>
+        <div class="row"><h2><?=$campaign?></h2></div>
+        <?php }?>
         <div class="row">
      
-        <table id="datatable"   class="mt-4"     >
+        <table id="datatable" class="mt-4">
      
             <thead>
                 <th>Name</th>
