@@ -1,6 +1,7 @@
 <?php
 if(isset($_POST["password"])&& $_POST["password"]=="1234"){
     setcookie("login","true");
+    header("Location:./index.php");
 }
 if(isset($_COOKIE["login"])&&$_COOKIE["login"]==="true")
 header("Location:./index.php");

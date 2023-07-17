@@ -12,18 +12,21 @@ if(isset($_GET["id"])){
         "bonus_goal"=>"",
         'start_date'=>"",
         "end_date"=>"",
-        "multiple"=>1
+        "multiple"=>1,
+        "active"=>false
     ];
 }
 if(isset($_POST["name"])){
     foreach ($_POST as $key => $value) {
         $$key=$db->real_escape_string($value);
     }
+    $active=isset($active)?1:0;
+    echo $active;
     if(isset($_GET["id"])){
-        $query="UPDATE `fundraiser_data` SET `name`='$name',`goal`='$goal',`bonus_goal`='$bonus_goal',`start_date`='$start_date',`end_date`='$end_date',`multiple`=$multiple WHERE `ID`=$id";
+        $query="UPDATE `fundraiser_data` SET `name`='$name',`goal`='$goal',`bonus_goal`='$bonus_goal',`start_date`='$start_date',`end_date`='$end_date',`multiple`=$multiple,`active`=$active WHERE `ID`=$id";
     }
     else{
-        $query="INSERT INTO `fundraiser_data` (`name`,`goal`,`bonus_goal`,`start_date`,`end_date`,`multiple`) VALUES ('$name','$goal','$bonus_goal','$start_date','$end_date',$multiple )";
+        $query="INSERT INTO `fundraiser_data` (`name`,`goal`,`bonus_goal`,`start_date`,`end_date`,`multiple`,`active`) VALUES ('$name','$goal','$bonus_goal','$start_date','$end_date',$multiple ,$active)";
     }
     query($query);
     header("Location:./campaigns.php");
@@ -57,6 +60,9 @@ if(isset($_POST["name"])){
             </div><div class="mb-3">
             <label class="form-label" for="multiple">Multiple</label>
             <input class="form-control" type="number" name="multiple" min="1" value="<?=$data["multiple"]?>">
+            </div><div class="mb-3">
+            <label class="form-check-label" for="active">Active</label>
+            <input class="form-check-input" type="checkbox" name="active" <?=$data["active"]?"checked":""?>>
             </div><div class="mb-3">
             <button type="submit">Save</button>
 </div>
