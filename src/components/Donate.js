@@ -15,7 +15,9 @@ const Donate = () => {
     <ModalContext.Provider value={{ inputValue, setValue }}>
       <form onSubmit={openModal} className="div--box">
         <input type="number" min={1} id="donationInput" />
-        <button tpye="submit">Donate Now!</button>
+        <button tpye="submit" className="btn btn-primary btn-sm">
+          DONATE
+        </button>
       </form>
       <FormModal />
     </ModalContext.Provider>
