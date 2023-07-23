@@ -1,19 +1,90 @@
 <?php
-require_once("./check_login.php")
-?>
+require_once("./check_login.php");
 
+
+$campaignList=query("SELECT * FROM `fundraiser_data`");
+$donations=query("SELECT * FROM `donations`");
+$teams=query("SELECT * FROM `teams`")
+
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>dashboard</title>
+        <title>Campaign List</title>
         <meta charset="utf-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
     </head>
     <body>
+        <div class="container mt-4">
         <?php require("./outline.php");?>
-        <p><a href="./campaigns.php">campaign list</a></p>
-        <p><a href="./teams.php">team list</a></p>
-        <p><a href="./donations.php">donation list</a></p>
+        <div class="row"><h1>CAMPAIGNS</h1></div>
+        <div class="row mb-4"> <div class="col-md-6">
+        <a href="./edit_campaigns.php" class="btn btn-primary">Create new</a>   </div></div>
+        <div class="row">
+        <table id="datatable"   class="mt-4"     >
+            <thead>
+                <th>Campaign Name</th>
+                <th>Goal</th>
+                <th>Bonus Goal</th>
+                <th>Total</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Donations</th>
+                <th>Teams</th>
+                <th>Active</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead>
+            <?php
+            foreach ($campaignList as $row) {?>
+            <tr>
+                <td><a href="./edit_campaigns.php?id=<?=$row["ID"]?>"><?=$row["name"]?></a></td>
+                <td>$<?=$row["goal"]?></td>
+                <td>$<?=$row["bonus_goal"]?></td>
+                <td><?=array_sum(array_filter($donations,function($i){
+                    global $row;
+                    return $i["campaign_id"]==$row["ID"];
+                }))?></td>
+                <td><?=$row["start_date"]?></td>
+                <td><?=$row["end_date"]?></td>
+                <td><a href="./donations.php?campaignId=<?=$row["ID"]?>"><?=count(array_filter($donations,function($i){
+                    global $row;
+                    return $i["campaign_id"]==$row["ID"];
+                }))?></a></td>
+                <td><a href="./teams.php?campaignId=<?=$row["ID"]?>"><?=count(array_filter($teams,function($i){
+                    global $row;
+                    return $i["campaign_id"]==$row["ID"];
+                }))?></a></td>
+                <td><?=$row["active"]=="1"?'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle-on" viewBox="0 0 16 16">
+  <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+</svg>':'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle-off" viewBox="0 0 16 16">
+  <path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z"/>
+</svg>'?></td>
+                <td><a href="./edit_campaigns.php?id=<?=$row["ID"]?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+</svg></a></td>
+<td><a onclick="deleteItem(<?=$row['ID']?>)">X</a></td>
+            </tr>
+            <?php }?>
+        </table>
+    
+        <?php require("./export.php") ?>
+        </div>
+        </div>
     </body>
-
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+let table = new DataTable('#datatable');
+const deleteItem=(id)=>{
+                        if(!confirm("Are you sure you want to delete this item?")){
+                            return;
+                        }
+                        console.log("delete ",id)
+                        $.post("./delete_item.php",{id:id,table:"fundraiser_data"})
+                        location.reload();
+                    }
+    </script>
 </html>
-

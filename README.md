@@ -1,16 +1,22 @@
-"# crowdfunding" 
+"# crowdfunding"
 
-First time downloading from github  make sure to run `npm install`
+First time downloading from github make sure to run `npm install`
 
-TO BUILD : 
+TO BUILD :
 
 open terminal
 type in webpack
 to watch: add --watch
 
-This will build the project. 
-Take the bundle.js and index.html and copy them to the server 
+This will build the project.
+Take the bundle.js and index.html and copy them to the server
 
-Be careful when uploading public folder. 
+Be careful when uploading public folder.
 
-Do not upload sql or data unless you made a change. make sure not 
+Do not upload sql or data unless you made a change. make sure not
+
+TODO: add credit card
+
+test that export works on all rows even if more than showing
+
+$('.tableexport-caption').remove();
