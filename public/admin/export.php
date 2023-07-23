@@ -1,4 +1,4 @@
-<button onclick="exportTable()">export</button>
+<div class="col-md-6"><button onclick="exportTable()" class="btn btn-primary ">Export</button></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/js/tableexport.min.js"></script>
 <script>
@@ -18,4 +18,9 @@
     sheetname: "id"                             // (id, String), sheet name for the exported spreadsheet, (default: 'id')
 });
     }
+    $('table').on('click','.tableexport-caption',function(){
+   
+   
+    $(this).remove();
+});
 </script>

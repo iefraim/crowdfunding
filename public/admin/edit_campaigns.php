@@ -29,7 +29,7 @@ if(isset($_POST["name"])){
         $query="INSERT INTO `fundraiser_data` (`name`,`goal`,`bonus_goal`,`start_date`,`end_date`,`multiple`,`active`) VALUES ('$name','$goal','$bonus_goal','$start_date','$end_date',$multiple ,$active)";
     }
     query($query);
-    header("Location:./campaigns.php");
+    header("Location:./");
 }
 ?>
 <!DOCTYPE html>
@@ -41,6 +41,7 @@ if(isset($_POST["name"])){
     <body>
         <div class="container pt-4">
         <?php require("./outline.php");?>
+        <div class="row"><h1>CAMPAIGNS</h1></div>
         <form method="post">
             <div class="mb-3">
             <label class="form-label" for="name">Name</label>
@@ -58,13 +59,13 @@ if(isset($_POST["name"])){
             <label class="form-label" for="end_date">End Date</label>
             <input class="form-control" type="datetime-local" name="end_date" required  value="<?=$data["end_date"]?>">
             </div><div class="mb-3">
-            <label class="form-label" for="multiple">Multiple</label>
+            <label class="form-label" for="multiple">Multiply By:</label>
             <input class="form-control" type="number" name="multiple" min="1" value="<?=$data["multiple"]?>">
             </div><div class="mb-3">
             <label class="form-check-label" for="active">Active</label>
             <input class="form-check-input" type="checkbox" name="active" <?=$data["active"]?"checked":""?>>
             </div><div class="mb-3">
-            <button type="submit">Save</button>
+            <button type="submit" class="btn btn-primary">Save</button>
 </div>
         </form>
 </div>

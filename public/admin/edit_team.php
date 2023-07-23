@@ -39,7 +39,7 @@ if(isset($_POST["name"])){
     <body>
     <div class="container pt-4" > 
         <?php require("./outline.php");?>
-            <div class="row"><h1>EDIT DONATION</h1></div>
+            <div class="row"><h1>TEAMS</h1></div>
     <form method="post">
     <div class="mb-3">
             <label for="name"  class="form-label">Name</label>
@@ -49,13 +49,13 @@ if(isset($_POST["name"])){
             <label for="name" class="form-label">Link</label>
             <input type="text" class="form-control" name="link" required value="<?=$data["link"]?>">           </div><div class="mb-3">  
             <label for="campaign">Campaign</label>
-            <select name="campaign">
+            <select name="campaign" class="form-control">
                 <?php
                     foreach ($campaigns as $campaign ) {?>
                         <option value=<?=$campaign["ID"]?> 
                         <?=$campaign["ID"]==$data["campaign_id"]?"selected":""?>><?=$campaign["name"]?></option>
                     <?php }?>
-            </select>
+            </select>  </div><div class="mb-3">  
             <button type="submit" class="btn btn-primary">Save</button>           </div> 
         </form>
     </div>
