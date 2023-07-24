@@ -6,15 +6,31 @@ import ModalCloseButton from "./ModalCloseButton";
 
 import { ModalContext } from "./Donate";
 import { DataContext, TeamContext } from "../context/Provider";
+import * as yup from "yup";
+
 const FormModal = () => {
   const [error, setError] = useState("");
+
+  const [isFormValid, setIsFormValid] = useState(false);
   const { inputValue, setValue } = useContext(ModalContext);
   const { multiple, id } = useContext(DataContext);
   const teams = useContext(TeamContext);
 
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  //const [showname, setShowname] = useState("");
+  const [email, setEmail] = useState("");
+
   const closeModal = () => {
     setValue(-1);
   };
+
+  const userSchema = yup.object().shape({
+    firstname: yup.string().required(),
+    lastname: yup.string().required(),
+    email: yup.string().email().required(),
+  });
+
   const inputChange = () => {
     const input = jQuery("#amount").val();
     setValue(input);
@@ -27,17 +43,38 @@ const FormModal = () => {
     },
   };
 
-  const formSubmitHandler = (e) => {
+  async () => {
+    const data = await fetch(url);
+    myFunc(data);
+  };
+
+  async function formSubmitHandler(e) {
     const input = jQuery("#donationForm").serialize();
 
     e.preventDefault();
-    jQuery.post("./data/submission.php", input, (error) => {
-      setError(error);
-      if (error === "") {
-        closeModal();
-      }
-    });
-  };
+    let dataObject = {
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+    };
+
+    // validating this dataObject concerning Yup userSchema
+
+    const isValid = await userSchema.isValid(dataObject);
+    setIsFormValid(isValid);
+    debugger;
+    if (!isValid) {
+      console.log("Form is Invalid");
+      return false;
+    } else {
+      jQuery.post("./data/submission.php", input, (error) => {
+        setError(error);
+        if (error === "") {
+          closeModal();
+        }
+      });
+    }
+  }
 
   return (
     <Modal
@@ -50,7 +87,7 @@ const FormModal = () => {
         <ModalCloseButton />
       </div>
       <div className="modal-body">
-        <form onSubmit={formSubmitHandler} id="donationForm">
+        <form onSubmit={formSubmitHandler} id="donationForm" noValidate>
           <input type="hidden" name="campaignId" value={id} />
           <input type="hidden" name="multiple" value={multiple} />
           <div className="copysponsorinfo div--box form-group mb-4">
@@ -58,9 +95,9 @@ const FormModal = () => {
               Donation Amount:{" "}
             </label>
             <div align="center">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">$</span>
+              <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">$</span>
                 </div>
                 <input
                   type="number"
@@ -70,8 +107,8 @@ const FormModal = () => {
                   onChange={inputChange}
                   value={inputValue}
                 />{" "}
-                <div class="input-group-append">
-                  <span class="input-group-text">.00</span>
+                <div className="input-group-append">
+                  <span className="input-group-text">.00</span>
                 </div>
               </div>
 
@@ -85,6 +122,7 @@ const FormModal = () => {
             </div>
           </div>
           <>
+            <h1> {isFormValid ? "valid" : "invalid"}</h1>
             <div className="form-group">
               <label htmlFor="firstname">First Name:</label>
               <input
@@ -95,7 +133,10 @@ const FormModal = () => {
                 autoFocus
                 required
                 title="Your first name is required."
+                onChange={(e) => setFirstname(e.target.value)}
+                value={firstname}
               />
+              <p> firstname</p>
             </div>
             <div className="form-group">
               <label htmlFor="lastname">Last Name:</label>
@@ -105,6 +146,8 @@ const FormModal = () => {
                 name="lastname"
                 className="form-control"
                 required
+                onChange={(e) => setLastname(e.target.value)}
+                value={lastname}
               />
             </div>
             <div className="form-group">
@@ -180,6 +223,8 @@ const FormModal = () => {
                 name="email"
                 required
                 className="form-control"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
               />
             </div>
             <div id="ccinfodiv">

@@ -35,7 +35,8 @@
     "webpack": "^5.87.0",
     "webpack-dev-server": "^4.15.1",
     "webpack-php-loader": "^0.5.0",
-    "websocket": "^1.0.34"
+    "websocket": "^1.0.34",
+    "yup": "^1.2.0"
   },
   "scripts": {
     "build": "cls & webpack --watch",
