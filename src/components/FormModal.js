@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
 import jQuery from "jquery";
 
@@ -10,10 +10,93 @@ const FormModal = () => {
   const [error, setError] = useState("");
   const { inputValue, setValue } = useContext(ModalContext);
   const { multiple, id } = useContext(DataContext);
+
+  const initialValues = {
+    campaignId: id || "",
+
+    firstname: "",
+    lastname: "",
+    amount: "",
+    shownname: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
+    phone: "",
+    email: "",
+    ccnum: "",
+    ccmonth: "",
+    ccyear: "",
+    cvv: "",
+    notes: "",
+    team: "",
+  };
+
+  const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
   const teams = useContext(TeamContext);
 
+  const validate = (values) => {
+    const errors = {};
+    if (!values.firstname) {
+      errors.firstname = "Required";
+    }
+    if (!values.lastname) {
+      errors.lastname = "Required";
+    }
+    if (!values.amount) {
+      errors.amount = "Required";
+    }
+    if (values.amount && isNaN(values.amount)) {
+      errors.amount = "Invalid";
+    }
+    if (!values.address) {
+      errors.address = "Required";
+    }
+    if (!values.city) {
+      errors.city = "Required";
+    }
+    if (!values.zip) {
+      errors.zip = "Required";
+    }
+    if (!values.phone) {
+      errors.phone = "Required";
+    }
+    if (!values.email) {
+      errors.email = "Required";
+    }
+    if (!values.email) {
+      errors.email = "Required";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+    ) {
+      errors.email = "Invalid email address";
+    }
+
+    if (!values.ccnum) {
+      errors.ccnum = "Required";
+    }
+    if (!values.ccmonth) {
+      errors.ccmonth = "Required";
+    }
+    if (!values.ccyear) {
+      errors.ccyear = "Required";
+    }
+    if (!values.cvv) {
+      errors.cvv = "Required";
+    } else if (values.cvv.length < 3) {
+      errors.cvv = "Invalid";
+    }
+    return errors;
+  };
   const closeModal = () => {
     setValue(-1);
+  };
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, campaignId: id });
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
   };
   const inputChange = () => {
     const input = jQuery("#amount").val();
@@ -22,23 +105,41 @@ const FormModal = () => {
   const customStyles = {
     content: {
       width: "75%",
-
       left: "15%",
     },
   };
 
   const formSubmitHandler = (e) => {
-    const input = jQuery("#donationForm").serialize();
-
     e.preventDefault();
-    jQuery.post("./data/submission.php", input, (error) => {
+    setFormErrors(validate(formValues));
+    const hasBlankValues = Object.values(formErrors).some(
+      (value) => !value.trim()
+    );
+
+    if (hasBlankValues) {
+      const el = document.querySelector(".is-invalid");
+      (el?.parentElement ?? el)?.scrollIntoView({ behavior: "smooth" });
+
+      return false;
+    }
+
+    jQuery.post("./data/submission.php", formValues, (error) => {
       setError(error);
       if (error === "") {
+        setFormValues(initialValues);
+        setFormErrors({});
+
         closeModal();
       }
     });
   };
-
+  useEffect(() => {
+    setFormValues((formValues) => ({
+      ...formValues,
+      campaignId: id,
+    }));
+    console.log(formValues);
+  }, [id]);
   return (
     <Modal
       isOpen={!inputValue || inputValue >= 0}
@@ -50,29 +151,32 @@ const FormModal = () => {
         <ModalCloseButton />
       </div>
       <div className="modal-body">
-        <form onSubmit={formSubmitHandler} id="donationForm">
+        <form onSubmit={formSubmitHandler} id="donationForm" noValidate>
           <input type="hidden" name="campaignId" value={id} />
-          <input type="hidden" name="multiple" value={multiple} />
+
           <div className="copysponsorinfo div--box form-group mb-4">
             <label htmlFor="totaldue" style={{ marginRight: "15px" }}>
               Donation Amount:{" "}
             </label>
             <div align="center">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">$</span>
+              <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">$</span>
                 </div>
                 <input
                   type="number"
                   id="amount"
                   name="amount"
-                  className="amount"
-                  onChange={inputChange}
-                  value={inputValue}
+                  className={formErrors.amount ? "amount is-invalid" : "amount"}
+                  onChange={handleChange}
+                  value={formValues.amount}
                 />{" "}
-                <div class="input-group-append">
-                  <span class="input-group-text">.00</span>
+                <div className="input-group-append">
+                  <span className="input-group-text">.00</span>
                 </div>
+                {formErrors.amount && (
+                  <span className="invalid-feedback">{formErrors.amount}</span>
+                )}
               </div>
 
               {multiple > 1 && (
@@ -88,24 +192,43 @@ const FormModal = () => {
             <div className="form-group">
               <label htmlFor="firstname">First Name:</label>
               <input
-                className="form-control"
+                className={
+                  formErrors.firstname
+                    ? "form-control is-invalid"
+                    : "form-control"
+                }
                 type="text"
                 id="firstname"
                 name="firstname"
                 autoFocus
                 required
                 title="Your first name is required."
-              />
+                value={formValues.firstname}
+                onChange={handleChange}
+              />{" "}
+              {formErrors.firstname && (
+                <span className="invalid-feedback">{formErrors.firstname}</span>
+              )}
             </div>
+
             <div className="form-group">
               <label htmlFor="lastname">Last Name:</label>
               <input
                 type="text"
                 id="lastname"
                 name="lastname"
-                className="form-control"
+                className={
+                  formErrors.lastname
+                    ? "form-control is-invalid"
+                    : "form-control"
+                }
                 required
-              />
+                value={formValues.lastname}
+                onChange={handleChange}
+              />{" "}
+              {formErrors.lastname && (
+                <span className="invalid-feedback">{formErrors.lastname}</span>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="shownname">
@@ -114,6 +237,8 @@ const FormModal = () => {
               <input
                 type="text"
                 id="shownname"
+                value={formValues.shownname}
+                onChange={handleChange}
                 name="shownname"
                 className="form-control"
               />
@@ -125,9 +250,18 @@ const FormModal = () => {
                 type="text"
                 id="address"
                 name="address"
-                className="form-control"
+                value={formValues.address}
+                onChange={handleChange}
+                className={
+                  formErrors.address
+                    ? "form-control is-invalid"
+                    : "form-control"
+                }
                 required
               />
+              {formErrors.address && (
+                <span className="invalid-feedback">{formErrors.address}</span>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="city">City: </label>
@@ -135,10 +269,17 @@ const FormModal = () => {
               <input
                 type="text"
                 required
+                value={formValues.city}
+                onChange={handleChange}
                 id="city"
                 name="city"
-                className="form-control"
+                className={
+                  formErrors.city ? "form-control is-invalid" : "form-control"
+                }
               />
+              {formErrors.city && (
+                <span className="invalid-feedback">{formErrors.city}</span>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="state">State: </label>
@@ -146,6 +287,8 @@ const FormModal = () => {
               <input
                 type="text"
                 required
+                value={formValues.state}
+                onChange={handleChange}
                 id="state"
                 name="state"
                 className="form-control"
@@ -158,9 +301,16 @@ const FormModal = () => {
                 type="number"
                 id="zip"
                 name="zip"
-                className="form-control"
+                value={formValues.zip}
+                onChange={handleChange}
+                className={
+                  formErrors.zip ? "form-control is-invalid" : "form-control"
+                }
                 required
               />
+              {formErrors.zip && (
+                <span className="invalid-feedback">{formErrors.zip}</span>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="phone">Phone:</label>
@@ -168,9 +318,16 @@ const FormModal = () => {
                 type="tel"
                 id="phone"
                 name="phone"
+                value={formValues.phone}
+                onChange={handleChange}
                 required
-                className="form-control"
+                className={
+                  formErrors.phone ? "form-control is-invalid" : "form-control"
+                }
               />
+              {formErrors.phone && (
+                <span className="invalid-feedback">{formErrors.phone}</span>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="email">Email Address:</label>
@@ -178,9 +335,16 @@ const FormModal = () => {
                 type="email"
                 id="email"
                 name="email"
+                value={formValues.email}
+                onChange={handleChange}
                 required
-                className="form-control"
+                className={
+                  formErrors.email ? "form-control is-invalid" : "form-control"
+                }
               />
+              {formErrors.email && (
+                <span className="invalid-feedback">{formErrors.email}</span>
+              )}
             </div>
             <div id="ccinfodiv">
               <div className="form-group">
@@ -189,11 +353,20 @@ const FormModal = () => {
                 <input
                   name="ccnum"
                   type="text"
+                  value={formValues.ccnum}
+                  onChange={handleChange}
                   required
-                  className="form-control"
+                  className={
+                    formErrors.ccnum
+                      ? "form-control is-invalid"
+                      : "form-control"
+                  }
                   id="ccnum"
                   maxLength="16"
                 />
+                {formErrors.ccnum && (
+                  <span className="invalid-feedback">{formErrors.ccnum}</span>
+                )}
               </div>
               <div className="row">
                 <div className="form-group col-md-6 col-sm-12">
@@ -205,9 +378,20 @@ const FormModal = () => {
                     step={1}
                     name="ccmonth"
                     id="ccmonth"
-                    className="form-control"
+                    value={formValues.ccmonth}
+                    onChange={handleChange}
+                    className={
+                      formErrors.ccmonth
+                        ? "form-control is-invalid"
+                        : "form-control"
+                    }
                     required
                   />
+                  {formErrors.ccmonth && (
+                    <span className="invalid-feedback">
+                      {formErrors.ccmonth}
+                    </span>
+                  )}
                 </div>
                 <div className="form-group col-md-6 col-sm-12">
                   <label htmlFor="ccyear">Exp Year</label>
@@ -217,10 +401,21 @@ const FormModal = () => {
                     max={(new Date().getFullYear() % 100) + 10}
                     step={1}
                     name="ccyear"
+                    value={formValues.ccyear}
+                    onChange={handleChange}
                     id="ccyear"
-                    className="form-control"
+                    className={
+                      formErrors.ccyear
+                        ? "form-control is-invalid"
+                        : "form-control"
+                    }
                     required
                   />
+                  {formErrors.ccyear && (
+                    <span className="invalid-feedback">
+                      {formErrors.ccyear}
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="form-group">
@@ -230,12 +425,19 @@ const FormModal = () => {
                   type="text"
                   id="cvv"
                   name="cvv"
-                  className="form-control"
+                  value={formValues.cvv}
+                  onChange={handleChange}
+                  className={
+                    formErrors.cvv ? "form-control is-invalid" : "form-control"
+                  }
                   required
                   autoComplete="off"
                   minLength="3"
                   maxLength="4"
                 />
+                {formErrors.cvv && (
+                  <span className="invalid-feedback">{formErrors.cvv}</span>
+                )}
               </div>
             </div>
             <div className="form-group">
@@ -245,6 +447,8 @@ const FormModal = () => {
               <input
                 type="text"
                 name="notes"
+                value={formValues.notes}
+                onChange={handleChange}
                 id="notes"
                 maxLength="75"
                 className="form-control"
@@ -253,7 +457,13 @@ const FormModal = () => {
             <div className="form-group">
               <label htmlFor="team">Select a Team</label>
 
-              <select className="form-control" name="team" id="team">
+              <select
+                className="form-control"
+                name="team"
+                id="team"
+                defaultValue={formValues.team}
+                onChange={handleChange}
+              >
                 <option value=""></option>
                 {teams.map((i) => (
                   <option value={i.id} key={i.id}>
