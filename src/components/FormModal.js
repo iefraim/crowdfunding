@@ -8,9 +8,9 @@ import { ModalContext } from "./Donate";
 import { DataContext, TeamContext } from "../context/Provider";
 const FormModal = () => {
   const [error, setError] = useState("");
-  const { inputValue, setValue } = useContext(ModalContext);
+  const { inputValue, setValue, isOpen, setIsopen } = useContext(ModalContext);
   const { multiple, id } = useContext(DataContext);
-
+  console.log(id);
   const initialValues = {
     campaignId: id || "",
 
@@ -91,17 +91,13 @@ const FormModal = () => {
     return errors;
   };
   const closeModal = () => {
-    setValue(-1);
+    setIsopen(false);
   };
   const handleChange = (e) => {
-    setFormValues({ ...formValues, campaignId: id });
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
-  const inputChange = () => {
-    const input = jQuery("#amount").val();
-    setValue(input);
-  };
+
   const customStyles = {
     content: {
       width: "75%",
@@ -123,26 +119,40 @@ const FormModal = () => {
       return false;
     }
 
-    jQuery.post("./data/submission.php", formValues, (error) => {
-      setError(error);
-      if (error === "") {
-        setFormValues(initialValues);
-        setFormErrors({});
+    jQuery.post("./data/charge-card.php", formValues, (response) => {
+      setError(response);
+      if (response === "approved") {
+        jQuery.post("./data/submission.php", formValues, (error) => {
+          setError(error);
+          if (error === "") {
+            setFormValues(initialValues);
+            setFormErrors({});
 
-        closeModal();
+            closeModal();
+          }
+        });
+      } else {
+        setError(
+          "There was a problem with your credit card. Please try again."
+        );
       }
-    });
+    }); //end post
   };
   useEffect(() => {
     setFormValues((formValues) => ({
       ...formValues,
       campaignId: id,
     }));
-    console.log(formValues);
   }, [id]);
+  useEffect(() => {
+    setFormValues((formValues) => ({
+      ...formValues,
+      amount: inputValue,
+    }));
+  }, [inputValue]);
   return (
     <Modal
-      isOpen={!inputValue || inputValue >= 0}
+      isOpen={isOpen}
       onRequestClose={closeModal}
       ariaHideApp={false}
       style={customStyles}
@@ -152,8 +162,6 @@ const FormModal = () => {
       </div>
       <div className="modal-body">
         <form onSubmit={formSubmitHandler} id="donationForm" noValidate>
-          <input type="hidden" name="campaignId" value={id} />
-
           <div className="copysponsorinfo div--box form-group mb-4">
             <label htmlFor="totaldue" style={{ marginRight: "15px" }}>
               Donation Amount:{" "}
@@ -481,7 +489,7 @@ const FormModal = () => {
                 DONATE NOW
               </button>
             </div>
-            {!!error && <p>{error}</p>}
+            {!!error && <p class="alert alert-danger mt-4">{error}</p>}
           </>
         </form>
       </div>

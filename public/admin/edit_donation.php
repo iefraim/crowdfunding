@@ -16,18 +16,23 @@ $data=query("SELECT * FROM `donations` WHERE `id`=$id")[0];
 "city"=>"",
 "state"=>"",
 "zip"=>"",
+"paytype"=>"",
 "campaign_id"=>""];
 
 $teams=query("SELECT * FROM `teams`");
 $campaigns=query("SELECT * FROM `fundraiser_data`");
+
+
 if(isset($_POST["firstName"])){
     foreach ($_POST as $key => $value) {
         $$key=$db->real_escape_string($value);
         if(!$$key)$$key="";
     }
     if(!$shownName)$shownName="$firstName $lastName";
-    $updateQuery="UPDATE `donations` SET `first_name`='$firstName', `last_name`='$lastName',`shown_name`='$shownName',`amount`='$amount',`multiple`=$multiple,`teamId`=$team,`comment`='$note',`email`='$email',`phone`='$phone',`adress`='$adress',`city`='$city',`state`='$state',`zip`='$zip', `campaign_id`='$campaign' WHERE `ID`=$id";
-    $insertQuery="INSERT INTO `donations` (`first_name`,`last_name`,`shown_name`,`amount`,`multiple`,`teamId`,`comment`,`email`,`phone`,`adress`,`city`,`state`,`zip`,`campaign_id`) VALUES ('$firstName','$lastName','$shownName','$amount','$multiple',$team,'$note','$email','$phone','$adress','$city','$state','$zip',$campaign";
+
+    if ($paytype == "Pledge" or $paytype == 'Pay Later')  { $paid = 0; } else  { $paid = 1; }
+    $updateQuery="UPDATE `donations` SET `first_name`='$firstName', `last_name`='$lastName',`shown_name`='$shownName',`amount`='$amount',`multiple`=$multiple,`teamId`=$team,`comment`='$note',`email`='$email',`phone`='$phone',`adress`='$adress',`city`='$city',`state`='$state',`zip`='$zip', `campaign_id`='$campaign', `paytype`='$paytype' , `paid` = $paid WHERE `ID`=$id";
+    $insertQuery="INSERT INTO `donations` (`first_name`,`last_name`,`shown_name`,`amount`,`multiple`,`teamId`,`comment`,`email`,`phone`,`adress`,`city`,`state`,`zip`,`campaign_id`, `paytype`, `paid`) VALUES ('$firstName','$lastName','$shownName','$amount','$multiple',$team,'$note','$email','$phone','$adress','$city','$state','$zip',$campaign, '$paytype', $paid"  ;
     if($data["first_name"])query($updateQuery);
     else query($insertQuery);
      header("Location:./donations.php");
@@ -96,7 +101,22 @@ if(isset($_POST["firstName"])){
             <label for="state"  class="form-label" >State</label>
             <input name="state"  class="form-control" type="text" value="<?=$data["state"]?>">    </div><div class="mb-3">  
             <label for="zip"  class="form-label" >Zip Code</label>
-            <input name="zip" class="form-control"  type="number" value="<?=$data["zip"]?>">    </div><div class="mb-3">  
+            <input name="zip" class="form-control"  type="number" value="<?=$data["zip"]?>">    </div>
+            
+            <div class="mb-3">  
+            <label for="paytype"  class="form-label" >Pay Type</label>
+            <select name="paytype"  class="form-control">
+<option value=""></option>
+<option  >Cash</option>
+<option  >Check</option>
+<option  >Credit Card</option>
+<option  >Pledge</option>
+<option  >Pay Later</option>
+
+<option  >Zelle</option>
+
+            </select>    </div>
+            <div class="mb-3">  
             <button type="submit" class="btn btn-primary">Save</button>
   </div>
         </form>

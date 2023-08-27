@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 
 import { ModalContext } from "./Donate";
 const ModalCloseButton = () => {
-  const { setValue } = useContext(ModalContext);
+  const { setIsopen } = useContext(ModalContext);
   const closeModal = () => {
-    setValue(-1);
+    setIsopen(false);
   };
   return (
     <button onClick={closeModal} className="btn btn-secondary btn-sm">

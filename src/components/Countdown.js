@@ -21,7 +21,7 @@ const Countdown = () => {
             renderer={({ hours, days, minutes, seconds, completed, total }) => {
               if (completed)
                 //post event
-                return <h6>this event has ended</h6>;
+                return true;
               const totalTime = endDate - startDate;
               const totalHours = days * 24 + hours;
               return (
