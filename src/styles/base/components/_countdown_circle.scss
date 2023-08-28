@@ -1,31 +1,18 @@
-.countdownCircle {
-  width: 50%;
-  height: 50%;
-  position: relative;
-  margin: 20px 25%;
+.Timer {
+  display: flex;
+  justify-content: space-around;
+  font-family: sans-serif;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
 
-.countdownCircle__innerText {
-  position: absolute;
-  left: 0;
-  top: 25%;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  text-align: center;
-  line-height: 40px;
+.time {
   font-size: 30px;
-  font-weight: bold;
 }
-@media (max-width: 768px) {
-  .countdownCircle {
-    width: 75%;
-    height: 75%;
-    margin: 10px 11%;
-  }
-  .countdownCircle__innerText {
-    top: 30%;
-    line-height: 50px;
-    font-size: 42px;
-  }
+.time-wrapper {
+  line-height: 20px;
+}
+.time-wrapper .words {
+  font-size: 15px;
 }

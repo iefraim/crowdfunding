@@ -10,7 +10,7 @@ const FormModal = () => {
   const [error, setError] = useState("");
   const { inputValue, setValue, isOpen, setIsopen } = useContext(ModalContext);
   const { multiple, id } = useContext(DataContext);
-  console.log(id);
+
   const initialValues = {
     campaignId: id || "",
 
