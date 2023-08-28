@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import useTeamGetDonations from "../functions/useGetTeamDonations";
+import { DataContext } from "../context/Provider";
 import { NavLink } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
 const Team = ({ team: { id, name, link, goal } }) => {
   const donations = useTeamGetDonations(id);
+  console.log(id);
+  console.log(donations);
+  const { multiple } = useContext(DataContext);
   const donationsTotal = donations.reduce(
-    (prev, curr) => prev + curr.amount * curr.multiple,
+    (prev, curr) => prev + curr.amount * multiple,
     0
   );
   return (

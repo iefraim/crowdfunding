@@ -4,7 +4,7 @@ function getCampaign($i){
     return !isset($_GET["campaignId"])||$i["campaign_id"]==$_GET["campaignId"];
 }
 $teams=array_filter(query("SELECT * FROM `teams`"),"getCampaign");
-$donors=array_filter(query("SELECT * FROM `donations`"),"getCampaign");
+$donors=array_filter(query("SELECT * FROM `donations` order by ID desc"),"getCampaign");
 $campaigns=query("SELECT * FROM `fundraiser_data`");
 
 $campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){

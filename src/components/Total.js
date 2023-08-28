@@ -27,6 +27,7 @@ const Total = () => {
 
       {totalDonations >= goal && totalDonations < bonus_goal && (
         <>
+          <h5>INITIAL GOAL OF ${goal} REACHED!</h5>
           <h5>NEW GOAL!</h5>
           <h6>
             ${totalDonations.toLocaleString()} out of $

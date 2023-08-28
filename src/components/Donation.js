@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import useFindTeam from "../functions/useFindTeam";
-const Donations = ({
-  item: { shown_name, amount, multiple, teamid, comment },
-}) => {
+import { DataContext } from "../context/Provider";
+const Donations = ({ item: { shown_name, amount, teamid, comment } }) => {
   const { name: teamName } = useFindTeam({ id: teamid });
+  const { multiple } = useContext(DataContext);
 
   return (
     <li className="donation">

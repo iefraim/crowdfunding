@@ -33,7 +33,7 @@ const TeamTotal = () => {
             barContainerClassName="barUncompleted"
           />
 
-          <div className="teamsum">
+          <div className="teamsum mt-2">
             ${donationsTotal.toLocaleString()} out of $
             {parseInt(goal).toLocaleString()} raised
           </div>

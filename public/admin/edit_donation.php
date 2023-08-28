@@ -7,7 +7,7 @@ $data=query("SELECT * FROM `donations` WHERE `id`=$id")[0];
 "last_name"=>"",
 "shown_name"=>"",
 "amount"=>"",
-"multiple"=>"",
+
 "teamID"=>"",
 "comment"=>"",
 "email"=>"",
@@ -31,10 +31,17 @@ if(isset($_POST["firstName"])){
     if(!$shownName)$shownName="$firstName $lastName";
 
     if ($paytype == "Pledge" or $paytype == 'Pay Later')  { $paid = 0; } else  { $paid = 1; }
-    $updateQuery="UPDATE `donations` SET `first_name`='$firstName', `last_name`='$lastName',`shown_name`='$shownName',`amount`='$amount',`multiple`=$multiple,`teamId`=$team,`comment`='$note',`email`='$email',`phone`='$phone',`adress`='$adress',`city`='$city',`state`='$state',`zip`='$zip', `campaign_id`='$campaign', `paytype`='$paytype' , `paid` = $paid WHERE `ID`=$id";
-    $insertQuery="INSERT INTO `donations` (`first_name`,`last_name`,`shown_name`,`amount`,`multiple`,`teamId`,`comment`,`email`,`phone`,`adress`,`city`,`state`,`zip`,`campaign_id`, `paytype`, `paid`) VALUES ('$firstName','$lastName','$shownName','$amount','$multiple',$team,'$note','$email','$phone','$adress','$city','$state','$zip',$campaign, '$paytype', $paid"  ;
-    if($data["first_name"])query($updateQuery);
-    else query($insertQuery);
+
+ 
+    if($data["first_name"])  {
+        $updateQuery="UPDATE `donations` SET `first_name`='$firstName', `last_name`='$lastName',`shown_name`='$shownName',`amount`='$amount',`teamId`=$team,`comment`='$note',`email`='$email',`phone`='$phone',`adress`='$adress',`city`='$city',`state`='$state',`zip`='$zip', `campaign_id`='$campaign', `paytype`='$paytype' , `paid` = $paid WHERE `ID`=$id";
+        echo $updateQuery; 
+        query($updateQuery);
+    }
+    else  {    $insertQuery="INSERT INTO `donations` (`first_name`,`last_name`,`shown_name`,`amount`,`teamId`,`comment`,`email`,`phone`,`adress`,`city`,`state`,`zip`,`campaign_id`, `paytype`, `paid`) VALUES ('$firstName','$lastName','$shownName','$amount',$team,'$note','$email','$phone','$adress','$city','$state','$zip',$campaign, '$paytype', $paid)"  ;
+        echo $insertQuery;
+        query($insertQuery); };
+      
      header("Location:./donations.php");
 }
 
@@ -55,14 +62,14 @@ if(isset($_POST["firstName"])){
       
   <div class="mb-3">
             <label for="firstName" class="form-label"> First Name</label>
-            <input name="firstName"  class="form-control" type="text" value="<?=$data["first_name"]?>">
+            <input name="firstName"  class="form-control" type="text" value="<?=$data["first_name"]?>" required>
             </div><div class="mb-3">  
             <label for="lastName"  class="form-label" >Last Name</label>
-            <input name="lastName"   class="form-control"type="text" value="<?=$data["last_name"]?>">    </div><div class="mb-3">  
+            <input name="lastName"   class="form-control"type="text" value="<?=$data["last_name"]?>" required>    </div><div class="mb-3">  
             <label for="shownName"  class="form-label" >Shown Name</label>
             <input name="shownName"   class="form-control" type="text" value="<?=$data["shown_name"]?>">    </div><div class="mb-3">  
             <label for="amount"  class="form-label" >Donation Amount</label>
-            <input name="amount"  class="form-control" type="number" value="<?=$data["amount"]?>">    </div>
+            <input name="amount"  class="form-control" type="number" value="<?=$data["amount"]?>" required>    </div>
             <div class="mb-3">  
             <label for="team"  class="form-label" >Team</label>
             <select name="team"  class="form-control">
@@ -105,15 +112,21 @@ if(isset($_POST["firstName"])){
             
             <div class="mb-3">  
             <label for="paytype"  class="form-label" >Pay Type</label>
-            <select name="paytype"  class="form-control">
-<option value=""></option>
-<option  >Cash</option>
-<option  >Check</option>
-<option  >Credit Card</option>
-<option  >Pledge</option>
-<option  >Pay Later</option>
+            <select name="paytype"  class="form-control" required>
+            <option value=""></option>
+                <?php $options = ['Cash','Check','Credit Card', 'Pledge','Pay Later','Zelle'];
+                foreach ($options as $option)  {
+                    echo '<option';
+                    if ($data["paytype"] == $option)  {
+                        echo ' selected' ;
+                    }
 
-<option  >Zelle</option>
+                    echo '>';
+                    echo $option;
+                    echo '</option>';
+                }
+
+?>
 
             </select>    </div>
             <div class="mb-3">  
