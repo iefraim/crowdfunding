@@ -15,6 +15,8 @@ $query="INSERT INTO `donations` (`amount`,`first_name`,`last_name`,`shown_name`,
 
 
 query($query);
+
+
 $subject="Thank you for your donation";
 $message  = '<html>
 <body><div align="center">
@@ -45,9 +47,10 @@ All donations are tax deductible.
 </body>
 </html>';
 $from = "Zera Avraham<office@zeraavraham.com>";
- mail($email, $subject,$message,[
-     "From"=>$from
- ]);
+
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+$headers .= "From: $from" . "\r\n";
 
 
-//can't set up on localhost
+ mail($email, $subject,$message,$headers);
