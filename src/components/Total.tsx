@@ -6,7 +6,7 @@ const Total = () => {
   const donations = useContext(DonationContext);
   const { goal, bonus_goal } = useContext(DataContext);
   const totalDonations = donations.reduce(
-    (prev, curr) => prev + parseInt(curr.amount),
+    (prev, curr) => prev + curr.amount * 1,
     0
   );
 
@@ -16,12 +16,9 @@ const Total = () => {
         <>
           <div className="total__amount">
             ${totalDonations.toLocaleString()}
-          </div>{" "}
-          of
-          <div className="total__goal">
-            {" "}
-            ${parseInt(goal).toLocaleString()}{" "}
           </div>
+          of
+          <div className="total__goal">${(goal * 1).toLocaleString()}</div>
         </>
       )}
 
@@ -31,7 +28,7 @@ const Total = () => {
           <h5>NEW GOAL!</h5>
           <h6>
             ${totalDonations.toLocaleString()} out of $
-            {parseInt(bonus_goal).toLocaleString()} raised!
+            {(bonus_goal * 1).toLocaleString()} raised!
           </h6>
         </>
       )}

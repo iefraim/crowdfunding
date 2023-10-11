@@ -3,7 +3,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 import { DataContext } from "../context/Provider";
 // TODO: fix the look
-const Countdown = () => {
+const Countdown = (): JSX.Element => {
   const { end_date } = useContext(DataContext);
   const minuteSeconds = 60;
   const hourSeconds = 3600;
@@ -15,7 +15,8 @@ const Countdown = () => {
     strokeWidth: 6,
   };
 
-  const renderTime = (dimension, time) => {
+  const renderTime = (dimension: String, timeNum: number) => {
+    const time = "" + timeNum; //avoid ts error
     return (
       <div className="time-wrapper">
         <div className="time">{time}</div>
@@ -24,10 +25,12 @@ const Countdown = () => {
     );
   };
 
-  const getTimeSeconds = (time) => (minuteSeconds - time) | 0;
-  const getTimeMinutes = (time) => ((time % hourSeconds) / minuteSeconds) | 0;
-  const getTimeHours = (time) => ((time % daySeconds) / hourSeconds) | 0;
-  const getTimeDays = (time) => (time / daySeconds) | 0;
+  const getTimeSeconds = (time: number) => (minuteSeconds - time) | 0;
+  const getTimeMinutes = (time: number) =>
+    ((time % hourSeconds) / minuteSeconds) | 0;
+  const getTimeHours = (time: number) =>
+    ((time % daySeconds) / hourSeconds) | 0;
+  const getTimeDays = (time: number) => (time / daySeconds) | 0;
 
   const startDate = Date.now() / 1000; // use UNIX timestamp in seconds
   const endDate = Math.floor(new Date(end_date).getTime() / 1000);

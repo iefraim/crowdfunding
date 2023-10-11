@@ -1,5 +1,5 @@
 import React from "react";
-const Header = () => (
+const Header = (): JSX.Element => (
   <section className="jumbotron text-center header__image"></section>
 );
 

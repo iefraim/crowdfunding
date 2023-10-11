@@ -164,7 +164,7 @@ const FormModal = () => {
         <form onSubmit={formSubmitHandler} id="donationForm" noValidate>
           <div className="copysponsorinfo div--box form-group mb-4">
             <label htmlFor="totaldue" style={{ marginRight: "15px" }}>
-              Donation Amount:{" "}
+              Donation Amount:
             </label>
             <div align="center">
               <div className="input-group mb-3">
@@ -178,7 +178,7 @@ const FormModal = () => {
                   className={formErrors.amount ? "amount is-invalid" : "amount"}
                   onChange={handleChange}
                   value={formValues.amount}
-                />{" "}
+                />
                 <div className="input-group-append">
                   <span className="input-group-text">.00</span>
                 </div>
@@ -213,7 +213,7 @@ const FormModal = () => {
                 title="Your first name is required."
                 value={formValues.firstname}
                 onChange={handleChange}
-              />{" "}
+              />
               {formErrors.firstname && (
                 <span className="invalid-feedback">{formErrors.firstname}</span>
               )}
@@ -233,7 +233,7 @@ const FormModal = () => {
                 required
                 value={formValues.lastname}
                 onChange={handleChange}
-              />{" "}
+              />
               {formErrors.lastname && (
                 <span className="invalid-feedback">{formErrors.lastname}</span>
               )}
