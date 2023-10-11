@@ -3,7 +3,8 @@ import useTeamGetDonations from "../functions/useGetTeamDonations";
 import { DataContext } from "../context/Provider";
 import { NavLink } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
-const Team = ({ team: { id, name, link, goal } }) => {
+import { Team } from "../types/types";
+const Team = ({ team: { id, name, link, goal } }: { team: Team }) => {
   const donations = useTeamGetDonations(id);
   const { multiple } = useContext(DataContext);
   const donationsTotal = donations.reduce(
@@ -24,7 +25,7 @@ const Team = ({ team: { id, name, link, goal } }) => {
             <strong className="team__goal__strong">
               ${donationsTotal.toLocaleString()}
             </strong>
-            <br /> out of ${parseInt(goal).toLocaleString()} raised
+            <br /> out of ${parseInt(goal + "").toLocaleString()} raised
           </p>
         </NavLink>
       </div>
