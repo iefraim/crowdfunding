@@ -1,8 +1,14 @@
 import React, { useContext } from "react";
 
 import { FiltersContext } from "./Donations";
+import { Donation } from "../types/types";
 
-export const useFilters = (donations, filters) => {
+export type FiltersType = {
+  sort: "recent" | "highest" | "name";
+  text: string;
+};
+
+export const useFilters = (donations: Donation[], filters: FiltersType) => {
   const { text, sort } = filters;
   donations = donations.filter((i) => {
     if (i.shown_name.toLowerCase().includes(text.toLowerCase())) return true;
@@ -15,15 +21,30 @@ export const useFilters = (donations, filters) => {
       return a.amount * a.multiple > b.amount * b.multiple ? -1 : 1;
     if (sort == "name")
       return a.shown_name.toLowerCase() < b.shown_name.toLowerCase() ? -1 : 1;
+    console.error("bad filter");
+    return 1;
   });
 
   return donations;
 };
 const Filters = () => {
-  const { setFilters } = useContext(FiltersContext);
+  const filtersContext = useContext(FiltersContext)
+    ? useContext(FiltersContext)
+    : false;
+  if (!filtersContext) return false;
+  const { setFilters } = filtersContext;
+
   const updateFilters = () => {
-    const text = document.getElementById("filterTextInput").value.trim();
-    const sort = document.getElementById("sortFilter").value;
+    const textInput: HTMLInputElement | null = document.getElementById(
+      "filterTextInput"
+    ) as HTMLInputElement | null;
+    const sortInput = document.getElementById(
+      "sortFilter"
+    ) as HTMLInputElement | null;
+    const text = textInput ? textInput.value.trim() : "";
+    const sort = sortInput
+      ? (sortInput.value as "recent" | "highest" | "name")
+      : "recent";
     setFilters({ text, sort });
   };
 
