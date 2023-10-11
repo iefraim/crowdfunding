@@ -5,8 +5,6 @@ import { NavLink } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
 const Team = ({ team: { id, name, link, goal } }) => {
   const donations = useTeamGetDonations(id);
-  console.log(id);
-  console.log(donations);
   const { multiple } = useContext(DataContext);
   const donationsTotal = donations.reduce(
     (prev, curr) => prev + curr.amount * multiple,

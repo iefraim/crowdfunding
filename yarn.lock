@@ -2355,6 +2355,13 @@
   resolved "https://registry.npmjs.org/@types/range-parser/-/range-parser-1.2.4.tgz"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
+"@types/react-modal@^3.16.1":
+  version "3.16.1"
+  resolved "https://registry.yarnpkg.com/@types/react-modal/-/react-modal-3.16.1.tgz#0d65e078b1290acfef8083b8cd92b7692e899720"
+  integrity sha512-HsH2E3luJ2hdVOAovq93x/r+CmWqbhwT8hXW05KMp3zzbSEZsBn4egnMGU/VLwScwlCRPTyZgIEPqLycaz5EOw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*":
   version "18.2.13"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.2.13.tgz"

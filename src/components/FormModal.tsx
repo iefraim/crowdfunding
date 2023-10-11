@@ -11,8 +11,48 @@ const FormModal = () => {
   const { inputValue, setValue, isOpen, setIsopen } = useContext(ModalContext);
   const { multiple, id } = useContext(DataContext);
 
-  const initialValues = {
-    campaignId: id || "",
+  if (!setValue || !setIsopen) return false;
+
+  type ValueTypes = {
+    campaignId: number;
+
+    firstname: string;
+    lastname: string;
+    amount: string | number;
+    shownname: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+    phone: string;
+    email: string;
+    ccnum: string;
+    ccmonth: string;
+    ccyear: string;
+    cvv: string;
+    notes: string;
+    team: string;
+  };
+
+  type ErrorTypes = {
+    firstname?: string;
+    lastname?: string;
+    amount?: string;
+    shownname?: string;
+    address?: string;
+    city?: string;
+    state?: string;
+    zip?: string;
+    phone?: string;
+    email?: string;
+    ccnum?: string;
+    ccmonth?: string;
+    ccyear?: string;
+    cvv?: string;
+  };
+
+  const initialValues: ValueTypes = {
+    campaignId: id || 0,
 
     firstname: "",
     lastname: "",
@@ -33,12 +73,11 @@ const FormModal = () => {
   };
 
   const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [formErrors, setFormErrors] = useState<ErrorTypes>({});
   const teams = useContext(TeamContext);
 
-  const validate = (values) => {
-    const errors = {};
+  const validate = (values: ValueTypes) => {
+    const errors: ErrorTypes = {};
     if (!values.firstname) {
       errors.firstname = "Required";
     }
@@ -48,7 +87,7 @@ const FormModal = () => {
     if (!values.amount) {
       errors.amount = "Required";
     }
-    if (values.amount && isNaN(values.amount)) {
+    if (values.amount && isNaN(parseInt(values.amount + ""))) {
       errors.amount = "Invalid";
     }
     if (!values.address) {
@@ -93,8 +132,11 @@ const FormModal = () => {
   const closeModal = () => {
     setIsopen(false);
   };
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const name = e.target.name;
+    const value = e.target.value as string;
     setFormValues({ ...formValues, [name]: value });
   };
 
@@ -105,7 +147,7 @@ const FormModal = () => {
     },
   };
 
-  const formSubmitHandler = (e) => {
+  const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     const hasBlankValues = Object.values(formErrors).some(
@@ -139,16 +181,20 @@ const FormModal = () => {
     }); //end post
   };
   useEffect(() => {
-    setFormValues((formValues) => ({
-      ...formValues,
-      campaignId: id,
-    }));
+    setFormValues(
+      (formValues: ValueTypes): ValueTypes => ({
+        ...formValues,
+        campaignId: id,
+      })
+    );
   }, [id]);
   useEffect(() => {
-    setFormValues((formValues) => ({
-      ...formValues,
-      amount: inputValue,
-    }));
+    setFormValues(
+      (formValues: ValueTypes): ValueTypes => ({
+        ...formValues,
+        amount: inputValue,
+      })
+    );
   }, [inputValue]);
   return (
     <Modal
@@ -166,7 +212,7 @@ const FormModal = () => {
             <label htmlFor="totaldue" style={{ marginRight: "15px" }}>
               Donation Amount:
             </label>
-            <div align="center">
+            <div data-align="center">
               <div className="input-group mb-3">
                 <div className="input-group-prepend">
                   <span className="input-group-text">$</span>
@@ -190,7 +236,7 @@ const FormModal = () => {
               {multiple > 1 && (
                 <>
                   x <span id="modalamtduplicate">{multiple}</span> =
-                  {inputValue * multiple}
+                  {parseInt(formValues.amount + "") * multiple}
                 </>
               )}
               <span id="newtotal"></span>
@@ -370,7 +416,7 @@ const FormModal = () => {
                       : "form-control"
                   }
                   id="ccnum"
-                  maxLength="16"
+                  maxLength={16}
                 />
                 {formErrors.ccnum && (
                   <span className="invalid-feedback">{formErrors.ccnum}</span>
@@ -440,8 +486,8 @@ const FormModal = () => {
                   }
                   required
                   autoComplete="off"
-                  minLength="3"
-                  maxLength="4"
+                  minLength={3}
+                  maxLength={4}
                 />
                 {formErrors.cvv && (
                   <span className="invalid-feedback">{formErrors.cvv}</span>
@@ -458,7 +504,7 @@ const FormModal = () => {
                 value={formValues.notes}
                 onChange={handleChange}
                 id="notes"
-                maxLength="75"
+                maxLength={75}
                 className="form-control"
               />
             </div>
@@ -489,7 +535,7 @@ const FormModal = () => {
                 DONATE NOW
               </button>
             </div>
-            {!!error && <p class="alert alert-danger mt-4">{error}</p>}
+            {!!error && <p className="alert alert-danger mt-4">{error}</p>}
           </>
         </form>
       </div>
