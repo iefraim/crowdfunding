@@ -25,7 +25,7 @@ const Provider = ({
   children,
 }: {
   children: React.JSX.Element;
-}): React.JSX.Element => {
+}): React.JSX.Element | false => {
   const [donations, updateDonations] = useState(startDonations);
   const [{ teams, data }, setUp] = useState({
     teams: startTeams,

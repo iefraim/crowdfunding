@@ -1,5 +1,5 @@
 import React from "react";
-const About = (): React.JSX.Element => {
+const About = (): React.JSX.Element | false => {
   return (
     <div className="div--box">
       <h3>ABOUT ZERA AVRAHAM</h3>

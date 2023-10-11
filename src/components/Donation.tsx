@@ -7,7 +7,7 @@ const Donations = ({
   item: { shown_name, amount, teamid, comment },
 }: {
   item: Donation;
-}): React.JSX.Element => {
+}): React.JSX.Element | false => {
   const { name: teamName } = useFindTeam(teamid);
   const { multiple } = useContext(DataContext);
 

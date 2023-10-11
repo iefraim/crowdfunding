@@ -7,7 +7,7 @@ const SetTeam = ({
   children,
 }: {
   children: React.JSX.Element;
-}): React.JSX.Element => {
+}): React.JSX.Element | false => {
   const params = useParams();
   const teamLink = params.teamLink ? params.teamLink : "";
   return (
@@ -21,7 +21,7 @@ const Router = ({
   children,
 }: {
   children: React.JSX.Element;
-}): React.JSX.Element => {
+}): React.JSX.Element | false => {
   return (
     <HashRouter>
       <Routes>

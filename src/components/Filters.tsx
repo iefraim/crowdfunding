@@ -8,14 +8,17 @@ export type FiltersType = {
   text: string;
 };
 
-export const useFilters = (donations: Donation[], filters: FiltersType) => {
+export const useFilters = (
+  donations: Donation[],
+  filters: FiltersType
+): Donation[] => {
   const { text, sort } = filters;
   donations = donations.filter((i) => {
     if (i.shown_name.toLowerCase().includes(text.toLowerCase())) return true;
     else return false;
   });
 
-  donations = donations.sort((a, b) => {
+  donations = donations.sort((a, b): -1 | 1 | 0 => {
     if (sort == "recent") return a.id > b.id ? -1 : 1;
     if (sort == "highest")
       return a.amount * a.multiple > b.amount * b.multiple ? -1 : 1;
@@ -27,14 +30,14 @@ export const useFilters = (donations: Donation[], filters: FiltersType) => {
 
   return donations;
 };
-const Filters = () => {
+const Filters = (): React.JSX.Element | false => {
   const filtersContext = useContext(FiltersContext)
     ? useContext(FiltersContext)
     : false;
   if (!filtersContext) return false;
   const { setFilters } = filtersContext;
 
-  const updateFilters = () => {
+  const updateFilters = (): void => {
     const textInput: HTMLInputElement | null = document.getElementById(
       "filterTextInput"
     ) as HTMLInputElement | null;

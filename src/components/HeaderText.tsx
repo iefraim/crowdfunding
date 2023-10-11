@@ -1,6 +1,6 @@
 import React from "react";
 
-const HeaderText = (): React.JSX.Element => (
+const HeaderText = (): React.JSX.Element | false => (
   <div className="col-sm-12 headline mt-4 ">
     <h1 className="headerText__h1">
       Every contribution makes a difference. You make a difference!

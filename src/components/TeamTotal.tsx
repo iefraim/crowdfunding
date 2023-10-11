@@ -5,11 +5,14 @@ import { TeamLinkContext } from "../router/Router";
 import useTeamGetDonations from "../functions/useGetTeamDonations";
 import useFindTeams from "../functions/useFindTeam";
 import { NavLink, useNavigate } from "react-router-dom";
-const TeamTotal = () => {
+const TeamTotal = (): React.JSX.Element | false => {
   const link = useContext(TeamLinkContext);
   if (!link) return false; //no open team
   const { id, name, goal } = useFindTeams(undefined, undefined, link);
-  if (!id) return useNavigate()("/"); //team doesn't exist
+  if (!id) {
+    useNavigate()("/");
+    return false;
+  } //team doesn't exist
   const donations = useTeamGetDonations(id);
   const donationsTotal = donations.reduce(
     (prev, curr) => prev + curr.amount * curr.multiple,
@@ -35,7 +38,7 @@ const TeamTotal = () => {
 
           <div className="teamsum mt-2">
             ${donationsTotal.toLocaleString()} out of $
-            {parseInt(goal).toLocaleString()} raised
+            {(goal * 1).toLocaleString()} raised
           </div>
         </>
       </div>

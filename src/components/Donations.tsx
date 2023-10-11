@@ -17,7 +17,7 @@ export const FiltersContext = createContext<
     }
   | undefined
 >(undefined);
-const Donations = (): React.JSX.Element => {
+const Donations = (): React.JSX.Element | false => {
   let donations = useContext(DonationContext);
   const activeTeam = useContext(TeamLinkContext);
   const [filters, setFilters] = useState(baseFilters);

@@ -3,8 +3,11 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 import { DataContext } from "../context/Provider";
 // TODO: fix the look
-const Countdown = (): React.JSX.Element => {
-  const { end_date } = useContext(DataContext);
+const Countdown = (): React.JSX.Element | false => {
+  const { start_date, end_date } = useContext(DataContext);
+  const startTime = new Date(start_date).getTime();
+  const endTime = new Date(end_date).getTime();
+  const now = Date.now();
   const minuteSeconds = 60;
   const hourSeconds = 3600;
   const daySeconds = 86400;
@@ -17,7 +20,11 @@ const Countdown = (): React.JSX.Element => {
 
   const renderTime = (dimension: String, timeNum: number) => {
     const time = "" + timeNum; //avoid ts error
-    return (
+    return now < startTime ? (
+      <div>Our campaign has not started yet. Please return in a few days.</div>
+    ) : now > endTime ? (
+      <div>Time is up. Thank you to all our donors!</div>
+    ) : (
       <div className="time-wrapper">
         <div className="time">{time}</div>
         <div className="words">{dimension}</div>
