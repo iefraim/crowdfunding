@@ -3,15 +3,11 @@ import { useContext } from "react";
 import { TeamContext } from "../context/Provider";
 import { Team } from "../types/types";
 
-export default ({
-  id,
-  name: teamName,
-  link,
-}: {
-  id: Number;
-  name: String;
-  link: String;
-}): Team => {
+export default (
+  id: number = -1,
+  teamName: string = "",
+  link: string = ""
+): Team => {
   const blankTeam: Team = {
     id: 0,
     name: "",

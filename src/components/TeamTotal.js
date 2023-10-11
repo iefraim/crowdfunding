@@ -8,7 +8,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 const TeamTotal = () => {
   const link = useContext(TeamLinkContext);
   if (!link) return false; //no open team
-  const { id, name, goal } = useFindTeams({ link });
+  const { id, name, goal } = useFindTeams(undefined, undefined, link);
   if (!id) return useNavigate()("/"); //team doesn't exist
   const donations = useTeamGetDonations(id);
   const donationsTotal = donations.reduce(

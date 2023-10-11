@@ -2,8 +2,13 @@ import React, { useContext } from "react";
 
 import useFindTeam from "../functions/useFindTeam";
 import { DataContext } from "../context/Provider";
-const Donations = ({ item: { shown_name, amount, teamid, comment } }) => {
-  const { name: teamName } = useFindTeam({ id: teamid });
+import { Donation } from "../types/types";
+const Donations = ({
+  item: { shown_name, amount, teamid, comment },
+}: {
+  item: Donation;
+}): React.JSX.Element => {
+  const { name: teamName } = useFindTeam(teamid);
   const { multiple } = useContext(DataContext);
 
   return (

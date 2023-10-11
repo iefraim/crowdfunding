@@ -21,7 +21,11 @@ export const DonationContext = createContext(startDonations);
 export const TeamContext = createContext(startTeams);
 export const DataContext = createContext(startData);
 
-const Provider = ({ children }: { children: JSX.Element }): JSX.Element => {
+const Provider = ({
+  children,
+}: {
+  children: React.JSX.Element;
+}): React.JSX.Element => {
   const [donations, updateDonations] = useState(startDonations);
   const [{ teams, data }, setUp] = useState({
     teams: startTeams,

@@ -3,7 +3,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 import { DataContext } from "../context/Provider";
 // TODO: fix the look
-const Countdown = (): JSX.Element => {
+const Countdown = (): React.JSX.Element => {
   const { end_date } = useContext(DataContext);
   const minuteSeconds = 60;
   const hourSeconds = 3600;

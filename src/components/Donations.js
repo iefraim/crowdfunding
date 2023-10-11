@@ -13,7 +13,7 @@ const Donations = () => {
   const activeTeam = useContext(TeamLinkContext);
   const [filters, setFilters] = useState({ text: "", sort: "recent" });
   if (activeTeam) {
-    const { id } = useFindTeam({ link: activeTeam });
+    const { id } = useFindTeam(undefined, undefined, lactiveTeam);
     donations = useGetTeamDonations(id);
   }
   donations = useFilters(donations, filters);
