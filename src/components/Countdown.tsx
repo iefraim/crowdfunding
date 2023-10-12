@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import TimerText from "./TimerText";
 
 import { DataContext } from "../context/Provider";
 // TODO: fix the look
-const Countdown = (): React.JSX.Element | false => {
+const Countdown: React.FC = () => {
   const { start_date, end_date } = useContext(DataContext);
   const startTime = new Date(start_date).getTime();
   const endTime = new Date(end_date).getTime();
@@ -18,20 +19,6 @@ const Countdown = (): React.JSX.Element | false => {
     strokeWidth: 6,
   };
 
-  const renderTime = (dimension: String, timeNum: number) => {
-    const time = "" + timeNum; //avoid ts error
-    return now < startTime ? (
-      <div>Our campaign has not started yet. Please return in a few days.</div>
-    ) : now > endTime ? (
-      <div>Time is up. Thank you to all our donors!</div>
-    ) : (
-      <div className="time-wrapper">
-        <div className="time">{time}</div>
-        <div className="words">{dimension}</div>
-      </div>
-    );
-  };
-
   const getTimeSeconds = (time: number) => (minuteSeconds - time) | 0;
   const getTimeMinutes = (time: number) =>
     ((time % hourSeconds) / minuteSeconds) | 0;
@@ -39,14 +26,18 @@ const Countdown = (): React.JSX.Element | false => {
     ((time % daySeconds) / hourSeconds) | 0;
   const getTimeDays = (time: number) => (time / daySeconds) | 0;
 
-  const startDate = Date.now() / 1000; // use UNIX timestamp in seconds
+  const nowTime = Date.now() / 1000; // use UNIX timestamp in seconds
   const endDate = Math.floor(new Date(end_date).getTime() / 1000);
 
-  const remainingTime = endDate - startDate;
+  const remainingTime = endDate - nowTime;
   const days = Math.ceil(remainingTime / daySeconds);
   const daysDuration = days * daySeconds;
 
-  return (
+  return now < startTime ? (
+    <div>Our campaign has not started yet. Please return in a few days.</div>
+  ) : now > endTime ? (
+    <div>Time is up. Thank you to all our donors!</div>
+  ) : (
     <div className="Timer">
       <CountdownCircleTimer
         {...timerProps}
@@ -56,7 +47,10 @@ const Countdown = (): React.JSX.Element | false => {
       >
         {({ elapsedTime, color }) => (
           <span style={{ color }}>
-            {renderTime("days", getTimeDays(daysDuration - elapsedTime))}
+            <TimerText
+              dimension="days"
+              timeNum={getTimeDays(daysDuration - elapsedTime)}
+            />
           </span>
         )}
       </CountdownCircleTimer>
@@ -71,7 +65,10 @@ const Countdown = (): React.JSX.Element | false => {
       >
         {({ elapsedTime, color }) => (
           <span style={{ color }}>
-            {renderTime("hours", getTimeHours(daySeconds - elapsedTime))}
+            <TimerText
+              dimension="hours"
+              timeNum={getTimeHours(daySeconds - elapsedTime)}
+            />
           </span>
         )}
       </CountdownCircleTimer>
@@ -86,7 +83,10 @@ const Countdown = (): React.JSX.Element | false => {
       >
         {({ elapsedTime, color }) => (
           <span style={{ color }}>
-            {renderTime("minutes", getTimeMinutes(hourSeconds - elapsedTime))}
+            <TimerText
+              dimension="minutes"
+              timeNum={getTimeMinutes(hourSeconds - elapsedTime)}
+            />
           </span>
         )}
       </CountdownCircleTimer>
@@ -102,7 +102,10 @@ const Countdown = (): React.JSX.Element | false => {
       >
         {({ elapsedTime, color }) => (
           <span style={{ color }}>
-            {renderTime("seconds", getTimeSeconds(elapsedTime))}
+            <TimerText
+              dimension="seconds"
+              timeNum={getTimeSeconds(elapsedTime)}
+            />
           </span>
         )}
       </CountdownCircleTimer>

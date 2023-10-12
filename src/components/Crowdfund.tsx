@@ -12,7 +12,7 @@ import Provider from "../context/Provider";
 //router
 import Router from "../router/Router";
 
-const Crowdfund = () => {
+const Crowdfund: React.FC = () => {
   return (
     <>
       <Header />

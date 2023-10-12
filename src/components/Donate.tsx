@@ -8,7 +8,8 @@ export const ModalContext = createContext<{
   isOpen: boolean;
   setIsopen: React.Dispatch<React.SetStateAction<boolean>> | undefined;
 }>({ inputValue: 0, setValue: undefined, isOpen: false, setIsopen: undefined });
-const Donate = (): React.JSX.Element | false => {
+
+const Donate: React.FC = () => {
   const [inputValue, setValue] = useState(0);
   const [isOpen, setIsopen] = useState(false);
   const openModal = (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,7 +17,6 @@ const Donate = (): React.JSX.Element | false => {
     setIsopen(true);
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
     const value = parseInt(e.target.value);
     setValue(value);
   };
@@ -25,7 +25,6 @@ const Donate = (): React.JSX.Element | false => {
       <form onSubmit={openModal} className="div--box">
         <input
           type="number"
-          min={1}
           id="donationInput"
           onChange={handleChange}
           value={inputValue}
