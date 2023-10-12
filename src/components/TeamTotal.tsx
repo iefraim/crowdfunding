@@ -8,7 +8,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 const TeamTotal = (): React.JSX.Element | false => {
   const link = useContext(TeamLinkContext);
   if (!link) return false; //no open team
-  const { id, name, goal } = useFindTeams(undefined, undefined, link);
+  const { id, name, goal } = useFindTeams({ link });
   if (!id) {
     useNavigate()("/");
     return false;

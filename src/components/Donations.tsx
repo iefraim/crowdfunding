@@ -17,12 +17,13 @@ export const FiltersContext = createContext<
     }
   | undefined
 >(undefined);
-const Donations = (): React.JSX.Element | false => {
+
+const Donations: React.FC = () => {
   let donations = useContext(DonationContext);
   const activeTeam = useContext(TeamLinkContext);
   const [filters, setFilters] = useState(baseFilters);
   if (activeTeam) {
-    const { id } = useFindTeam(undefined, undefined, activeTeam);
+    const { id } = useFindTeam({ link: activeTeam });
     donations = useGetTeamDonations(id);
   }
   donations = useFilters(donations, filters);

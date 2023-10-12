@@ -3,11 +3,15 @@ import { useContext } from "react";
 import { TeamContext } from "../context/Provider";
 import { Team } from "../types/types";
 
-export default (
-  id: number = -1,
-  teamName: string = "",
-  link: string = ""
-): Team => {
+export default ({
+  id,
+  teamName,
+  link,
+}: {
+  id?: number;
+  teamName?: string;
+  link?: string;
+}): Team => {
   const blankTeam: Team = {
     id: 0,
     name: "",
@@ -21,9 +25,11 @@ export default (
   if (!team) return blankTeam;
   if (id !== undefined) {
     team = teams.filter((i) => i.id == id)[0];
-  } else if (teamName !== undefined) {
+  }
+  if (teamName !== undefined) {
     team = teams.filter((i) => i.name == teamName)[0];
-  } else if (link !== undefined) {
+  }
+  if (link !== undefined) {
     team = teams.filter((i) => i.link == link)[0];
   }
   return team ? team : blankTeam;

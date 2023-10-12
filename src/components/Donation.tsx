@@ -3,12 +3,10 @@ import React, { useContext } from "react";
 import useFindTeam from "../functions/useFindTeam";
 import { DataContext } from "../context/Provider";
 import { Donation } from "../types/types";
-const Donations = ({
+const Donations: React.FC<{ item: Donation }> = ({
   item: { shown_name, amount, teamid, comment },
-}: {
-  item: Donation;
-}): React.JSX.Element | false => {
-  const { name: teamName } = useFindTeam(teamid);
+}) => {
+  const { name: teamName } = useFindTeam({ id: teamid });
   const { multiple } = useContext(DataContext);
 
   return (
