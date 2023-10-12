@@ -6,10 +6,11 @@ import ModalCloseButton from "./ModalCloseButton";
 
 import { ModalContext } from "./Donate";
 import { DataContext, TeamContext } from "../context/Provider";
-const FormModal = () => {
+const FormModal: React.FC = () => {
   const [error, setError] = useState("");
   const { inputValue, setValue, isOpen, setIsopen } = useContext(ModalContext);
-  const { multiple, id } = useContext(DataContext);
+  const { multiple, id: undefinedId } = useContext(DataContext);
+  const id = undefinedId ? undefinedId : 0;
 
   if (!setValue || !setIsopen) return false;
 
@@ -18,8 +19,8 @@ const FormModal = () => {
 
     firstname: string;
     lastname: string;
-    amount: string | number;
-    shownname: string;
+    amount: number;
+    shownname?: string;
     address: string;
     city: string;
     state: string;
@@ -30,7 +31,7 @@ const FormModal = () => {
     ccmonth: string;
     ccyear: string;
     cvv: string;
-    notes: string;
+    notes?: string;
     team: string;
   };
 
@@ -52,11 +53,11 @@ const FormModal = () => {
   };
 
   const initialValues: ValueTypes = {
-    campaignId: id || 0,
+    campaignId: id,
 
     firstname: "",
     lastname: "",
-    amount: "",
+    amount: 0,
     shownname: "",
     address: "",
     city: "",
@@ -138,6 +139,7 @@ const FormModal = () => {
     const name = e.target.name;
     const value = e.target.value as string;
     setFormValues({ ...formValues, [name]: value });
+    formValidate();
   };
 
   const customStyles = {
@@ -147,8 +149,7 @@ const FormModal = () => {
     },
   };
 
-  const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const formValidate = () => {
     setFormErrors(validate(formValues));
     const hasBlankValues = Object.values(formErrors).some(
       (value) => !value.trim()
@@ -160,6 +161,12 @@ const FormModal = () => {
 
       return false;
     }
+    return true;
+  };
+
+  const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formValidate()) return;
 
     jQuery.post("./data/charge-card.php", formValues, (response) => {
       setError(response);

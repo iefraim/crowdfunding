@@ -5,6 +5,7 @@ import { DonationContext, DataContext } from "../context/Provider";
 const Total = (): React.JSX.Element | false => {
   const donations = useContext(DonationContext);
   const { goal, bonus_goal } = useContext(DataContext);
+  const bonusGoal = bonus_goal ? bonus_goal : 0; //if not null
   const totalDonations = donations.reduce(
     (prev, curr) => prev + curr.amount * 1,
     0
@@ -22,17 +23,17 @@ const Total = (): React.JSX.Element | false => {
         </>
       )}
 
-      {totalDonations >= goal && totalDonations < bonus_goal && (
+      {totalDonations >= goal && totalDonations < bonusGoal && (
         <>
           <h5>INITIAL GOAL OF ${goal} REACHED!</h5>
           <h5>NEW GOAL!</h5>
           <h6>
             ${totalDonations.toLocaleString()} out of $
-            {(bonus_goal * 1).toLocaleString()} raised!
+            {(bonusGoal * 1).toLocaleString()} raised!
           </h6>
         </>
       )}
-      {totalDonations >= bonus_goal && (
+      {totalDonations >= bonusGoal && (
         <h6>Goal reached with ${totalDonations.toLocaleString()} raised!</h6>
       )}
       <ProgressBar
