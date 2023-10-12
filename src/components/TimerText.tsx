@@ -1,11 +1,8 @@
 import React from "react";
 
-const TimerText = ({
+const TimerText: React.FC<{ dimension: string; timeNum: number }> = ({
   dimension,
   timeNum,
-}: {
-  dimension: String;
-  timeNum: number;
 }) => {
   const time = "" + timeNum; //avoid ts error
   return (

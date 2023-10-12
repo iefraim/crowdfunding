@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { ModalContext } from "./Donate";
-const ModalCloseButton = (): React.JSX.Element | false => {
+const ModalCloseButton: React.FC = () => {
   const { setIsopen } = useContext(ModalContext);
   if (!setIsopen) return false;
   const closeModal = (): void => {

@@ -3,11 +3,7 @@ import { HashRouter, Route, Routes, useParams } from "react-router-dom";
 
 export const TeamLinkContext = createContext("");
 
-const SetTeam = ({
-  children,
-}: {
-  children: React.JSX.Element;
-}): React.JSX.Element | false => {
+const SetTeam: React.FC<{ children: React.JSX.Element }> = ({ children }) => {
   const params = useParams();
   const teamLink = params.teamLink ? params.teamLink : "";
   return (
@@ -17,11 +13,7 @@ const SetTeam = ({
   );
 };
 
-const Router = ({
-  children,
-}: {
-  children: React.JSX.Element;
-}): React.JSX.Element | false => {
+const Router: React.FC<{ children: React.JSX.Element }> = ({ children }) => {
   return (
     <HashRouter>
       <Routes>

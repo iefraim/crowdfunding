@@ -6,7 +6,7 @@ import Total from "./Total";
 import Donations from "./Donations";
 import TeamTotal from "./TeamTotal";
 
-const RightColumn = (): React.JSX.Element | false => {
+const RightColumn: React.FC = () => {
   return (
     <div className="rightColumn col-md-4 col-sm-12 col-md-push-8">
       <div className="col-xs-12 div--box donors">

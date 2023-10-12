@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import Team from "./Team";
 
 import { TeamContext } from "../context/Provider";
-const Teams = () => {
+const Teams: React.FC = () => {
   const teams = useContext(TeamContext);
   return (
     <div className="div--box teams">

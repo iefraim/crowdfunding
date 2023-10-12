@@ -4,7 +4,7 @@ import { DataContext } from "../context/Provider";
 import { NavLink } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { Team } from "../types/types";
-const Team = ({ team: { id, name, link, goal } }: { team: Team }) => {
+const Team: React.FC<{ team: Team }> = ({ team: { id, name, link, goal } }) => {
   const donations = useTeamGetDonations(id);
   const { multiple } = useContext(DataContext);
   const donationsTotal = donations.reduce(

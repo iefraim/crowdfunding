@@ -6,51 +6,53 @@ import ModalCloseButton from "./ModalCloseButton";
 
 import { ModalContext } from "./Donate";
 import { DataContext, TeamContext } from "../context/Provider";
+
+type ValueTypes = {
+  campaignId: number;
+
+  firstname: string;
+  lastname: string;
+  amount: number;
+  shownname?: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  phone: string;
+  email: string;
+  ccnum: string;
+  ccmonth: string;
+  ccyear: string;
+  cvv: string;
+  notes?: string;
+  team: string;
+};
+
+type ErrorTypes = {
+  firstname?: string;
+  lastname?: string;
+  amount?: string;
+  shownname?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
+  phone?: string;
+  email?: string;
+  ccnum?: string;
+  ccmonth?: string;
+  ccyear?: string;
+  cvv?: string;
+};
+
 const FormModal: React.FC = () => {
   const [error, setError] = useState("");
+  const [submited, setSubmited] = useState(false);
   const { inputValue, setValue, isOpen, setIsopen } = useContext(ModalContext);
   const { multiple, id: undefinedId } = useContext(DataContext);
   const id = undefinedId ? undefinedId : 0;
 
   if (!setValue || !setIsopen) return false;
-
-  type ValueTypes = {
-    campaignId: number;
-
-    firstname: string;
-    lastname: string;
-    amount: number;
-    shownname?: string;
-    address: string;
-    city: string;
-    state: string;
-    zip: string;
-    phone: string;
-    email: string;
-    ccnum: string;
-    ccmonth: string;
-    ccyear: string;
-    cvv: string;
-    notes?: string;
-    team: string;
-  };
-
-  type ErrorTypes = {
-    firstname?: string;
-    lastname?: string;
-    amount?: string;
-    shownname?: string;
-    address?: string;
-    city?: string;
-    state?: string;
-    zip?: string;
-    phone?: string;
-    email?: string;
-    ccnum?: string;
-    ccmonth?: string;
-    ccyear?: string;
-    cvv?: string;
-  };
 
   const initialValues: ValueTypes = {
     campaignId: id,
@@ -76,8 +78,9 @@ const FormModal: React.FC = () => {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState<ErrorTypes>({});
   const teams = useContext(TeamContext);
+  //on open/close reset values
 
-  const validate = (values: ValueTypes) => {
+  const validate = (values: ValueTypes): ErrorTypes => {
     const errors: ErrorTypes = {};
     if (!values.firstname) {
       errors.firstname = "Required";
@@ -130,16 +133,25 @@ const FormModal: React.FC = () => {
     }
     return errors;
   };
-  const closeModal = () => {
+  const closeModal = (): void => {
     setIsopen(false);
   };
+
+  useEffect(() => {
+    //on open/close, reset values
+    setFormValues(initialValues);
+    setSubmited(false);
+    setFormErrors({});
+    setError("");
+  }, [isOpen]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  ): void => {
     const name = e.target.name;
     const value = e.target.value as string;
     setFormValues({ ...formValues, [name]: value });
-    formValidate();
+    if (submited) formValidate();
   };
 
   const customStyles = {
@@ -149,7 +161,7 @@ const FormModal: React.FC = () => {
     },
   };
 
-  const formValidate = () => {
+  const formValidate = (): boolean => {
     setFormErrors(validate(formValues));
     const hasBlankValues = Object.values(formErrors).some(
       (value) => !value.trim()
@@ -164,8 +176,9 @@ const FormModal: React.FC = () => {
     return true;
   };
 
-  const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    setSubmited(true);
     if (!formValidate()) return;
 
     jQuery.post("./data/charge-card.php", formValues, (response) => {
@@ -188,6 +201,7 @@ const FormModal: React.FC = () => {
     }); //end post
   };
   useEffect(() => {
+    //? what for?
     setFormValues(
       (formValues: ValueTypes): ValueTypes => ({
         ...formValues,
@@ -196,6 +210,7 @@ const FormModal: React.FC = () => {
     );
   }, [id]);
   useEffect(() => {
+    //input changed
     setFormValues(
       (formValues: ValueTypes): ValueTypes => ({
         ...formValues,

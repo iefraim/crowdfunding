@@ -30,10 +30,8 @@ export const useFilters = (
 
   return donations;
 };
-const Filters = (): React.JSX.Element | false => {
-  const filtersContext = useContext(FiltersContext)
-    ? useContext(FiltersContext)
-    : false;
+const Filters: React.FC = () => {
+  const filtersContext = useContext(FiltersContext);
   if (!filtersContext) return false;
   const { setFilters } = filtersContext;
 
@@ -43,7 +41,7 @@ const Filters = (): React.JSX.Element | false => {
     ) as HTMLInputElement | null;
     const sortInput = document.getElementById(
       "sortFilter"
-    ) as HTMLInputElement | null;
+    ) as HTMLSelectElement | null;
     const text = textInput ? textInput.value.trim() : "";
     const sort = sortInput
       ? (sortInput.value as "recent" | "highest" | "name")

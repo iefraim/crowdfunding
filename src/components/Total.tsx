@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 import { DonationContext, DataContext } from "../context/Provider";
-const Total = (): React.JSX.Element | false => {
+const Total: React.FC = () => {
   const donations = useContext(DonationContext);
   const { goal, bonus_goal } = useContext(DataContext);
   const bonusGoal = bonus_goal ? bonus_goal : 0; //if not null

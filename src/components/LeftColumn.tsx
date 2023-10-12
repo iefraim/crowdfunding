@@ -4,7 +4,7 @@ import About from "./About";
 import Donate from "./Donate";
 import Teams from "./Teams";
 
-const LeftColumn = () => {
+const LeftColumn: React.FC = () => {
   return (
     <div className="leftColumn col-md-8 col-xs-12 col-md-pull-4 ">
       <About />
