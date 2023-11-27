@@ -28,4 +28,6 @@ export type Data = {
   end_date: Date;
   active?: Boolean;
   multiple: number;
+  aboutHeader:String;
+  aboutText:String;
 };

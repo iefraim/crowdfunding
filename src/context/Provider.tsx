@@ -13,6 +13,8 @@ const startData: Data = {
   name: "",
   active: true,
   id: 0,
+  aboutHeader:"";
+  aboutText:"";
 };
 const startTeams: Team[] = [];
 const startDonations: Donation[] = []; //end
