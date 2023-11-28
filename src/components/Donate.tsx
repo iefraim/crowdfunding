@@ -27,7 +27,8 @@ const Donate: React.FC = () => {
           type="number"
           id="donationInput"
           onChange={handleChange}
-          value={inputValue}
+value={inputValue|| ''}
+          placeholder="0"
         />
         <button type="submit" className="btn btn-primary btn-sm">
           DONATE

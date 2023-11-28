@@ -56,10 +56,9 @@ const FormModal: React.FC = () => {
 
   const initialValues: ValueTypes = {
     campaignId: id,
-
     firstname: "",
     lastname: "",
-    amount: 0,
+    amount: inputValue || 0,
     shownname: "",
     address: "",
     city: "",
@@ -245,7 +244,7 @@ const FormModal: React.FC = () => {
                   name="amount"
                   className={formErrors.amount ? "amount is-invalid" : "amount"}
                   onChange={handleChange}
-                  value={formValues.amount}
+                  value={formValues.amount ||""}
                 />
                 <div className="input-group-append">
                   <span className="input-group-text">.00</span>
@@ -253,15 +252,17 @@ const FormModal: React.FC = () => {
                 {formErrors.amount && (
                   <span className="invalid-feedback">{formErrors.amount}</span>
                 )}
+                <div className="multiple-div">
+                {multiple > 1 && (
+                  <>
+                    x <span id="modalamtduplicate">{multiple}</span> =
+                    {parseInt(formValues.amount + "") * multiple}
+                  </>
+              )}
+                <span id="newtotal"></span>  </div>
               </div>
 
-              {multiple > 1 && (
-                <>
-                  x <span id="modalamtduplicate">{multiple}</span> =
-                  {parseInt(formValues.amount + "") * multiple}
-                </>
-              )}
-              <span id="newtotal"></span>
+
             </div>
           </div>
           <>

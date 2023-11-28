@@ -27,7 +27,8 @@ export type Data = {
   start_date: Date;
   end_date: Date;
   active?: Boolean;
+  aboutheader:String;
+  abouttext:String;
   multiple: number;
-  aboutHeader:String;
-  aboutText:String;
+
 };
