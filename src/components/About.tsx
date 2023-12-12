@@ -5,7 +5,7 @@ const About: React.FC = () => {
     const {abouttext} = useContext(DataContext);
     return (
         <div className="div--box">
-            <h3>ABOUT ZERA AVRAHAM</h3>
+            <h3>ABOUT CAMPAIGN</h3>
             <div className="aboutText"
                 dangerouslySetInnerHTML={{__html: abouttext}}
             />

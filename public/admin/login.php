@@ -23,6 +23,11 @@ require_once("../functions/mysql.php");
             <input type="password" name="password" class="form-control" required>
             <div class="form-row  mt-4">
             <button type="submit">Login</button>
+                <?php if(isset($_POST["password"])){?>
+                <div class="alert alert-danger mt-2" role="alert">
+                    Wrong password
+                </div>
+                <?php }?>
             </div>
         </form>
         <div>

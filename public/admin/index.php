@@ -43,10 +43,13 @@ $teams=query("SELECT * FROM `teams`")
                 <td><a href="./edit_campaigns.php?id=<?=$row["ID"]?>"><?=$row["name"]?></a></td>
                 <td>$<?=$row["goal"]?></td>
                 <td>$<?=$row["bonus_goal"]?></td>
-                <td><?=array_sum(array_filter($donations,function($i){
-                    global $row;
-                    return $i["campaign_id"]==$row["ID"];
-                }))?></td>
+                <td><?= array_sum(array_map(function($i) {
+                        return $i["amount"]; // Assuming "amount" is the numeric field you want to sum
+                    }, array_filter($donations, function($i) {
+                        global $row;
+                        return $i["campaign_id"] == $row["ID"];
+                    })))
+                    ?></td>
                 <td><?=$row["start_date"]?></td>
                 <td><?=$row["end_date"]?></td>
                 <td><a href="./donations.php?campaignId=<?=$row["ID"]?>"><?=count(array_filter($donations,function($i){

@@ -11,7 +11,7 @@ foreach ($_POST as $key => $value) {
 
 $shownname=$shownname===""?"$firstname $lastname":$shownname;
 
-$query="INSERT INTO `donations` (`amount`,`first_name`,`last_name`,`shown_name`,`adress`,`city`,`state`,`zip`,`phone`,`email`,`comment`,`teamID`,`campaign_id`, `paytype`, `paid`) VALUES ('$amount','$firstname','$lastname','$shownname','$address','$city','$state','$zip','$phone','$email','$notes','$team',$campaignId, 'Credit Card', 1)";
+$query="INSERT INTO `donations` (`amount`,`first_name`,`last_name`,`shown_name`,`address`,`city`,`state`,`zip`,`phone`,`email`,`comment`,`teamID`,`campaign_id`, `paytype`, `paid`) VALUES ('$amount','$firstname','$lastname','$shownname','$address','$city','$state','$zip','$phone','$email','$notes','$team',$campaignId, 'Credit Card', 1)";
 
 
 query($query);

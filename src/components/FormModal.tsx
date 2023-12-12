@@ -93,6 +93,9 @@ const FormModal: React.FC = () => {
     if (values.amount && isNaN(parseInt(values.amount + ""))) {
       errors.amount = "Invalid";
     }
+    if (values.amount && values.amount < 5) {
+      errors.amount = "Invalid";
+    }
     if (!values.address) {
       errors.address = "Required";
     }

@@ -4,6 +4,7 @@ if(isset($_GET["id"])){
     $id=$db->real_escape_string($_GET["id"]);
     $query="SELECT * FROM `fundraiser_data` WHERE `ID`=$id";
     $data=query($query)[0];
+
 }else{
     $data=[
         "ID"=>false,
@@ -12,6 +13,7 @@ if(isset($_GET["id"])){
         "bonus_goal"=>"",
         'start_date'=>"",
         "end_date"=>"",
+        "aboutText"=>"",
         "multiple"=>1,
         "active"=>false
     ];
@@ -21,12 +23,12 @@ if(isset($_POST["name"])){
         $$key=$db->real_escape_string($value);
     }
     $active=isset($active)?1:0;
-    echo $active;
+//    echo $active;
     if(isset($_GET["id"])){
-        $query="UPDATE `fundraiser_data` SET `name`='$name',`goal`='$goal',`bonus_goal`='$bonus_goal',`start_date`='$start_date',`end_date`='$end_date',`multiple`=$multiple,`active`=$active WHERE `ID`=$id";
+        $query="UPDATE `fundraiser_data` SET `name`='$name',`goal`='$goal',`bonus_goal`='$bonus_goal',`start_date`='$start_date',`end_date`='$end_date',`aboutText`=$aboutText, ``multiple`=$multiple,`active`=$active WHERE `ID`=$id";
     }
     else{
-        $query="INSERT INTO `fundraiser_data` (`name`,`goal`,`bonus_goal`,`start_date`,`end_date`,`multiple`,`active`) VALUES ('$name','$goal','$bonus_goal','$start_date','$end_date',$multiple ,$active)";
+        $query="INSERT INTO `fundraiser_data` (`name`,`goal`,`bonus_goal`,`start_date`,`end_date`,`aboutText`,`multiple`,`active`) VALUES ('$name','$goal','$bonus_goal','$start_date','$end_date', '$aboutText', $multiple ,$active)";
     }
     query($query);
     header("Location:./");
@@ -59,6 +61,11 @@ if(isset($_POST["name"])){
             <label class="form-label" for="end_date">End Date</label>
             <input class="form-control" type="datetime-local" name="end_date" required  value="<?=$data["end_date"]?>">
             </div><div class="mb-3">
+                <label class="form-label" for="aboutText">About Campaign</label>
+                <textarea class="form-control"  name="aboutText"   row="6" ><?=$data["aboutText"]?></textarea>
+            </div>
+
+            <div class="mb-3">
             <label class="form-label" for="multiple">Multiply By:</label>
             <input class="form-control" type="number" name="multiple" min="1" value="<?=$data["multiple"]?>">
             </div><div class="mb-3">

@@ -12,7 +12,7 @@ $data=query("SELECT * FROM `donations` WHERE `id`=$id")[0];
 "comment"=>"",
 "email"=>"",
 "phone"=>"",
-"adress"=>"",
+"address"=>"",
 "city"=>"",
 "state"=>"",
 "zip"=>"",
@@ -34,13 +34,14 @@ if(isset($_POST["firstName"])){
 
  
     if($data["first_name"])  {
-        $updateQuery="UPDATE `donations` SET `first_name`='$firstName', `last_name`='$lastName',`shown_name`='$shownName',`amount`='$amount',`teamId`=$team,`comment`='$note',`email`='$email',`phone`='$phone',`adress`='$adress',`city`='$city',`state`='$state',`zip`='$zip', `campaign_id`='$campaign', `paytype`='$paytype' , `paid` = $paid WHERE `ID`=$id";
-        echo $updateQuery; 
+        $updateQuery="UPDATE `donations` SET `first_name`='$firstName', `last_name`='$lastName',`shown_name`='$shownName',`amount`='$amount',`teamId`=$team,`comment`='$note',`email`='$email',`phone`='$phone',`address`='$address',`city`='$city',`state`='$state',`zip`='$zip', `campaign_id`='$campaign', `paytype`='$paytype' , `paid` = $paid WHERE `ID`=$id";
+      //  echo $updateQuery;
         query($updateQuery);
     }
-    else  {    $insertQuery="INSERT INTO `donations` (`first_name`,`last_name`,`shown_name`,`amount`,`teamId`,`comment`,`email`,`phone`,`adress`,`city`,`state`,`zip`,`campaign_id`, `paytype`, `paid`) VALUES ('$firstName','$lastName','$shownName','$amount',$team,'$note','$email','$phone','$adress','$city','$state','$zip',$campaign, '$paytype', $paid)"  ;
-        echo $insertQuery;
-        query($insertQuery); };
+    else  {    $insertQuery="INSERT INTO `donations` (`first_name`,`last_name`,`shown_name`,`amount`,`teamId`,`comment`,`email`,`phone`,`address`,`city`,`state`,`zip`,`campaign_id`, `paytype`, `paid`) VALUES ('$firstName','$lastName','$shownName','$amount',$team,'$note','$email','$phone','$address','$city','$state','$zip',$campaign, '$paytype', $paid)"  ;
+     //   echo $insertQuery;
+        query($insertQuery);
+    };
       
      header("Location:./donations.php");
 }
@@ -101,8 +102,8 @@ if(isset($_POST["firstName"])){
             <input name="email"  class="form-control" type="email" value="<?=$data["email"]?>">    </div><div class="mb-3">  
             <label for="phone" class="form-label" >Phone #</label>
             <input name="phone"  class="form-control" type="number" value="<?=$data["phone"]?>">    </div><div class="mb-3">  
-            <label for="adress"  class="form-label" >Adress</label>
-            <input name="adress" class="form-control" type="text" value="<?=$data["adress"]?>">    </div><div class="mb-3">  
+            <label for="address"  class="form-label" >address</label>
+            <input name="address" class="form-control" type="text" value="<?=$data["address"]?>">    </div><div class="mb-3">  
             <label for="city"  class="form-label" >City</label>
             <input name="city"  class="form-control" type="text" value="<?=$data["city"]?>">    </div><div class="mb-3">  
             <label for="state"  class="form-label" >State</label>
