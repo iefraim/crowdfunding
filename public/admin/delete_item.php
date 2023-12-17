@@ -5,3 +5,4 @@ $id=$db->real_escape_string($_POST["id"]);
 $table=$db->real_escape_string($_POST["table"]);
 $query="DELETE FROM `$table` WHERE `ID`=$id";
 query($query);
+echo 'success';

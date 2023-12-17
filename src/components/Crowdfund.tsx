@@ -20,10 +20,10 @@ const Crowdfund: React.FC = () => {
         <HeaderText />
         <Router>
           <Provider>
-            <div className="row">
+            <main className="row">
               <LeftColumn />
               <RightColumn />
-            </div>
+            </main>
           </Provider>
         </Router>
       </div>

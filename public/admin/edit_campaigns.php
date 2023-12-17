@@ -25,11 +25,12 @@ if(isset($_POST["name"])){
     $active=isset($active)?1:0;
 //    echo $active;
     if(isset($_GET["id"])){
-        $query="UPDATE `fundraiser_data` SET `name`='$name',`goal`='$goal',`bonus_goal`='$bonus_goal',`start_date`='$start_date',`end_date`='$end_date',`aboutText`=$aboutText, ``multiple`=$multiple,`active`=$active WHERE `ID`=$id";
+        $query="UPDATE `fundraiser_data` SET `name`='$name',`goal`='$goal',`bonus_goal`='$bonus_goal',`start_date`='$start_date',`end_date`='$end_date',`aboutText`='$aboutText', `multiple`=$multiple,`active`=$active WHERE `ID`=$id";
     }
     else{
         $query="INSERT INTO `fundraiser_data` (`name`,`goal`,`bonus_goal`,`start_date`,`end_date`,`aboutText`,`multiple`,`active`) VALUES ('$name','$goal','$bonus_goal','$start_date','$end_date', '$aboutText', $multiple ,$active)";
     }
+
     query($query);
     header("Location:./");
 }

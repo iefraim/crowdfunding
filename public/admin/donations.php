@@ -95,10 +95,10 @@ $campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){
 
                         .then((res)=>{
                             if(res=="success"){
-                                alert("Item deleted");
+
                                 $('tr[data-id="'+id+'"]').remove();
 
-                                //location.reload();
+
 
                             }else{
                                 alert("Error deleting item");

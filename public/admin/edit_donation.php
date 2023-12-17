@@ -74,6 +74,7 @@ if(isset($_POST["firstName"])){
             <div class="mb-3">  
             <label for="team"  class="form-label" >Team</label>
             <select name="team"  class="form-control">
+                <option value="">Select a Team</option>
                 <?php foreach ($teams as  $value) {?>
                         <option value="<?=$value["ID"]?>" <?= $data["teamID"]==$value["ID"]?"selected":""?>><?=$value["name"]?></option>
                     <?php }?>

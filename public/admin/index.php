@@ -39,16 +39,18 @@ $teams=query("SELECT * FROM `teams`")
             </thead>
             <?php
             foreach ($campaignList as $row) {?>
-            <tr>
+                <tr data-id="<?=$row['ID']?>">
                 <td><a href="./edit_campaigns.php?id=<?=$row["ID"]?>"><?=$row["name"]?></a></td>
-                <td>$<?=$row["goal"]?></td>
-                <td>$<?=$row["bonus_goal"]?></td>
-                <td><?= array_sum(array_map(function($i) {
+                <td>$<?                echo number_format($row["goal"],0);?>              </td>
+                <td>$<?                    echo number_format($row["bonus_goal"],0);                ?></td>
+                <td>$<?
+                    $totalamt = array_sum(array_map(function($i) {
                         return $i["amount"]; // Assuming "amount" is the numeric field you want to sum
                     }, array_filter($donations, function($i) {
                         global $row;
                         return $i["campaign_id"] == $row["ID"];
-                    })))
+                    })));
+                    echo number_format( $totalamt,0);
                     ?></td>
                 <td><?=$row["start_date"]?></td>
                 <td><?=$row["end_date"]?></td>
@@ -87,7 +89,18 @@ const deleteItem=(id)=>{
                         }
                         console.log("delete ",id)
                         $.post("./delete_item.php",{id:id,table:"fundraiser_data"})
-                        location.reload();
-                    }
+                            .then((res)=>{
+                                if(res=="success"){
+
+                                    $('tr[data-id="'+id+'"]').remove();
+
+
+
+                                }else{
+                                    alert("Error deleting item");
+                                }
+                            })
+
+}
     </script>
 </html>

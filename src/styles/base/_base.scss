@@ -14,10 +14,29 @@ body {
 .btn-primary:hover {
   background-color: $secondary;
 }
+.showMobile {
+    display: none;
+
+}
+.hideMobile {
+    display: block;
+}
+main {
+  flex-direction: row;
+}
+main .leftColumn {
+order :1;
+}
+ main .rightColumn {
+order: 2;
+ }
 #donationForm .div--box {
   display: flex;
-}
 
+}
+.copysponsorinfo {
+  flex-direction: column;
+}
 .div--box {
   border: solid 1px black;
   padding: 10px;
@@ -28,4 +47,21 @@ body {
   -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+@media only screen and (max-width: 600px) {
+  main {
+    flex-direction: column;
+  }
+  main .leftColumn {
+    order: 2;
+  }
+  main .rightColumn {
+    order: 1;
+  }
+  .showMobile {
+   display: block;
+  }
+  .hideMobile {
+    display: none;
+  }
 }

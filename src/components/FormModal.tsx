@@ -259,7 +259,9 @@ const FormModal: React.FC = () => {
                 {multiple > 1 && (
                   <>
                     x <span id="modalamtduplicate">{multiple}</span> =
-                    {parseInt(formValues.amount + "") * multiple}
+
+                    {isNaN(parseInt(formValues.amount + "")) ? 0 : parseInt(formValues.amount + "") * multiple
+                    }
                   </>
               )}
                 <span id="newtotal"></span>  </div>
@@ -535,7 +537,7 @@ const FormModal: React.FC = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="team">Select a Team</label>
+              {/*<label htmlFor="team">Select a Team</label>*/}
 
               <select
                 className="form-control"
@@ -544,7 +546,7 @@ const FormModal: React.FC = () => {
                 defaultValue={formValues.team}
                 onChange={handleChange}
               >
-                <option value=""></option>
+                <option value="">Select a Team</option>
                 {teams.map((i) => (
                   <option value={i.id} key={i.id}>
                     {i.name}

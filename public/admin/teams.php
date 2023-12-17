@@ -40,7 +40,7 @@ $campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){
             <tbody>
             <?php
             foreach ($teams as $row) {?>
-            <tr>
+                <tr data-id="<?=$row['ID']?>">
                 <td><?=$row["name"]?></td>
                 <td>$<?=$row["goal"]?></td>
                 <td><?=$row["link"]?></td>
@@ -72,7 +72,18 @@ const deleteItem=(id)=>{
                         }
                         console.log("delete ",id)
                         $.post("./delete_item.php",{id:id,table:"teams"})
-                        location.reload();
-                    }
+                            .then((res)=>{
+                                if(res=="success"){
+
+                                    $('tr[data-id="'+id+'"]').remove();
+
+
+
+                                }else{
+                                    alert("Error deleting item");
+                                }
+                            })
+
+}
     </script>
 </html>

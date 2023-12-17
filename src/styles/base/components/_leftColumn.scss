@@ -6,3 +6,16 @@
   overflow: scroll;
   padding-bottom: 30px;
 }
+#teams  {
+  height: 600px;
+  overflow: scroll;
+}
+@media only screen and (max-width: 600px) {
+
+  #teams  {
+    height: 300px;
+  }
+  ul#teams__ul {
+    padding-left: 0;
+  }
+}

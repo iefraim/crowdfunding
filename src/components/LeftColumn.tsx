@@ -8,7 +8,9 @@ const LeftColumn: React.FC = () => {
   return (
     <div className="leftColumn col-md-8 col-xs-12 col-md-pull-4 ">
       <About />
+        <div className="hideMobile">
       <Donate />
+        </div>
       <Teams />
     </div>
   );
