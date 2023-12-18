@@ -5,7 +5,9 @@ export const TeamLinkContext = createContext("");
 
 const SetTeam: React.FC<{ children: React.JSX.Element }> = ({ children }) => {
   const params = useParams();
+
   const teamLink = params.teamLink ? params.teamLink : "";
+
   return (
     <TeamLinkContext.Provider value={teamLink}>
       {children}

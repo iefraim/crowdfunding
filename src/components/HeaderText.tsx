@@ -1,20 +1,22 @@
-import React, { useContext } from "react";
+import React, {useContext, useState} from "react";
 
 import {TeamLinkContext} from "../router/Router";
-import useFindTeams from "../functions/useFindTeam";
+import useFindTeam from "../functions/useFindTeam";
 
 const HeaderText: React.FC = () => {
   // const { aboutheader } = useContext(DataContext);
-    const link = useContext(TeamLinkContext);
-    if (link) return false; //no open team
-    const {  name } = useFindTeams({ link });
+    const activeTeam1 = useContext(TeamLinkContext);
 
+    if (activeTeam1) {
+        const { id, name:teamName } = useFindTeam({ link: activeTeam1 });
+    }
+// console.log(teamName);
   return (
     <div className="col-sm-12 headline mt-4 text-center">
-        {name &&  (   <h1 className="headline-big headerText--big">
-          {name }
-      </h1>
-            )}
+      {/*  {teamName &&  (   <h1 className="headline-big headerText--big">*/}
+      {/*    {teamName }*/}
+      {/*</h1>*/}
+      {/*      )}*/}
      <h2 className="headerText__h1">
      {/*Every contribution makes a difference. You make a difference!*/}
      </h2>

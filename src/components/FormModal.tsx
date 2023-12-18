@@ -6,10 +6,11 @@ import ModalCloseButton from "./ModalCloseButton";
 
 import { ModalContext } from "./Donate";
 import { DataContext, TeamContext } from "../context/Provider";
+import {TeamLinkContext} from "../router/Router";
+import useFindTeams from "../functions/useFindTeam";
 
 type ValueTypes = {
   campaignId: number;
-
   firstname: string;
   lastname: string;
   amount: number;
@@ -25,7 +26,7 @@ type ValueTypes = {
   ccyear: string;
   cvv: string;
   notes?: string;
-  team: string;
+  team: string|number;
 };
 
 type ErrorTypes = {
@@ -51,6 +52,8 @@ const FormModal: React.FC = () => {
   const { inputValue, setValue, isOpen, setIsopen } = useContext(ModalContext);
   const { multiple, id: undefinedId } = useContext(DataContext);
   const id = undefinedId ? undefinedId : 0;
+  const link = useContext(TeamLinkContext);
+   const { id :teamID } = useFindTeams({ link });
 
   if (!setValue || !setIsopen) return false;
 
@@ -71,7 +74,7 @@ const FormModal: React.FC = () => {
     ccyear: "",
     cvv: "",
     notes: "",
-    team: "",
+    team: teamID || "",
   };
 
   const [formValues, setFormValues] = useState(initialValues);
@@ -141,11 +144,17 @@ const FormModal: React.FC = () => {
 
   useEffect(() => {
     //on open/close, reset values
-    setFormValues(initialValues);
+   // setFormValues(initialValues);
     setSubmited(false);
     setFormErrors({});
     setError("");
   }, [isOpen]);
+
+  useEffect(() => {
+
+ setFormValues(initialValues);
+
+  }, [teamID]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -543,7 +552,7 @@ const FormModal: React.FC = () => {
                 className="form-control"
                 name="team"
                 id="team"
-                defaultValue={formValues.team}
+                defaultValue={`${formValues.team}`}
                 onChange={handleChange}
               >
                 <option value="">Select a Team</option>

@@ -15,18 +15,21 @@ import Router from "../router/Router";
 const Crowdfund: React.FC = () => {
   return (
     <>
+        <Router>
+        <Provider>
+            <>
       <Header />
       <div className="container">
         <HeaderText />
-        <Router>
-          <Provider>
+
             <main className="row">
               <LeftColumn />
               <RightColumn />
             </main>
-          </Provider>
-        </Router>
-      </div>
+
+      </div></>
+        </Provider>
+</Router>
     </>
   );
 };

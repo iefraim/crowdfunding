@@ -1,5 +1,5 @@
 .header__image {
-  height: 60vh;
+  height: 350px;
   /*padding-top: 250px !important;
   padding-bottom: 150px !important;*/
   background-image: url(http://zeraabraham.com/wp-content/uploads/2023/12/1.jpg) !important;
@@ -10,31 +10,31 @@
 
 @media  only screen and (max-width: 1500px) {
   .header__image {
-    height: 50vh;
+    height: 280px;
 
   }
 }
 @media  only screen and (max-width: 1200px) {
   .header__image {
-    height: 40vh;
+    height:             220px;
 
   }
 }
 @media  only screen and (max-width: 1000px) {
   .header__image {
-    height: 32vh;
+    height: 180px;
 
   }
 }
 @media  only screen and (max-width: 678px) {
   .header__image {
-    height: 25vh;
+    height: 130px;
 
   }
 }
 @media  only screen and (max-width: 450px) {
   .header__image {
-    height: 15vh;
+    height: 80px;
 
   }
 }
