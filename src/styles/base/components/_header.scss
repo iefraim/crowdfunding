@@ -2,21 +2,33 @@
   height: 60vh;
   /*padding-top: 250px !important;
   padding-bottom: 150px !important;*/
-  background-image: url(http://zeraabraham.com/wp-content/uploads/2023/12/4.jpg) !important;
+  background-image: url(http://zeraabraham.com/wp-content/uploads/2023/12/1.jpg) !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
 }
 
-@media  only screen and (max-width: 890px) {
+@media  only screen and (max-width: 1500px) {
+  .header__image {
+    height: 50vh;
+
+  }
+}
+@media  only screen and (max-width: 1200px) {
   .header__image {
     height: 40vh;
 
   }
 }
+@media  only screen and (max-width: 1000px) {
+  .header__image {
+    height: 32vh;
+
+  }
+}
 @media  only screen and (max-width: 678px) {
   .header__image {
-    height: 20vh;
+    height: 25vh;
 
   }
 }

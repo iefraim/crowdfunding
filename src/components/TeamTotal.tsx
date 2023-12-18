@@ -5,6 +5,7 @@ import { TeamLinkContext } from "../router/Router";
 import useTeamGetDonations from "../functions/useGetTeamDonations";
 import useFindTeams from "../functions/useFindTeam";
 import { NavLink, useNavigate } from "react-router-dom";
+import {DataContext} from "../context/Provider";
 const TeamTotal: React.FC = () => {
   const link = useContext(TeamLinkContext);
   if (!link) return false; //no open team
@@ -14,8 +15,9 @@ const TeamTotal: React.FC = () => {
     return false;
   } //team doesn't exist
   const donations = useTeamGetDonations(id);
+  const { multiple } = useContext(DataContext);
   const donationsTotal = donations.reduce(
-    (prev, curr) => prev + curr.amount * curr.multiple,
+    (prev, curr) => prev + curr.amount * multiple,
     0
   );
   return (

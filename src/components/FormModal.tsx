@@ -380,7 +380,7 @@ const FormModal: React.FC = () => {
               <label htmlFor="zip">Billing Zip Code: </label>
 
               <input
-                type="number"
+                type="text"
                 id="zip"
                 name="zip"
                 value={formValues.zip}

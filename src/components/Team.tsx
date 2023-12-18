@@ -11,6 +11,8 @@ const Team: React.FC<{ team: Team }> = ({ team: { id, name, link, goal } }) => {
     (prev, curr) => prev + curr.amount * multiple,
     0
   );
+
+
   return (
     <li className="col-xs-12 col-sm-6 team__li">
       <div className="col-xs-12 team__div">
