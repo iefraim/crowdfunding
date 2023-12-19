@@ -4,6 +4,12 @@ function getCampaign($i){
     return !isset($_GET["campaignId"])||$i["campaign_id"]==$_GET["campaignId"];
 }
 $teams=array_filter(query("SELECT * FROM `teams`"),"getCampaign");
+$teamnames =[];
+foreach ($teams as $key => $value) {
+    $teamnames[$value["ID"]]= $value["name"];
+}
+
+
 $donors=array_filter(query("SELECT * FROM `donations` order by ID desc"),"getCampaign");
 $campaigns=query("SELECT * FROM `fundraiser_data`");
 
@@ -59,10 +65,7 @@ $campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){
                     <td><?=$row["shown_name"]?></td>
                     <td>$<?=$row["amount"]?></td>
            
-                    <td><?=array_map(function($i){
-                        global $row;
-                        return $row["teamID"]==$i["ID"]?$i:null;
-                    },$teams)[0]["name"]?></td>
+                    <td><?=$teamnames[ $row["teamID"]];?></td>
                     <td><?=$row["comment"]?></td>
 
                     <td><?=$row["email"]?></td>

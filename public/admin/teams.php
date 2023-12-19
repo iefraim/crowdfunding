@@ -32,7 +32,9 @@ $campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){
                 <th>Name</th>
                 <th>Goal</th>
                 <th>Link</th>
+                <th>Email</th>
                 <th>Donors</th>
+
         
                 <th>Edit</th>
                 <th>Delete</th>
@@ -44,6 +46,7 @@ $campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){
                 <td><?=$row["name"]?></td>
                 <td>$<?=$row["goal"]?></td>
                 <td><?=$row["link"]?></td>
+                    <td><?=$row["email"]?></td>
                 <td><?=  count(array_filter($donors,function($i){
                     global $row;
                     return $i["teamID"]===$row["ID"];

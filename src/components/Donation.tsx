@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import useFindTeam from "../functions/useFindTeam";
 import { DataContext } from "../context/Provider";
 import { Donation } from "../types/types";
+import Team from "./Team";
 const Donations: React.FC<{ item: Donation }> = ({
   item: { shown_name, amount, teamid, comment },
 }) => {
@@ -22,7 +23,10 @@ const Donations: React.FC<{ item: Donation }> = ({
             {comment} <br />
           </>
         )}
-        Team {teamName}
+
+          {teamName && (
+              <span>Team {teamName}</span>
+          )}
       </small>
     </li>
   );

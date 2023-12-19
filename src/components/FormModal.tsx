@@ -48,6 +48,7 @@ type ErrorTypes = {
 
 const FormModal: React.FC = () => {
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [submited, setSubmited] = useState(false);
   const { inputValue, setValue, isOpen, setIsopen } = useContext(ModalContext);
   const { multiple, id: undefinedId } = useContext(DataContext);
@@ -223,8 +224,13 @@ const FormModal: React.FC = () => {
 
               setFormValues(initialValues);
               setFormErrors({});
+              setSuccess('Thank you for your donation.');
+    setTimeout(() => {
+        setSuccess('');
+      closeModal();
+    } , 5000);
 
-              closeModal();
+
             }
           });
         } else {
@@ -257,6 +263,7 @@ const FormModal: React.FC = () => {
       })
     );
   }, [inputValue]);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -603,6 +610,7 @@ const FormModal: React.FC = () => {
               </button>
             </div>
             {!!error && <p className="alert alert-danger mt-4">{error}</p>}
+            {!!success && <p className="alert alert-success mt-4">{success}</p>}
           </>
         </form>
       </div>

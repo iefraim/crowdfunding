@@ -32,14 +32,18 @@ if(isset($_POST["firstName"])){
 
     if ($paytype == "Pledge" or $paytype == 'Pay Later')  { $paid = 0; } else  { $paid = 1; }
 
- 
+
     if($data["first_name"])  {
-        $updateQuery="UPDATE `donations` SET `first_name`='$firstName', `last_name`='$lastName',`shown_name`='$shownName',`amount`='$amount',`teamId`=$team,`comment`='$note',`email`='$email',`phone`='$phone',`address`='$address',`city`='$city',`state`='$state',`zip`='$zip', `campaign_id`='$campaign', `paytype`='$paytype' , `paid` = $paid WHERE `ID`=$id";
-      //  echo $updateQuery;
+        $updateQuery="UPDATE `donations` SET `first_name`='$firstName', `last_name`='$lastName',`shown_name`='$shownName',`amount`='$amount',`teamId`=";
+        $updateQuery.=($team ? $team : "NULL") ;
+        $updateQuery.=",`comment`='$note',`email`='$email',`phone`='$phone',`address`='$address',`city`='$city',`state`='$state',`zip`='$zip', `campaign_id`='$campaign', `paytype`='$paytype' , `paid` = $paid WHERE `ID`=$id";
+
         query($updateQuery);
     }
-    else  {    $insertQuery="INSERT INTO `donations` (`first_name`,`last_name`,`shown_name`,`amount`,`teamId`,`comment`,`email`,`phone`,`address`,`city`,`state`,`zip`,`campaign_id`, `paytype`, `paid`) VALUES ('$firstName','$lastName','$shownName','$amount',$team,'$note','$email','$phone','$address','$city','$state','$zip',$campaign, '$paytype', $paid)"  ;
-     //   echo $insertQuery;
+    else  {    $insertQuery="INSERT INTO `donations` (`first_name`,`last_name`,`shown_name`,`amount`,`teamId`,`comment`,`email`,`phone`,`address`,`city`,`state`,`zip`,`campaign_id`, `paytype`, `paid`) VALUES ('$firstName','$lastName','$shownName','$amount',";
+        $insertQuery.=    ($team ? $team : "NULL") ;
+        $insertQuery.=",'$note','$email','$phone','$address','$city','$state','$zip',$campaign, '$paytype', $paid)"  ;
+
         query($insertQuery);
     };
       
