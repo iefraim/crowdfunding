@@ -7,7 +7,16 @@ import { DataContext } from "../context/Provider";
 const Countdown: React.FC = () => {
   const { start_date, end_date } = useContext(DataContext);
   const startTime = new Date(start_date).getTime();
-  const endTime = new Date(end_date).getTime();
+    const endInformation = new Date(end_date);
+    var end_date_string = end_date.toString();
+    var hrs = -(new Date().getTimezoneOffset() / 60);
+    endInformation.setUTCHours(endInformation.getUTCHours() + hrs);
+    var originalHour = parseInt(end_date_string.split(' ')[1].split(':')[0], 10);
+    var endingHr = 15 + hrs;
+    var adjustedDateString = end_date_string.replace(originalHour.toString().padStart(2, '0'), endingHr.toString().padStart(2, '0'));
+     var endTime = new Date(adjustedDateString).getTime();
+
+/*end attemp1 */
   const now = Date.now();
   const minuteSeconds = 60;
   const hourSeconds = 3600;
@@ -27,7 +36,7 @@ const Countdown: React.FC = () => {
   const getTimeDays = (time: number) => (time / daySeconds) | 0;
 
   const nowTime = Date.now() / 1000; // use UNIX timestamp in seconds
-  const endDate = Math.floor(new Date(end_date).getTime() / 1000);
+  const endDate = Math.floor(new Date(adjustedDateString).getTime() / 1000);
 
   const remainingTime = endDate - nowTime;
   const days = Math.ceil(remainingTime / daySeconds);
