@@ -6,8 +6,9 @@ const Total: React.FC = () => {
   const donations = useContext(DonationContext);
   const { goal, bonus_goal } = useContext(DataContext);
   const bonusGoal = bonus_goal ? bonus_goal : 0; //if not null
+    const { multiple } = useContext(DataContext);
   const totalDonations = donations.reduce(
-    (prev, curr) => prev + curr.amount * 1,
+    (prev, curr) => prev + curr.amount * multiple,
     0
   );
 

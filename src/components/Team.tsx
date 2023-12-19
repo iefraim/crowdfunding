@@ -4,14 +4,14 @@ import { DataContext } from "../context/Provider";
 import { NavLink } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { Team } from "../types/types";
-const Team: React.FC<{ team: Team }> = ({ team: { id, name, link, goal } }) => {
-  const donations = useTeamGetDonations(id);
-  const { multiple } = useContext(DataContext);
-  const donationsTotal = donations.reduce(
-    (prev, curr) => prev + curr.amount * multiple,
-    0
-  );
-
+const Team: React.FC<{ team: Team }> = ({ team: { id, name, link, goal, donationsTotal } }) => {
+  // const donations = useTeamGetDonations(id);
+  // const { multiple } = useContext(DataContext);
+  // const donationsTotal = donations.reduce(
+  //   (prev, curr) => prev + curr.amount * multiple,
+  //   0
+  // );
+  donationsTotal = donationsTotal || 0;
 
   return (
     <li className="col-xs-12 col-sm-6 team__li">

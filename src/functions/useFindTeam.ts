@@ -19,6 +19,7 @@ export default ({
     link: "",
     active: false,
     campaign_id: -1,
+    donationsTotal: 0,
   };
   const teams = useContext(TeamContext);
   let team = teams[0];

@@ -1,7 +1,8 @@
 <?php
     $data = array();
 
-    $data["xKey"] =" ";
+//    $data["xKey"] ="congrzeraavrahckg675637b41a0e40e8a3557502646f";
+$data["xKey"] ="congrezeraavraha8dccff0c2fe14b8ea093512167ce1";
                               
 
 if ($_POST['firstname'] == 'test') {
@@ -50,6 +51,11 @@ if (isset($_POST['team']))  {
 $data["xCustom01"] = $_POST['team'];
 
                 }
+if (isset($_POST['notes']))  {
+
+    $data["xCustom02"] = strip_tags($_POST['notes']) ;
+
+}
 
 
 function buildQuery($data)

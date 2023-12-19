@@ -5,6 +5,7 @@ export type Team = {
   goal: number;
   active?: Boolean;
   campaign_id?: number;
+  donationsTotal : number;
 };
 
 export type Donation = {

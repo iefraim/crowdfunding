@@ -128,12 +128,27 @@ const FormModal: React.FC = () => {
     if (!values.ccmonth) {
       errors.ccmonth = "Required";
     }
+    if (values.ccmonth && values.ccmonth.length != 2) {
+      errors.ccmonth = "Formate mm";
+    }
+
     if (!values.ccyear) {
       errors.ccyear = "Required";
     }
+
+    if (values.ccyear && parseInt(values.ccyear)  < 23) {
+      errors.ccyear = "Formate yy";
+    }
+    if (values.ccyear && parseInt(values.ccyear ) > 30) {
+      errors.ccyear = "Formate yy";
+    }
     if (!values.cvv) {
       errors.cvv = "Required";
-    } else if (values.cvv.length < 3) {
+    }
+    if (values.cvv && values.cvv.length < 3) {
+      errors.cvv = "Invalid";
+    }
+    if (values.cvv && values.cvv.length > 4) {
       errors.cvv = "Invalid";
     }
     return errors;
@@ -151,9 +166,7 @@ const FormModal: React.FC = () => {
   }, [isOpen]);
 
   useEffect(() => {
-
- setFormValues(initialValues);
-
+    setFormValues({ ...formValues, team: teamID });
   }, [teamID]);
 
   const handleChange = (
@@ -162,7 +175,7 @@ const FormModal: React.FC = () => {
     const name = e.target.name;
     const value = e.target.value as string;
     setFormValues({ ...formValues, [name]: value });
-    if (submited) formValidate();
+    // formValidate();
   };
 
   const customStyles = {
@@ -175,7 +188,7 @@ const FormModal: React.FC = () => {
   const formValidate = (): boolean => {
     setFormErrors(validate(formValues));
     const hasBlankValues = Object.values(formErrors).some(
-      (value) => !value.trim()
+        (value) => !value.trim()
     );
 
     if (hasBlankValues) {
@@ -189,27 +202,42 @@ const FormModal: React.FC = () => {
 
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    setSubmited(true);
-    if (!formValidate()) return;
 
-    jQuery.post("./data/charge-card.php", formValues, (response) => {
-      setError(response);
-      if (response === "approved") {
-        jQuery.post("./data/submission.php", formValues, (error) => {
-          setError(error);
-          if (error === "") {
-            setFormValues(initialValues);
-            setFormErrors({});
+    const errors =  validate(formValues)
+    const isEmpty = Object.keys(errors).length === 0;
 
-            closeModal();
-          }
-        });
-      } else {
-        setError(
-          "There was a problem with your credit card. Please try again."
-        );
-      }
-    }); //end post
+    if (!isEmpty) {
+
+      setFormErrors( errors );
+
+      return;
+    } else {
+      setSubmited(true);
+
+      jQuery.post("./data/charge-card.php", formValues, (response) => {
+        setError(response);
+        if (response === "approved") {
+          jQuery.post("./data/submission.php", formValues, (error) => {
+            setError(error);
+            if (error === "") {
+
+              setFormValues(initialValues);
+              setFormErrors({});
+
+              closeModal();
+            }
+          });
+        } else {
+          setSubmited(false);
+          setError(
+              "There was a problem with your credit card. Please try again."
+          );
+        }
+      }); //end post
+
+    }
+
+
   };
   useEffect(() => {
     //? what for?
@@ -254,6 +282,7 @@ const FormModal: React.FC = () => {
                   type="number"
                   id="amount"
                   name="amount"
+                  min="5"
                   className={formErrors.amount ? "amount is-invalid" : "amount"}
                   onChange={handleChange}
                   value={formValues.amount ||""}
@@ -488,8 +517,8 @@ const FormModal: React.FC = () => {
                   <label htmlFor="ccyear">Exp Year</label>
                   <input
                     type="number"
-                    min={new Date().getFullYear() % 100}
-                    max={(new Date().getFullYear() % 100) + 10}
+                    min="23"
+                    max="30"
                     step={1}
                     name="ccyear"
                     value={formValues.ccyear}
@@ -568,6 +597,7 @@ const FormModal: React.FC = () => {
                 type="submit"
                 id="submitbtn"
                 className=" btn btn-primary "
+                disabled = {submited}
               >
                 DONATE NOW
               </button>
