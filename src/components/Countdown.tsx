@@ -3,7 +3,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import TimerText from "./TimerText";
 
 import { DataContext } from "../context/Provider";
-// TODO: fix the look
+
 const Countdown: React.FC = () => {
   const { start_date, end_date } = useContext(DataContext);
   const startTime = new Date(start_date).getTime();
@@ -12,8 +12,9 @@ const Countdown: React.FC = () => {
     var hrs = -(new Date().getTimezoneOffset() / 60);
     endInformation.setUTCHours(endInformation.getUTCHours() + hrs);
     var originalHour = parseInt(end_date_string.split(' ')[1].split(':')[0], 10);
-    var endingHr = 15 + hrs;
+    var endingHr = 23 +(-6+ hrs+12) ;//keep at 14
     var adjustedDateString = end_date_string.replace(originalHour.toString().padStart(2, '0'), endingHr.toString().padStart(2, '0'));
+    console.log(adjustedDateString);
      var endTime = new Date(adjustedDateString).getTime();
 
 /*end attemp1 */
@@ -41,7 +42,7 @@ const Countdown: React.FC = () => {
   const remainingTime = endDate - nowTime;
   const days = Math.ceil(remainingTime / daySeconds);
   const daysDuration = days * daySeconds;
-
+//TODO does countdown dissapear on it's own
   return now < startTime ? (
     <div>Our campaign has not started yet. Please return in a few days.</div>
   ) : now > endTime ? (
