@@ -6,7 +6,7 @@ $data["xKey"] ="congrezeraavraha8dccff0c2fe14b8ea093512167ce1";
                               
 
 if ($_POST['firstname'] == 'test') {
-
+die("approved");
 $data["xKey"] ="DevorahFleisher_Test";
 
 }

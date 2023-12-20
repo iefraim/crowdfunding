@@ -1,24 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { addHours, format } from 'date-fns';
+
 import TimerText from "./TimerText";
 
 import { DataContext } from "../context/Provider";
 
 const Countdown: React.FC = () => {
   const { start_date, end_date } = useContext(DataContext);
+    const [now, setNow] = useState(Date.now());
   const startTime = new Date(start_date).getTime();
-    const endInformation = new Date(end_date);
-    var end_date_string = end_date.toString();
-    var hrs = -(new Date().getTimezoneOffset() / 60);
-    endInformation.setUTCHours(endInformation.getUTCHours() + hrs);
-    var originalHour = parseInt(end_date_string.split(' ')[1].split(':')[0], 10);
-    var endingHr = 23 +(-6+ hrs+12) ;//keep at 14
-    var adjustedDateString = end_date_string.replace(originalHour.toString().padStart(2, '0'), endingHr.toString().padStart(2, '0'));
-    console.log(adjustedDateString);
-     var endTime = new Date(adjustedDateString).getTime();
+    // const endTime = new Date(end_date).getTime();
+const endInformation = new Date(end_date);
+    var hrsOffset = (new Date().getTimezoneOffset() / 60);
+    var differenceInHours = 7 -hrsOffset;
+    var adjustedString = addHours(endInformation, differenceInHours);
 
-/*end attemp1 */
-  const now = Date.now();
+    const temp = format(adjustedString, 'yyyy-MM-dd HH:mm:ss');
+
+const endTime = new Date(adjustedString).getTime();
+
+
   const minuteSeconds = 60;
   const hourSeconds = 3600;
   const daySeconds = 86400;
@@ -37,12 +39,21 @@ const Countdown: React.FC = () => {
   const getTimeDays = (time: number) => (time / daySeconds) | 0;
 
   const nowTime = Date.now() / 1000; // use UNIX timestamp in seconds
-  const endDate = Math.floor(new Date(adjustedDateString).getTime() / 1000);
+  const endDate = Math.floor(endTime/ 1000);
 
   const remainingTime = endDate - nowTime;
+  console.log("remainingTime", remainingTime);
   const days = Math.ceil(remainingTime / daySeconds);
   const daysDuration = days * daySeconds;
 //TODO does countdown dissapear on it's own
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setNow(Date.now());
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
+
   return now < startTime ? (
     <div>Our campaign has not started yet. Please return in a few days.</div>
   ) : now > endTime ? (
