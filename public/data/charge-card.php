@@ -56,6 +56,11 @@ if (isset($_POST['notes']))  {
     $data["xCustom02"] = strip_tags($_POST['notes']) ;
 
 }
+if (isset($_POST['shownname']))  {
+
+    $data["xCustom03"] = strip_tags($_POST['shownname']) ;
+
+}
 
 
 function buildQuery($data)

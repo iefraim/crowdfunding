@@ -11,7 +11,8 @@ foreach ($_POST as $key => $value) {
     $$key=$db->real_escape_string($value);
 }
 
-$shownname=$shownname===""?"$firstname $lastname":$shownname;
+$shownname=$shownname===""?"$firstname $lastname":htmlspecialchars($shownname);
+$notes = htmlspecialchars($notes);
 
 $query="INSERT INTO `donations` (`amount`,`first_name`,`last_name`,`shown_name`,`address`,`city`,`state`,`zip`,`phone`,`email`,`comment`,`teamID`,`campaign_id`, `paytype`, `paid`) VALUES ($amount,'$firstname','$lastname','$shownname','$address','$city','$state','$zip','$phone','$email','$notes',";
                $query.=    ($team ? $team : "NULL") ;                                                                                                                                                                        
@@ -19,6 +20,7 @@ $query="INSERT INTO `donations` (`amount`,`first_name`,`last_name`,`shown_name`,
 
     query($query);
 
+    //TODO make sure cleans out fields properly
 
 
 

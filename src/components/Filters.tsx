@@ -18,16 +18,14 @@ export const useFilters = (
     else return false;
   });
 
-  donations = donations.sort((a, b): -1 | 1 | 0 => {
-    if (sort == "recent") return a.id > b.id ? -1 : 1;
-    if (sort == "highest")
-      return a.amount * a.multiple > b.amount * b.multiple ? -1 : 1;
-    if (sort == "name")
-      return a.shown_name.toLowerCase() < b.shown_name.toLowerCase() ? -1 : 1;
-    console.error("bad filter");
-    return 1;
-  });
+  donations = donations.sort((a, b) => {
+    if (sort === "recent") return b.id - a.id; // Sorting by descending order of id for recent
+    if (sort === "highest") return b.amount - a.amount; // Sorting by descending order of amount for highest
+    if (sort === "name") return a.shown_name.toLowerCase().localeCompare(b.shown_name.toLowerCase()); // Sorting by name in alphabetical order
 
+    console.error("bad filter");
+    return 0; // Default return
+  });
   return donations;
 };
 const Filters: React.FC = () => {

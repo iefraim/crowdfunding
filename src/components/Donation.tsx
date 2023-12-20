@@ -9,10 +9,16 @@ const Donations: React.FC<{ item: Donation }> = ({
 }) => {
   const { name: teamName } = useFindTeam({ id: teamid });
   const { multiple } = useContext(DataContext);
-
+    const decodeHtmlEntities = (text:any) => {
+        const textarea = document.createElement('textarea');
+        textarea.innerHTML = text;
+        return textarea.value;
+    };
   return (
     <li className="donation">
-      {shown_name}
+        <span dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(shown_name) }}></span>
+
+
       <span className="rtamt donation__amount">
         ${(amount * multiple).toLocaleString()}
       </span>
@@ -20,7 +26,7 @@ const Donations: React.FC<{ item: Donation }> = ({
       <small className="donation__small">
         {comment && (
           <>
-            {comment} <br />
+              <span dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(comment) }}></span><br />
           </>
         )}
 

@@ -23,14 +23,14 @@ const Donate: React.FC = () => {
   return (
     <ModalContext.Provider value={{ inputValue, setValue, isOpen, setIsopen }}>
       <form onSubmit={openModal} className="div--box">
-        <input
-          type="number"
-          id="donationInput"
-          onChange={handleChange}
-value={inputValue|| ''}
-          placeholder="0"
-        />
-        <button type="submit" className="btn btn-primary btn-sm">
+{/*        <input*/}
+{/*          type="number"*/}
+{/*          id="donationInput"*/}
+{/*          onChange={handleChange}*/}
+{/*value={inputValue|| ''}*/}
+{/*          placeholder="0"*/}
+{/*        />*/}
+        <button type="submit" className="btn btn-primary btn-lg">
           DONATE
         </button>
       </form>

@@ -18,7 +18,7 @@ const endInformation = new Date(end_date);
 
     const temp = format(adjustedString, 'yyyy-MM-dd HH:mm:ss');
 
-const endTime = new Date(adjustedString).getTime();
+const endTime = new Date(end_date).getTime();
 
 
   const minuteSeconds = 60;
@@ -42,7 +42,7 @@ const endTime = new Date(adjustedString).getTime();
   const endDate = Math.floor(endTime/ 1000);
 
   const remainingTime = endDate - nowTime;
-  console.log("remainingTime", remainingTime);
+
   const days = Math.ceil(remainingTime / daySeconds);
   const daysDuration = days * daySeconds;
 //TODO does countdown dissapear on it's own
