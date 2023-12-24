@@ -10,6 +10,14 @@
   height: 600px;
   overflow: scroll;
 }
+.timeisup {
+  font-size: 2rem;
+  text-align: center;
+  color: $primary;
+  padding: 20px 0 0;
+  letter-spacing: 0.3px;
+  line-height: 2.5rem;
+}
 @media only screen and (max-width: 600px) {
 
   #teams  {

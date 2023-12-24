@@ -24,18 +24,20 @@ const Total: React.FC = () => {
         </>
       )}
 
-      {totalDonations >= goal && totalDonations < bonusGoal && (
+      {totalDonations >= goal  && (
         <>
-          <h5>INITIAL GOAL OF ${goal} REACHED!</h5>
-          <h5>NEW GOAL!</h5>
-          <h6>
+          <h5 className="initialgoal">INITIAL GOAL OF ${goal.toLocaleString()} REACHED!</h5>
+          <h5 className="newgoalwords">BONUS ROUND!</h5>
+          {totalDonations < bonusGoal && (
+          <div className="newgoal">
             ${totalDonations.toLocaleString()} out of $
             {(bonusGoal * 1).toLocaleString()} raised!
-          </h6>
+          </div>
+          )}
         </>
       )}
       {totalDonations >= bonusGoal && (
-        <h6>Goal reached with ${totalDonations.toLocaleString()} raised!</h6>
+          <div className="newgoal">Goal reached: ${totalDonations.toLocaleString()} raised!</div>
       )}
       <ProgressBar
         completed={Math.round((totalDonations / goal) * 100)}

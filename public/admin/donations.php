@@ -55,6 +55,7 @@ $campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){
                 <th>Pay By</th>
                 <th>Edit</th>
                 <th>Delete</th>
+            <th>ID</th>
             </thead>
             <tbody>
             <?php
@@ -79,6 +80,7 @@ $campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){
   <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
 </svg></a></td>
 <td><a onclick="deleteItem(<?=$row['ID']?>)">X</a></td>
+                    <td><?=$row['ID'];?></td>
                 </tr>
                 <?php }?>
             </tbody>
@@ -89,7 +91,10 @@ $campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){
     </body><script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script>
-    let table = new DataTable('#datatable');
+    let table = $('#datatable').DataTable({
+        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        pageLength: 10,
+    });
                     const deleteItem=(id)=>{
                         if(!confirm("Are you sure you want to delete this item?")){
                             return;

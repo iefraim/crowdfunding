@@ -10,6 +10,7 @@ const HeaderText: React.FC = () => {
     if (activeTeam1) {
         const { id, name:teamName } = useFindTeam({ link: activeTeam1 });
     }
+
 // console.log(teamName);
   return (
     <div className="col-sm-12 headline mt-4 text-center">

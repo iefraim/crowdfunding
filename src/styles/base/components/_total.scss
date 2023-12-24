@@ -13,12 +13,23 @@
   margin-bottom: 15px;
   margin-left: 10px;
 }
+.initialgoal{
+  font-size: 1.4rem;
 
+}
+.newgoalwords{
+  font-weight: bold;
+  font-size: 2rem;
+}
+.newgoal{
+  font-size: 1.5rem;
+
+}
 @media (min-width: 768px) {
-  .total__amount,
-  .total__goal {
-    display: inline;
-    font-size: 32px;
-    margin-bottom: 10px;
-  }
+.total__amount,
+.total__goal {
+display: inline;
+font-size: 32px;
+margin-bottom: 10px;
+}
 }

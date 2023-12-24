@@ -19,7 +19,7 @@ $data=query("SELECT * FROM `donations` WHERE `id`=$id")[0];
 "paytype"=>"",
 "campaign_id"=>""];
 
-$teams=query("SELECT * FROM `teams`");
+$teams=query("SELECT * FROM `teams` order by `name`");
 $campaigns=query("SELECT * FROM `fundraiser_data`");
 
 

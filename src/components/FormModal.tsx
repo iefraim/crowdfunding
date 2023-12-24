@@ -224,6 +224,7 @@ const FormModal: React.FC = () => {
 
               setFormValues(initialValues);
               setFormErrors({});
+              //TODO better message
               setSuccess('Thank you for your donation.');
     setTimeout(() => {
         setSuccess('');

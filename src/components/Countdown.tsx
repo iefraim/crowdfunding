@@ -57,7 +57,7 @@ const endTime = new Date(end_date).getTime();
   return now < startTime ? (
     <div>Our campaign has not started yet. Please return in a few days.</div>
   ) : now > endTime ? (
-    <div>Time is up. Thank you to all our donors!</div>
+    <div ></div>
   ) : (
     <div className="Timer">
       <CountdownCircleTimer
