@@ -1,8 +1,17 @@
 import React, { useContext } from "react";
 import { DataContext } from "../context/Provider";
+const decodeHtml
+    = (html: string) => {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+};
 
 const About: React.FC = () => {
     const {abouttext} = useContext(DataContext);
+    const decodedHtml = decodeHtml(abouttext);
+
+
     return (
         //make tabbed div
 
@@ -10,7 +19,7 @@ const About: React.FC = () => {
             <h3>ABOUT CAMPAIGN</h3>
             <div className="aboutText">
                  <div
-                dangerouslySetInnerHTML={{__html: abouttext}}
+                dangerouslySetInnerHTML={{__html: decodedHtml }}
             />
                 <div className="text-center ">
                     <h4><strong>Thank you to our matchers</strong></h4>

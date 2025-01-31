@@ -14,7 +14,7 @@ if(isset($_GET["id"])){
         "campaign_id"=>""
     ];
 }
-$campaigns=query("SELECT * FROM `fundraiser_data`");
+$campaigns=query("SELECT * FROM `fundraiser_data` order by ID desc");
 
 if(isset($_POST["name"])){
     foreach ($_POST as $key => $value) {

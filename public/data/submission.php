@@ -1,7 +1,7 @@
 <?php
 
 require_once("../functions/mysql.php");
-$from = "Zera Avraham<office@zeraavraham.com>";
+$from = "Zera Avraham<office@zeraabraham.com>";
 
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -31,7 +31,7 @@ $message  = '<html>
 	<div style="width:700px; text-align: center;" >
 	<div style="height:10px; background-color:rgb(153, 102, 153);"></div>
 	<div><img src="https://zeraabraham.com/wp-content/uploads/2021/08/ZeraAbraham-150px.png" alt="" style="height:auto;width:100%;" ></div>
-	<h1 style="color:#7a563d;">Thank You for Partnering to Write the Next Chapter of A Storied Community! </h1>
+	<h1 style="color:#7a563d;">Thank You for helping West Denver Jewry create our Future Forward! </h1>
 <div align="center">
 <div style="text-align:left;width:75%;">
 			
@@ -73,7 +73,7 @@ $data=query($query)[0];
 	<div style="width:700px; text-align: center;" >
 	<div style="height:10px; background-color:rgb(153, 102, 153);"></div>
 	<div><img src="https://zeraabraham.com/wp-content/uploads/2021/08/ZeraAbraham-150px.png" alt="" style="height:auto;width:100%;" ></div>
-	<h1 style="color:#7a563d;">Thank You for Partnering to Write the Next Chapter of A Storied Community! </h1>
+	<h1 style="color:#7a563d;">Thank You for helping West Denver Jewry create our Future Forward! </h1>
 <div align="center">
 <div style="text-align:left;width:75%;">' .
 	 $firstname . ' ' . $lastname . ' has made a donation in the amount of $' . $amount;

@@ -15,6 +15,7 @@ const startData: Data = {
   id: 0,
   aboutheader: "",
   abouttext: "",
+  img_url:"http://zeraabraham.com/wp-content/uploads/2023/12/1.jpg"
 };
 const startTeams: Team[] = [];
 const startDonations: Donation[] = []; //end

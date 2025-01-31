@@ -1,7 +1,7 @@
 export type Team = {
   id: number;
-  name: String;
-  link?: String;
+  name: string;
+  link?: string;
   goal: number;
   active?: Boolean;
   campaign_id?: number;
@@ -10,26 +10,27 @@ export type Team = {
 
 export type Donation = {
   id: number;
-  first_name?: String;
-  last_name?: String;
-  shown_name: String;
-  date: String;
+  first_name?: string;
+  last_name?: string;
+  shown_name: string;
+  date: string;
   amount: number;
   multiple: number;
   teamid: number;
-  comment: String;
+  comment: string;
   campaign_id?: number;
 };
 export type Data = {
   id?: number;
-  name: String;
+  name: string;
   goal: number;
   bonus_goal?: number;
   start_date: Date;
   end_date: Date;
   active?: Boolean;
-  aboutheader:String;
-  abouttext:String;
+  aboutheader:string;
+  abouttext:string;
   multiple: number;
+  img_url: string;
 
 };

@@ -81,15 +81,11 @@ function buildQuery($data)
 
     $ch = curl_init("https://x1.cardknox.com/gateway");
 
-    if(!is_resource($ch))
+if ($ch === false) {
 
-      {
-
-        echo "Error: Unable to initialize CURL ($ch)";
-
-        exit;
-
-      }
+    echo "Error: Unable to initialize CURL ($ch)";
+    exit;
+}
 
     curl_setopt($ch, CURLOPT_HEADER, 1);
 

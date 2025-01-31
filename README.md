@@ -19,3 +19,11 @@ only upload from the data and admin folder if you made a change
 test that export works on all rows even if more than showing
 
 $('.tableexport-caption').remove();
+
+
+when installing on new site: 
+1. copy zipped build folder to the new site
+2. open phpadmin and import the sql file 
+3.  functions/mysql.php to match connection details, localhost, user, pass, db. 
+4. make sure crowdfund and admin, data folder has 755 permissions
+5. change names and img, look for response email

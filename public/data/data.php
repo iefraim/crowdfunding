@@ -38,7 +38,9 @@ foreach ($teams as $itemNum=>$team) {
 "data":{<?php
     foreach ($data as $key => $value) {
                 $key=strtolower($key);
-                 echo "\"$key\":\"$value\"";//pass in item into json
-                 if($key!="multiple")echo ",";
+        echo "\"$key\":\"";
+        echo htmlspecialchars($value);
+        echo "\"";//pass in item into json
+        if($key!="multiple")echo ",";
             }
     ?>}}

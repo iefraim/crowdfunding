@@ -8,7 +8,7 @@
       <div class="navbar-nav">
       <a class="navbar-brand" href="./">
       <img src="https://zeraabraham.com/wp-content/uploads/2021/08/ZeraAbraham-150px.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
-      Zera Avraham
+      Magen Lev
     </a>
             <a class="nav-link" href="./">Dashboard</a>
             <a class="nav-link logout">Logout</a>

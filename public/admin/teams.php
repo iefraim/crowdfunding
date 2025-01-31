@@ -1,11 +1,17 @@
 <?php
 require_once("./check_login.php");
-$teams=query("SELECT * FROM `teams`");
+
+$teams = query("SELECT * FROM `teams`");
+$teams = array_filter($teams, function($team) {
+    return isset($_GET['campaignId']) && $_GET['campaignId'] == $team['campaign_id'];
+});
+
 $donors=query("SELECT `teamID` FROM `donations`");
 $campaigns=query("SELECT * FROM `fundraiser_data`");
 $campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){
     return $_GET["campaignId"]=$i["ID"];
 })[0]["name"]:false;
+
 
 ?>
 <!DOCTYPE html>
@@ -45,7 +51,7 @@ $campaign=isset($_GET["campaignId"])?array_filter($campaigns,function($i){
                 <tr data-id="<?=$row['ID']?>">
                 <td><?=$row["name"]?></td>
                 <td>$<?=$row["goal"]?></td>
-                <td><?=$row["link"]?></td>
+                    <td><a href="/crowdfund/#/<?=$row["link"]?>" target="_blank"><?=$row["link"]?></a></td>
                     <td><?=$row["email"]?></td>
                 <td><?=  count(array_filter($donors,function($i){
                     global $row;

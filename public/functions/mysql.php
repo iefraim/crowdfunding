@@ -10,4 +10,6 @@ function query($query){
 //    echo $db->error;
     $responseArray=$response->fetch_all(MYSQLI_ASSOC);
     return $responseArray;
+    //TODO switch this to global PDO.
+    //it's not working for about with <br> and single quotes
 }
