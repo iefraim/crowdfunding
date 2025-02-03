@@ -20,7 +20,7 @@ $data=query("SELECT * FROM `donations` WHERE `id`=$id")[0];
 "campaign_id"=>""];
 
 $teams=query("SELECT * FROM `teams` order by `name`");
-$campaigns=query("SELECT * FROM `fundraiser_data`");
+$campaigns=query("SELECT * FROM `fundraiser_data` order by ID desc");
 
 
 if(isset($_POST["firstName"])){

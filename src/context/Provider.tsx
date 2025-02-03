@@ -32,22 +32,23 @@ const Provider: React.FC<{ children: React.JSX.Element }> = ({ children }) => {
   });
 
   useEffect(() => {
-    jquery.get("data/data.php", (dataOb) => {
-      //call once, on mount
-      const JsonData = JSON.parse(dataOb);
-      setUp(JsonData);
-      updateDonations(JsonData.donations);
-    });
+    const fetchData = async () => {
+      try {
+        const response = await fetch("data/data.php");
+        const dataOb = await response.json();
+        setUp(dataOb);
+        updateDonations(dataOb.donations);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-    setInterval(() => {
-      jquery.get("data/data.php", (dataOb) => {
-        //update donations
-        const JsonData = JSON.parse(dataOb);
-        updateDonations(JsonData.donations);
-      });
-    }, 10000);
+    fetchData(); // call once, on mount
+
+    const intervalId = setInterval(fetchData, 10000); // update donations every 10 secs
+
+    return () => clearInterval(intervalId); // cleanup on unmount
   }, []);
-  //every 10 secs
 
   return (
     <DonationContext.Provider value={donations}>

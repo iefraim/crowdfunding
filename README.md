@@ -27,3 +27,15 @@ when installing on new site:
 3.  functions/mysql.php to match connection details, localhost, user, pass, db. 
 4. make sure crowdfund and admin, data folder has 755 permissions
 5. change names and img, look for response email
+
+
+ TODO:
+check which admin files i changed
+ask efraim, if we can allow duplicate team names.
+on team listing page is no id is shown, show most recent ones. 
+probably donation lsiting also
+get better text for team submission email. 
+on donation page, x for delete needs to be clearer that it's a link. 
+change all sql inserts to pdo prepare .
+
+
