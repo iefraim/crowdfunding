@@ -1,19 +1,26 @@
 <?php
 require_once("./check_login.php");
-function getCampaign($i){
-    return !isset($_GET["campaignId"])||$i["campaign_id"]==$_GET["campaignId"];
+
+
+if (isset($_GET["campaignId"]))  {
+    $campaignId = $_GET["campaignId"];
+
+$campaign = query("SELECT * FROM `fundraiser_data` WHERE ID = ?", [$campaignId]);
+} else {
+    $campaign = query("SELECT * FROM `fundraiser_data` order by ID desc limit 1");
 }
-$teams=array_filter(query("SELECT * FROM `teams`"),"getCampaign");
+$campaignName = ($campaign[0]['name']);
+$campaignId = ($campaign[0]['ID']);
+
+$teams=query("SELECT * FROM `teams`");
 $teamnames =[];
 foreach ($teams as $key => $value) {
     $teamnames[$value["ID"]]= $value["name"];
 }
 
 
-$donors=array_filter(query("SELECT * FROM `donations` order by ID desc"),"getCampaign");
-$campaignId = $_GET["campaignId"];
-$campaign = query("SELECT * FROM `fundraiser_data` WHERE ID = ?", [$campaignId]);
-$campaignName = ($campaign[0]['name']);
+$donors=query("SELECT * FROM `donations` where  campaign_id = ?  order by ID desc", [$campaignId]);
+
 ?>
 <!DOCTYPE html>
 <html>

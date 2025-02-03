@@ -2,7 +2,7 @@
 require_once("./check_login.php");
 if(isset($_GET["id"])){
 $id=$db->real_escape_string($_GET["id"]);
-$data=query("SELECT * FROM `donations` WHERE `id`=$id")[0];
+$data=query("SELECT * FROM `donations` WHERE `id`=?", [$id])[0];
 }else $data=["first_name"=>"",
 "last_name"=>"",
 "shown_name"=>"",
@@ -32,19 +32,17 @@ if(isset($_POST["firstName"])){
 
     if ($paytype == "Pledge" or $paytype == 'Pay Later')  { $paid = 0; } else  { $paid = 1; }
 
-
+    $team =($team ? $team : NULL) ;
     if($data["first_name"])  {
-        $updateQuery="UPDATE `donations` SET `first_name`='$firstName', `last_name`='$lastName',`shown_name`='$shownName',`amount`='$amount',`teamId`=";
-        $updateQuery.=($team ? $team : "NULL") ;
-        $updateQuery.=",`comment`='$note',`email`='$email',`phone`='$phone',`address`='$address',`city`='$city',`state`='$state',`zip`='$zip', `campaign_id`='$campaign', `paytype`='$paytype' , `paid` = $paid WHERE `ID`=$id";
 
-        query($updateQuery);
-    }
-    else  {    $insertQuery="INSERT INTO `donations` (`first_name`,`last_name`,`shown_name`,`amount`,`teamId`,`comment`,`email`,`phone`,`address`,`city`,`state`,`zip`,`campaign_id`, `paytype`, `paid`) VALUES ('$firstName','$lastName','$shownName','$amount',";
-        $insertQuery.=    ($team ? $team : "NULL") ;
-        $insertQuery.=",'$note','$email','$phone','$address','$city','$state','$zip',$campaign, '$paytype', $paid)"  ;
+        $updateQuery = "UPDATE `donations` SET `first_name`=?, `last_name`=?, `shown_name`=?, `amount`=?, `teamId`=?, `comment`=?, `email`=?, `phone`=?, `address`=?, `city`=?, `state`=?, `zip`=?, `campaign_id`=?, `paytype`=?, `paid`=? WHERE `ID`=?";
+        $params = [$firstName, $lastName, $shownName, $amount, $team, $note, $email, $phone, $address, $city, $state, $zip, $campaign, $paytype, $paid, $id];
+        query($updateQuery, $params);
 
-        query($insertQuery);
+    }    else  {
+        $insertQuery = "INSERT INTO `donations` (`first_name`, `last_name`, `shown_name`, `amount`, `teamId`, `comment`, `email`, `phone`, `address`, `city`, `state`, `zip`, `campaign_id`, `paytype`, `paid`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $params = [$firstName, $lastName, $shownName, $amount, $team, $note, $email, $phone, $address, $city, $state, $zip, $campaign, $paytype, $paid];
+        query($insertQuery, $params);
     };
       
      header("Location:./donations.php");
@@ -75,25 +73,28 @@ if(isset($_POST["firstName"])){
             <input name="shownName"   class="form-control" type="text" value="<?=$data["shown_name"]?>">    </div><div class="mb-3">  
             <label for="amount"  class="form-label" >Donation Amount</label>
             <input name="amount"  class="form-control" type="number" value="<?=$data["amount"]?>" required>    </div>
+            <div class="mb-3">
+                <label for="campaign">Campaign</label>
+                <select name="campaign" id="campaign">
+                    <option value="">Select a Campaign</option>
+                    <?php
+                    foreach ($campaigns as $campaign ) {?>
+
+                        <option value=<?=$campaign["ID"]?>
+                            <?=$campaign["ID"]==$data["campaign_id"]?"selected":""?>><?=$campaign["name"]?></option>
+                    <?php }?>
+                </select>
+            </div>
             <div class="mb-3">  
             <label for="team"  class="form-label" >Team</label>
-            <select name="team"  class="form-control">
+            <select name="team" id="team" class="form-control">
                 <option value="">Select a Team</option>
                 <?php foreach ($teams as  $value) {?>
                         <option value="<?=$value["ID"]?>" <?= $data["teamID"]==$value["ID"]?"selected":""?>><?=$value["name"]?></option>
                     <?php }?>
             </select>    </div>
             
-            <div class="mb-3">  
-                <label for="campaign">Campaign</label>
-            <select name="campaign">
-                <?php
-                    foreach ($campaigns as $campaign ) {?>
-                        <option value=<?=$campaign["ID"]?> 
-                        <?=$campaign["ID"]==$data["campaign_id"]?"selected":""?>><?=$campaign["name"]?></option>
-                    <?php }?>
-            </select>
-            </div>
+
             
             
             <div class="mb-3">  
@@ -141,4 +142,34 @@ if(isset($_POST["firstName"])){
         </form>
         </div>
     </body>
+    <script>
+        let teams = <?php echo json_encode($teams); ?>;
+        // Convert PHP array of teams to array of JavaScript teams
+        teams = teams.map(team => {
+            return {
+                id: team.ID,
+                campaign_id: team.campaign_id,
+                name: team.name
+            };
+        });
+        //on change #campaign, filter out team based on campaign_id
+        document.getElementById("campaign").addEventListener("change", function() {
+            let campaign_id = this.value;
+            let teamSelect = document.getElementById("team");
+            let options = teamSelect.options;
+
+            for (let i = 0; i < options.length; i++) {
+                let option = options[i];
+                if (option.value) {
+                    let team = teams.find(t => t.id == option.value);
+                    if (team && team.campaign_id == campaign_id) {
+                        option.style.display = "block";
+                    } else {
+                        option.style.display = "none";
+                    }
+                }
+            }
+        });
+
+    </script>
 </html>

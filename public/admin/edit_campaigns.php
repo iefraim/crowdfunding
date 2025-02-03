@@ -3,8 +3,8 @@
 require_once("./check_login.php");
 if(isset($_GET["id"])){
     $id=$db->real_escape_string($_GET["id"]);
-    $query="SELECT * FROM `fundraiser_data` WHERE `ID`=$id";
-    $data=query($query)[0];
+    $query="SELECT * FROM `fundraiser_data` WHERE `ID`=?";
+    $data=query($query, [$id])[0];
 
 }else{
     $data=[
@@ -27,13 +27,17 @@ if(isset($_POST["name"])){
     $active=isset($active)?1:0;
 //    echo $active;
     if(isset($_GET["id"])){
-        $query="UPDATE `fundraiser_data` SET `name`='$name',`goal`='$goal',`bonus_goal`='$bonus_goal',`start_date`='$start_date',`end_date`='$end_date',`aboutText`='$aboutText', `multiple`=$multiple,`img_url`='$img_url', `active`=$active WHERE `ID`=$id";
+        $query = "UPDATE `fundraiser_data` SET `name`=?, `goal`=?, `bonus_goal`=?, `start_date`=?, `end_date`=?, `aboutText`=?, `multiple`=?, `img_url`=?, `active`=? WHERE `ID`=?";
+        $params = [$name, $goal, $bonus_goal, $start_date, $end_date, $aboutText, $multiple, $img_url, $active, $id];
+
     }
     else{
-        $query="INSERT INTO `fundraiser_data` (`name`,`goal`,`bonus_goal`,`start_date`,`end_date`,`aboutText`,`multiple`,`img_url`, `active`) VALUES ('$name','$goal','$bonus_goal','$start_date','$end_date', '$aboutText', $multiple ,'$img_url', $active)";
+        $query = "INSERT INTO `fundraiser_data` (`name`, `goal`, `bonus_goal`, `start_date`, `end_date`, `aboutText`, `multiple`, `img_url`, `active`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $params = [$name, $goal, $bonus_goal, $start_date, $end_date, $aboutText, $multiple, $img_url, $active];
+
     }
 
-    query($query);
+    query($query, $params);
     header("Location:./");
 }
 ?>
