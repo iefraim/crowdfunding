@@ -24,9 +24,9 @@ const About: React.FC = () => {
                 <div className="text-center ">
                     <h4><strong>Thank you to our matchers</strong></h4>
 
-                    <img src="http://zeraabraham.com/wp-content/uploads/2023/12/glassman-logo.png" alt="Glassman Foundation" width="90" height="90" />
+                    <img src="https://zeraabraham.com/wp-content/uploads/2023/12/glassman-logo.png" alt="Glassman Foundation" width="90" height="90" />
 
-                <img src="http://zeraabraham.com/wp-content/uploads/2023/12/Vivage-Beecan.jpg" alt="Viva" width="150" height="150" style={{paddingLeft: 20}} />
+                <img src="https://zeraabraham.com/wp-content/uploads/2023/12/Vivage-Beecan.jpg" alt="Viva" width="150" height="150" style={{paddingLeft: 20}} />
 
             </div>
         </div>

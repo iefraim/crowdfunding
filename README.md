@@ -30,12 +30,10 @@ when installing on new site:
 
 
  TODO:
-check which admin files i changed
 ask efraim, if we can allow duplicate team names.
-on team listing page is no id is shown, show most recent ones. 
-probably donation lsiting also
-get better text for team submission email. 
-on donation page, x for delete needs to be clearer that it's a link. 
-change all sql inserts to pdo prepare .
+
+ 
+ 
+
 
 

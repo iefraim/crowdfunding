@@ -15,7 +15,7 @@ const startData: Data = {
   id: 0,
   aboutheader: "",
   abouttext: "",
-  img_url:"http://zeraabraham.com/wp-content/uploads/2023/12/1.jpg"
+  img_url:"https://zeraabraham.com/wp-content/uploads/2023/12/1.jpg"
 };
 const startTeams: Team[] = [];
 const startDonations: Donation[] = []; //end
@@ -34,7 +34,7 @@ const Provider: React.FC<{ children: React.JSX.Element }> = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("data/data.php");
+        const response = await fetch(`data/data.php?nocache=${new Date().getTime()}`);
         const dataOb = await response.json();
         setUp(dataOb);
         updateDonations(dataOb.donations);
@@ -42,6 +42,8 @@ const Provider: React.FC<{ children: React.JSX.Element }> = ({ children }) => {
         console.error("Error fetching data:", error);
       }
     };
+
+
 
     fetchData(); // call once, on mount
 
