@@ -1,3 +1,11 @@
+.fade-in {
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 2s ease-in-out forwards;
+}
+
 .header__image {
   height: 350px;
   /*padding-top: 250px !important;
@@ -5,6 +13,7 @@
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
+background-color: #110324;
 }
 
 @media  only screen and (max-width: 1500px) {

@@ -74,18 +74,18 @@ if ($team)  {
          $message = '<html>
     <body><div align="center">
         <div style="width:700px; text-align: center;" >
-        <div style="height:10px; background-color:rgb(153, 102, 153);"></div>
-        <div><img src="https://zeraabraham.com/wp-content/uploads/2021/08/ZeraAbraham-150px.png" alt="" style="height:auto;width:100%;" ></div>
-        <h1 style="color:#7a563d;">Thank You for helping West Denver Jewry create our Future Forward! </h1>
+        <div style="height:10px; background-color:rgb(17, 3, 36);"></div>
+        <div><img src="https://zeraabraham.com/wp-content/uploads/2021/08/ZeraAbraham-150px.png" alt="" style="height:auto;width:150px;" ></div>
+        <div style="color:#7a563d; font-size:22px;">Thank You for helping West Denver Jewry create our Future Forward! </div>
     <div align="center">
-    <div style="text-align:left;width:75%;">' .
+    <div style="text-align:left;width:75%; font-size:18px;">' .
              $firstname . ' ' . $lastname . ' has made a donation in the amount of $' . $amount;
 
          $message .= '
     
             </div>
             </div>
-            <div style="height:10px; background-color:rgb(153, 102, 153);margin-top:10px;"></div>
+            <div style="height:10px; background-color:rgb(17, 3, 36);margin-top:10px;"></div>
             
         </div>
         </div>

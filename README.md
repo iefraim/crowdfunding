@@ -31,7 +31,9 @@ when installing on new site:
 
  TODO:
 ask efraim, if we can allow duplicate team names.
-
+the timer does not work in all time zones, it stops from the time in that zone isntead of matching time in denver. 
+on admin/index page, why does clicking on team to edit does not work.  
+//in data, someone put a single quote and it crashed the data, see if you can just jsonencode the response.
  
  
 
