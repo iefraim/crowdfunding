@@ -9,11 +9,11 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 $headers .= "From: $from" . "\r\n";
 
 foreach ($_POST as $key => $value) {
-    $$key=$db->real_escape_string($value);
+    $$key=($value);
 }
 
-$shownname=$shownname===""?"$firstname $lastname":htmlspecialchars($shownname);
-$notes = htmlspecialchars($notes);
+$shownname=$shownname===""?"$firstname $lastname":($shownname);
+$notes = ($notes);
 $team =    ($team ? $team : NULL) ;
 
 

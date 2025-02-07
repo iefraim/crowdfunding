@@ -33,7 +33,11 @@ when installing on new site:
 ask efraim, if we can allow duplicate team names.
 the timer does not work in all time zones, it stops from the time in that zone isntead of matching time in denver. 
 on admin/index page, why does clicking on team to edit does not work.  
-//in data, someone put a single quote and it crashed the data, see if you can just jsonencode the response.
+//something in submission is saving with slashes
+ //if day is 0 , should not show. 
+test out at the 1 day to 24 hour mark something went wrong in the timer. 
+change admin section to react , and make form mobile friendly, probably just have to add metatag
+
  
  
 

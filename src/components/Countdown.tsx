@@ -65,6 +65,7 @@ const endTime = new Date(end_date).getTime();
         colors="#7a563d"
         duration={daysDuration}
         initialRemainingTime={remainingTime}
+       
       >
         {({ elapsedTime, color }) => (
           <span style={{ color }}>

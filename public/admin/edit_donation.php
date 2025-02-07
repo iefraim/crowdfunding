@@ -25,7 +25,7 @@ $campaigns=query("SELECT * FROM `fundraiser_data` order by ID desc");
 
 if(isset($_POST["firstName"])){
     foreach ($_POST as $key => $value) {
-        $$key=$db->real_escape_string($value);
+        $$key=($value);
         if(!$$key)$$key="";
     }
     if(!$shownName)$shownName="$firstName $lastName";
@@ -108,7 +108,7 @@ if(isset($_POST["firstName"])){
             <input name="email"  class="form-control" type="email" value="<?=$data["email"]?>">    </div><div class="mb-3">  
             <label for="phone" class="form-label" >Phone #</label>
             <input name="phone"  class="form-control" type="number" value="<?=$data["phone"]?>">    </div><div class="mb-3">  
-            <label for="address"  class="form-label" >address</label>
+            <label for="address"  class="form-label" >Address</label>
             <input name="address" class="form-control" type="text" value="<?=$data["address"]?>">    </div><div class="mb-3">  
             <label for="city"  class="form-label" >City</label>
             <input name="city"  class="form-control" type="text" value="<?=$data["city"]?>">    </div><div class="mb-3">  
