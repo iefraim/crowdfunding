@@ -9,6 +9,8 @@ import { DataContext } from "../context/Provider";
 const Countdown: React.FC = () => {
   const { start_date, end_date } = useContext(DataContext);
     const [now, setNow] = useState(Date.now());
+    const [showDayTimer, setShowDayTimer] = useState(1);
+    const [showHourTimer, setShowHourTimer] = useState(1);
   const startTime = new Date(start_date).getTime();
     // const endTime = new Date(end_date).getTime();
 const endInformation = new Date(end_date);
@@ -17,10 +19,8 @@ const endInformation = new Date(end_date);
     var adjustedString = addHours(endInformation, differenceInHours);
 
     const temp = format(adjustedString, 'yyyy-MM-dd HH:mm:ss');
-
+//todo this time offset isn't working
 const endTime = new Date(end_date).getTime();
-
-
   const minuteSeconds = 60;
   const hourSeconds = 3600;
   const daySeconds = 86400;
@@ -42,10 +42,9 @@ const endTime = new Date(end_date).getTime();
   const endDate = Math.floor(endTime/ 1000);
 
   const remainingTime = endDate - nowTime;
-
-  const days = Math.ceil(remainingTime / daySeconds);
+    const days = Math.ceil(remainingTime / daySeconds);
   const daysDuration = days * daySeconds;
-//TODO does countdown dissapear on it's own
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -60,30 +59,43 @@ const endTime = new Date(end_date).getTime();
     <div ></div>
   ) : (
     <div className="Timer">
+        {/*TODO somehow we have to be able to tell that day is 0 should also not show */}
+        <div className={!showDayTimer  || daysDuration == 0 ? 'd-none' : ''}>
       <CountdownCircleTimer
         {...timerProps}
         colors="#7a563d"
         duration={daysDuration}
         initialRemainingTime={remainingTime}
-       
+        onComplete={() => {
+            setShowDayTimer(0);
+        }}
+
       >
         {({ elapsedTime, color }) => (
           <span style={{ color }}>
             <TimerText
               dimension="days"
               timeNum={getTimeDays(daysDuration - elapsedTime)}
+
             />
           </span>
         )}
       </CountdownCircleTimer>
+        </div><div
+
+    >
       <CountdownCircleTimer
         {...timerProps}
         colors="#a67553"
         duration={daySeconds}
         initialRemainingTime={remainingTime % daySeconds}
-        onComplete={(totalElapsedTime) => ({
-          shouldRepeat: remainingTime - totalElapsedTime > hourSeconds,
-        })}
+        onComplete={(totalElapsedTime) => {
+
+
+            return {
+                shouldRepeat: remainingTime - totalElapsedTime > hourSeconds,
+            };
+        }}
       >
         {({ elapsedTime, color }) => (
           <span style={{ color }}>
@@ -94,6 +106,7 @@ const endTime = new Date(end_date).getTime();
           </span>
         )}
       </CountdownCircleTimer>
+    </div><div>
       <CountdownCircleTimer
         {...timerProps}
         colors="#be977c"
@@ -112,6 +125,8 @@ const endTime = new Date(end_date).getTime();
           </span>
         )}
       </CountdownCircleTimer>
+    </div>
+        <div>
       <CountdownCircleTimer
         {...timerProps}
         colors="#d3baa8"
@@ -131,6 +146,7 @@ const endTime = new Date(end_date).getTime();
           </span>
         )}
       </CountdownCircleTimer>
+        </div>
     </div>
   );
 };
