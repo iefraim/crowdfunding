@@ -20,6 +20,7 @@
     "date-fns": "^3.0.0",
     "jquery": "^3.7.0",
     "loader-utils": "^3.2.1",
+    "moment-timezone": "^0.5.47",
     "node-sass": "^9.0.0",
     "normalize.css": "^8.0.1",
     "php-loader": "^0.2.0",

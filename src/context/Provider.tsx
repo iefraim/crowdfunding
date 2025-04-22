@@ -9,6 +9,7 @@ const startData: Data = {
   bonus_goal: 0,
   start_date: new Date(),
   end_date: new Date(),
+  timezone: "",
   multiple: 1,
   name: "",
   active: true,

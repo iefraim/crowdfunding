@@ -14,6 +14,7 @@ if(isset($_GET["id"])){
         "bonus_goal"=>"",
         'start_date'=>"",
         "end_date"=>"",
+        "timezone"=>"EST",
         "aboutText"=>"",
         "img_url"=>"",
         "multiple"=>1,
@@ -26,14 +27,14 @@ if(isset($_POST["name"])){
     }
     $active=isset($active)?1:0;
 //    echo $active;
-    if(isset($_GET["id"])){
-        $query = "UPDATE `fundraiser_data` SET `name`=?, `goal`=?, `bonus_goal`=?, `start_date`=?, `end_date`=?, `aboutText`=?, `multiple`=?, `img_url`=?, `active`=? WHERE `ID`=?";
-        $params = [$name, $goal, $bonus_goal, $start_date, $end_date, $aboutText, $multiple, $img_url, $active, $id];
+    if(!empty($id)){
+        $query = "UPDATE `fundraiser_data` SET `name`=?, `goal`=?, `bonus_goal`=?, `start_date`=?, `end_date`=?, `timezone`=? , `aboutText`=?, `multiple`=?, `img_url`=?, `active`=? WHERE `ID`=?";
+        $params = [$name, $goal, $bonus_goal, $start_date, $end_date, $timezone,  $aboutText, $multiple, $img_url, $active, $id];
 
     }
     else{
-        $query = "INSERT INTO `fundraiser_data` (`name`, `goal`, `bonus_goal`, `start_date`, `end_date`, `aboutText`, `multiple`, `img_url`, `active`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $params = [$name, $goal, $bonus_goal, $start_date, $end_date, $aboutText, $multiple, $img_url, $active];
+        $query = "INSERT INTO `fundraiser_data` (`name`, `goal`, `bonus_goal`, `start_date`, `end_date`, `timezone`, `aboutText`, `multiple`, `img_url`, `active`) VALUES (?, ?, ?, ?, ?, ?, ?,?, ?, ?)";
+        $params = [$name, $goal, $bonus_goal, $start_date, $end_date, $timezone, $aboutText, $multiple, $img_url, $active];
 
     }
 
@@ -52,6 +53,7 @@ if(isset($_POST["name"])){
     <?php require("./outline.php");?>
     <div class="row"><h1>CAMPAIGNS</h1></div>
     <form method="post">
+        <input type="hidden" name="id" value="<?=$_GET['id'];?>">
         <div class="mb-3">
             <label class="form-label" for="name">Name</label>
             <input class="form-control" type="text" name="name" required value="<?=$data["name"]?>">
@@ -68,6 +70,27 @@ if(isset($_POST["name"])){
             <label class="form-label" for="end_date">End Date</label>
             <input class="form-control" type="datetime-local" name="end_date" required  value="<?=$data["end_date"]?>">
         </div>
+<div class="mb-3">
+            <label class="form-check-label" for="timezone">TimeZone</label>
+    <select name="timezone" class="form-control">
+        <option value="">Select</option>
+        <?php $options = ['EST','MST','PST'];
+        foreach ($options as $option)  {
+            echo '<option';
+            if ($data["timezone"] == $option)  {
+                echo ' selected' ;
+            }
+
+            echo '>';
+            echo $option;
+            echo '</option>';
+        }
+
+        ?>
+
+
+    </select>
+</div>
         <div class="mb-3">
             <label class="form-label" for="aboutText">About Campaign</label>
             <textarea class="form-control"  name="aboutText"   row="6" ><?=$data["aboutText"]?></textarea>

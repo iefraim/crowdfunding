@@ -26,6 +26,7 @@ export type Data = {
   goal: number;
   bonus_goal?: number;
   start_date: Date;
+  timezone: string;
   end_date: Date;
   active?: Boolean;
   aboutheader:string;

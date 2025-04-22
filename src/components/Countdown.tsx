@@ -1,26 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import { addHours, format } from 'date-fns';
+import moment from 'moment-timezone';
+
+
 
 import TimerText from "./TimerText";
 
 import { DataContext } from "../context/Provider";
 
 const Countdown: React.FC = () => {
-  const { start_date, end_date } = useContext(DataContext);
+  const { start_date, end_date, timezone } = useContext(DataContext);
     const [now, setNow] = useState(Date.now());
     const [showDayTimer, setShowDayTimer] = useState(1);
-    const [showHourTimer, setShowHourTimer] = useState(1);
-  const startTime = new Date(start_date).getTime();
-    // const endTime = new Date(end_date).getTime();
-const endInformation = new Date(end_date);
-    var hrsOffset = (new Date().getTimezoneOffset() / 60);
-    var differenceInHours = 7 -hrsOffset;
-    var adjustedString = addHours(endInformation, differenceInHours);
 
-    const temp = format(adjustedString, 'yyyy-MM-dd HH:mm:ss');
-//todo this time offset isn't working
-const endTime = new Date(end_date).getTime();
+  const startTime = new Date(start_date).getTime();
+
+   const endInformation = moment.tz(end_date, timezone).toDate();
+  const endTime = endInformation.getTime();
+
+
   const minuteSeconds = 60;
   const hourSeconds = 3600;
   const daySeconds = 86400;
