@@ -6,7 +6,7 @@ import { useGetActiveTeam } from '../functions/data';
 const HeaderText: React.FC= () => {
     // const activeTeam1 = useContext(TeamLinkContext);
   const { data: { start_date, end_date } } = React.use(CampaignContext);
-      // const { id, name:teamName } = useFindTeam({ link: activeTeam1 });
+      //  const { id, name:teamName } = useFindTeam({ link: activeTeam1 });
   const now = Date.now();
   const activeTeam=useGetActiveTeam();
   const teamName = activeTeam?.name; // Placeholder for team name, replace with actual logic if needed
