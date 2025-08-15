@@ -1,37 +1,13 @@
 import React from "react";
-
-//components
-import Header from "./Header";
-import HeaderText from "./HeaderText";
-import RightColumn from "./RightColumn";
-import LeftColumn from "./LeftColumn";
-
-//context
-import Provider from "../context/Provider";
-
-//router
-import Router from "../router/Router";
+import Providers from "./Providers";
+import {HashRouter,Routes, Route } from "react-router";
 
 const Crowdfund: React.FC = () => {
-  return (
-    <>
-        <Router>
-        <Provider>
-            <>
-      <Header />
-      <div className="container">
-        <HeaderText />
-
-            <main className="row">
-              <LeftColumn />
-              <RightColumn />
-            </main>
-
-      </div></>
-        </Provider>
-</Router>
-    </>
-  );
+	return <HashRouter>
+      <Routes>
+        <Route path="/:teamLink?" element={<Providers />} />
+      </Routes>
+    </HashRouter>;
 };
 
 export default Crowdfund;

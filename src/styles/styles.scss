@@ -1,16 +1,15 @@
-@import "./base/settings";
-@import "./base/base";
+@use "./base/base";
 
 //components
-@import "./base/components/leftColumn";
-@import "./base/components/rightColumn";
-@import "./base/components/countdown_circle";
-@import "./base/components/teams";
-@import "./base/components/donations";
-@import "./base/components/filters";
-@import "./base/components/header";
-@import "./base/components/headerText";
-@import "./base/components/total";
-@import "./base/components/donation_form";
-@import "./base/components/progress_bar";
+@use "./base/components/leftColumn";
+@use "./base/components/rightColumn";
+@use "./base/components/countdown_circle";
+@use "./base/components/teams";
+@use "./base/components/donations";
+@use "./base/components/filters";
+@use "./base/components/header";
+@use "./base/components/headerText";
+@use "./base/components/total";
+@use "./base/components/donation_form";
+@use "./base/components/progress_bar";
 @import url("https://fonts.googleapis.com/css?family=Roboto");

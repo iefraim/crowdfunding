@@ -8,23 +8,16 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        loader: "babel-loader",
-        test: /\.js$/,
-        exclude: /node_modules/,
-      },
+      // {
+      //   loader: "babel-loader",
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      // },
       {
         test: /\.s?css$/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
-      {
-        test: /\.jpg$/,
-        type: "asset",
-      },
-      {
-        test: /\.php$/,
-        loader: "webpack-php-loader",
-      },
+    
       {
         test: /\.tsx?$/,
         loader: "ts-loader",
@@ -43,3 +36,4 @@ module.exports = {
     port: 8000,
   },
 };
+

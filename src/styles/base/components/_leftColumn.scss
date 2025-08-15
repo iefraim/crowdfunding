@@ -1,3 +1,5 @@
+@use "../settings";
+
 .aboutText{
   text-align: left;
   line-height: 25px;
@@ -13,7 +15,7 @@
 .timeisup {
   font-size: 2rem;
   text-align: center;
-  color: $primary;
+  color: settings.$primary;
   padding: 20px 0 0;
   letter-spacing: 0.3px;
   line-height: 2.5rem;

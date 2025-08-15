@@ -1,7 +1,9 @@
+@use "../settings";
+
 .teams__header {
   text-transform: uppercase;
   font-weight: bold;
-  background-color: $primary;
+  background-color: settings.$primary;
   color: #fff;
   text-align: center;
   padding: 0.5rem;
@@ -33,7 +35,7 @@
 }
 
 .team__div {
-  border: solid thin $muted;
+  border: solid thin settings.$muted;
   padding: 15px;
   display: block;
   border-radius: 10px;
@@ -48,7 +50,7 @@
   font-weight: bold;
   font-size: 18px;
   text-transform: capitalize;
-  color: $primary;
+  color: settings.$primary;
   padding-bottom: 3px;
 }
 
@@ -58,7 +60,7 @@
 
 .team__goal {
   padding-top: 10px;
-  color: $primary;
+  color: settings.$primary;
 }
 
 .team__goal__strong {

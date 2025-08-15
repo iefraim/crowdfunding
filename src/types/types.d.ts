@@ -20,7 +20,7 @@ export type Donation = {
   comment: string;
   campaign_id?: number;
 };
-export type Data = {
+export type Campaign = {
   id?: number;
   name: string;
   goal: number;

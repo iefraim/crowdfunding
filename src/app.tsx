@@ -1,9 +1,9 @@
 //modules
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-//stylesheets
+// //stylesheets
 import "normalize.css/normalize.css";
-import "bootstrap/scss/bootstrap.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/styles.scss";
 //components
 import Crowdfund from "./components/Crowdfund";

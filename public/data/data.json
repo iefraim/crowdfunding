@@ -1,0 +1,159 @@
+{
+    "teams": [
+        {
+            "id": "1",
+            "name": "Test team",
+            "link": "team",
+            "goal": "1000",
+            "active": "1",
+            "campaign_id": "1"
+        }
+    ],
+    "donations": [
+        {
+            "id": "12",
+            "first_name": "test",
+            "last_name": "tes",
+            "shown_name": "test tes",
+            "date": "2025-02-03 15:32:25",
+            "amount": "10",
+            "multiple": "1",
+            "teamid": "",
+            "comment": "",
+            "campaign_id": "1"
+        },
+        {
+            "id": "11",
+            "first_name": "test",
+            "last_name": "tes",
+            "shown_name": "test tes",
+            "date": "2025-02-03 15:32:04",
+            "amount": "10",
+            "multiple": "1",
+            "teamid": "",
+            "comment": "",
+            "campaign_id": "1"
+        },
+        {
+            "id": "10",
+            "first_name": "test",
+            "last_name": "tes",
+            "shown_name": "test tes",
+            "date": "2025-02-03 15:31:04",
+            "amount": "10",
+            "multiple": "1",
+            "teamid": "",
+            "comment": "",
+            "campaign_id": "1"
+        },
+        {
+            "id": "9",
+            "first_name": "Debbie9",
+            "last_name": "Fleisher",
+            "shown_name": "Debbie Fleisher9",
+            "date": "2023-12-19 11:39:45",
+            "amount": "10",
+            "multiple": "1",
+            "teamid": "1",
+            "comment": "",
+            "campaign_id": "1"
+        },
+        {
+            "id": "8",
+            "first_name": "Debbie8",
+            "last_name": "Fleisher",
+            "shown_name": "Debbie Fleisher8",
+            "date": "2023-12-19 11:39:06",
+            "amount": "10",
+            "multiple": "1",
+            "teamid": "1",
+            "comment": "",
+            "campaign_id": "1"
+        },
+        {
+            "id": "7",
+            "first_name": "Debbie7",
+            "last_name": "Fleisher",
+            "shown_name": "7",
+            "date": "2023-12-19 11:38:25",
+            "amount": "10",
+            "multiple": "1",
+            "teamid": "1",
+            "comment": "",
+            "campaign_id": "1"
+        },
+        {
+            "id": "6",
+            "first_name": "asdf26",
+            "last_name": "asdf2",
+            "shown_name": "asdf6",
+            "date": "2023-12-19 11:08:09",
+            "amount": "10",
+            "multiple": "1",
+            "teamid": "",
+            "comment": "",
+            "campaign_id": "1"
+        },
+        {
+            "id": "5",
+            "first_name": "test5",
+            "last_name": "test",
+            "shown_name": "test test5",
+            "date": "2023-12-19 10:59:10",
+            "amount": "5",
+            "multiple": "1",
+            "teamid": "",
+            "comment": "",
+            "campaign_id": "1"
+        },
+        {
+            "id": "4",
+            "first_name": "test4",
+            "last_name": "no team",
+            "shown_name": "test no team4",
+            "date": "2023-12-19 10:50:55",
+            "amount": "5",
+            "multiple": "1",
+            "teamid": "",
+            "comment": "",
+            "campaign_id": "1"
+        },
+        {
+            "id": "2",
+            "first_name": "test2",
+            "last_name": "test",
+            "shown_name": "a42",
+            "date": "2023-12-19 08:20:58",
+            "amount": "40",
+            "multiple": "1",
+            "teamid": "0",
+            "comment": "",
+            "campaign_id": "1"
+        },
+        {
+            "id": "1",
+            "first_name": "test1",
+            "last_name": "test",
+            "shown_name": "test testq1",
+            "date": "2023-12-19 08:19:57",
+            "amount": "5",
+            "multiple": "1",
+            "teamid": "0",
+            "comment": "",
+            "campaign_id": "1"
+        }
+    ],
+    "data": {
+        "id": "1",
+        "name": "Summer 2024",
+        "goal": "475",
+        "bonus_goal": "500",
+        "start_date": "2025-08-17 16:00:00",
+        "end_date": "2025-11-01 14:05:00",
+        "active": "1",
+        "aboutheader": "",
+        "abouttext": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "multiple": "2",
+        "img_url": "/img.jpeg"
+    }
+}
