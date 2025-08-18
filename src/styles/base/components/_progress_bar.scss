@@ -1,14 +1,25 @@
 @use "../settings";
 
-.barUncompleted {
+.progress-uncompleted {
   height: 20px;
-  background: rgb(224, 224, 222);
   border-radius: 50px;
   width: 100%;
   overflow: hidden;
   background: settings.$secondary;
 }
-.barUncompleted div {
+.progress-completed {
   background: settings.$primary !important;
   min-width:9%;
+  height: 100%;
+  transition: width 1s ease-in-out;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.progress-completed-label {
+  padding: 5px;
+  color: white;
+  font-weight: bold;
 }

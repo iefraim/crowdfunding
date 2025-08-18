@@ -1,5 +1,6 @@
 import React from "react";
 import Countdown from "./Countdown";
+import Total from "./Total";
 
 
 const RightColumn: React.FC = () => {
@@ -9,11 +10,11 @@ const RightColumn: React.FC = () => {
       <div className="col-xs-12 div--box donors">
         <Countdown />
 
-        Total 
+        <Total/> 
       </div>
         <div className="showMobile">    donate</div>
       <div className="col-xs-12 div--box donors">
-        teamtotatal
+        teamtotal
         donations
       </div>
     </div>
