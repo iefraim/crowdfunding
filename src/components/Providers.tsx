@@ -6,13 +6,6 @@ import LeftColumn from './LeftColumn';
 import RightColumn from './RightColumn';
 import HeaderText from './HeaderText';
 
-const getData=async()=>
-{
-  const response = await fetch(`data/data.json`);
-  const dataOb = await response.json();
-  return dataOb;
-}
-
 const startData: Campaign = {
   goal: 0,
   bonus_goal: 0,
@@ -25,7 +18,7 @@ const startData: Campaign = {
   id: 0,
   aboutheader: "",
   abouttext: "",
-  img_url:""
+  img_url: []
 };
 
 export const CampaignContext = React.createContext<{teams:Team[],donations:Donation[],data:Campaign}>(
@@ -47,7 +40,8 @@ React.useEffect(() => {
         console.error("Error fetching data:", error);
       }
     };
-    const intervalId = setInterval(fetchData, 1000); // update donations every 1 secs
+    fetchData(); // initial fetch
+    const intervalId = setInterval(fetchData, 5000); // update donations every 5 secs
 
     return () => clearInterval(intervalId); // cleanup on unmount
   }, []);

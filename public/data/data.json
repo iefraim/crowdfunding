@@ -7,6 +7,14 @@
             "goal": "1000",
             "active": "1",
             "campaign_id": "1"
+        },
+        {
+            "id": "2",
+            "name": "Test team 2",
+            "link": "team2",
+            "goal": "2000",
+            "active": "1",
+            "campaign_id": "1"
         }
     ],
     "donations": [
@@ -148,12 +156,12 @@
         "name": "Summer 2024",
         "goal": "475",
         "bonus_goal": "500",
-        "start_date": "2025-08-17 16:00:00",
-        "end_date": "2025-11-01 14:05:00",
+        "start_date": "2025-08-16 16:00:00",
+        "end_date": "2025-08-19 10:40:00",
         "active": "1",
         "aboutheader": "",
         "abouttext": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         "multiple": "2",
-        "img_url": "/img.jpeg"
+        "img_url": ["/img/2.jpg","/img/3.jpg","/img/4.jpg","/img/5.jpg"]
     }
 }

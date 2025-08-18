@@ -1,4 +1,5 @@
 import React from "react";
+import Countdown from "./Countdown";
 
 
 const RightColumn: React.FC = () => {
@@ -6,7 +7,7 @@ const RightColumn: React.FC = () => {
   return (
     <div className="rightColumn col-md-4 col-sm-12 ">
       <div className="col-xs-12 div--box donors">
-        Countdown 
+        <Countdown />
 
         Total 
       </div>

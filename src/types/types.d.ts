@@ -32,6 +32,6 @@ export type Campaign = {
   aboutheader:string;
   abouttext:string;
   multiple: number;
-  img_url: string;
+  img_url: string[];
 
 };

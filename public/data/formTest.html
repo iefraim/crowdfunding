@@ -1,0 +1,173 @@
+<form action="submission.php" method="post" id="form" name="form"  novalidate style="width: 100%">			
+    <div class="copysponsorinfo donatebox" ><label for="amount">Donation Amount:  </label>  <input
+      type="number" style="width: 90px" id="amount" name="amount"  class="amount" required	 /> x  <span id="modalamtduplicate">3</span><span id="newtotal"></span></div>
+<input type = "hidden" name = "childnames" id = "childnames" value=""> </input>
+      <input type = "hidden" name = "nokids" id = "nokids" value="0"> </input>
+<div class="row" style="padding-top:20px; display: none;" id="divmonthlyoptions">
+<div class="col-md-6" align="center"><button type="button" id="donatemonthly" class="btn btn-default btn-bloc btn-donate-type" value="monthly">DONATE MONTHLY</button></div>
+<div class="col-md-6" align="center"><button type="button" id="donateonce" class="btn btn-default btn-bloc btn-donate-type" value="once">PAY IN FULL</button></div>
+<input type="hidden" id="payment-spread" name="payment-spread">
+</div>
+<!--
+<div id="overfivehundred" style="display: none;">
+<div class="form-group"><label for="berenbook" >
+  <input type="checkbox" name="eventsublevel" id="berenbook" value="book" style="    width: 10px;
+margin-right: 10px;
+margin-top: 20px;">
+              Yes, I would like to receive Beren book</label>
+
+  </div>
+</div>
+-->
+<div id="ccinfo" >
+<div class="form-group">
+  
+    <label for="firstname">First Name:</label>
+  <input class="form-control" type="text"
+      id="firstname" name="firstname" autofocus
+      required="required" title="Your first name is required." value="" /> 
+</div>
+<div class="form-group">
+  <label for="lastname">Last Name:</label>
+<input type="text"
+      id="lastname" name="lastname" class="form-control" required value=""/>
+
+</div>
+<div class="form-group">
+  <label for="lastname" style="z-index: 1000">To display other name or Anonymous :</label>
+<input type="text"
+      id="adultnames" name="adultnames" class="form-control"  value="" autocomplete="user-othername"/>
+
+</div>
+
+<div class="form-group">
+  <label for="address">Address: </label>
+
+  <input type="text"
+      id="address" name="address" class="form-control" required/>
+</div>
+             <div class="form-group">
+        
+  <label for="cvv">City: </label>
+
+  <input type="text" required	id="city" name="city" class="form-control"/>
+      
+            </div>
+             <div class="form-group">
+        
+  <label for="state">State: </label>
+
+  <input type="text" required	id="state" name="state" class="form-control"/>
+      
+            </div>
+                            <div class="form-group">
+  <label for="cvv">Billing Zip Code: </label>
+
+  <input type="text"
+      id="zip" name="zip" class="form-control" required/>
+      
+            </div>
+
+
+
+
+      <div class="form-group">
+          <label
+      for="phone">Phone:</label>  <input type="text"
+      id="phone" name="phone"  required value=""  class="form-control"  /> 
+          
+</div>
+
+      <div class="form-group">
+          <label
+      for="email">Email Address:</label>  <input type="email"
+      id="email" name="email"  required  class="form-control"  /> 
+          
+</div>
+<div class="form-group" id="paymentChoiceDiv" style="display: none;">
+  <label for="payment">Pay with: </label>
+<select name="payment" 		id="paymentChoice" required class="form-control"			>
+      <option value="">Select</option>
+      <option value="Credit" selected>Credit Card</option>
+      <option value="Later">Pay Later</option>
+
+  </select> 
+</div>
+<div id="ccinfodiv" >
+      <div class="form-group">
+  <label for="ccnum">Credit Card #</label>
+
+  <input name="ccnum" type="text" required  class="form-control"
+      id="ccnum" maxlength="16"/>
+</div>
+<div class="form-group">
+      <label for="ccmonth">Exp Date:</label></div>
+      <div class="form-group col-md-6 col-sm-12">
+
+
+  <select name="ccmonth" id="ccmonth" class="form-control"  required>
+      <option value="" selected></option>
+  
+          <option value="01">1</option>
+          <option value="02">2</option>
+          <option value="03">3</option>
+          <option value="04">4</option>
+          <option value="05">5</option>
+          <option value="06">6</option>
+          <option value="07">7</option>
+          <option value="08">8</option>
+          <option value="09">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          </select></div>
+<div class="form-group col-md-6 col-sm-12">
+  <select name="ccyear" id="ccyear" class="form-control" required>
+          <option value="" selected></option>
+       <option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option>					
+
+  </select>
+</div>
+      <div class="form-group">
+       
+  <label for="cvv">3 Digit Security Code: </label>
+
+  <input type="text"
+      id="cvv" name="cvv" class="form-control" required autocomplete="off" />
+      
+            </div>
+      
+</div>
+
+            <div class="form-group">
+              <label>Message or Dedication (75 characters maximum): </label>	<input type="text" name="notes"   id="notes"   value="" maxlength="75" class="form-control"/></div>
+
+<div class="form-group">
+  
+      
+              <label>Select a Team</label>	
+
+<select class="form-control" name="team" id="team">
+  <option value=""></option>
+<option value="3">Team Aish</option><option value="98">Team Aminov</option><option value="117">Team Close</option><option value="116">Team Ephrati</option><option value="101">Team Gross</option><option value="114">Team Halpern</option><option value="113">Team Heyman Hockers</option><option value="121">Team Josephs</option><option value="112">Team Kipper</option><option value="99">Team Kollel Expansion</option><option value="111">Team Melamed (Yosef)</option><option value="103">Team Melamed(Yitzi)</option><option value="110">Team Mozes</option><option value="108">Team R' Aron Yehuda & Esti Schwab</option><option value="106">Team R' Shachne & Tzippy Sommers</option><option value="100">Team Raderman</option><option value="109">Team Schoss</option><option value="107">Team Schwab Family</option><option value="122">Team Sommers/R'Ari</option><option value="118">Team Sternowsky</option><option value="120">Team Wenger</option><option value="104">Team Wilen</option><option value="97">Team Zera Avraham</option><option value="102">Team Zions</option>                   
+  </select>
+</div>
+
+
+
+<div id="errormsg" style="margin-bottom:5px;font-size:16px;"></div>
+  <div class="form-group">
+      <button type="submit"  id="submitbtn" class=" btn btn-primary "> DONATE NOW</button>
+  <input type="hidden" name='noadults' value='1'>
+      <input type="hidden" id="authcode" name="authcode">
+  <input type="hidden" name="tnxid" id="tnxid"></input>
+<input type="hidden" name="eventid" id="eventid" value="37"></input>
+      <input type="hidden" name="description" id="description" value="CrowdFunding Campaign">
+
+</div>
+
+
+<input type="hidden" name="fromwordpress" value=""/> <input type="hidden" name="formmode" value="consumer"/> 			</div>
+
+</div>
+</form>
