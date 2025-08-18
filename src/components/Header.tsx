@@ -6,7 +6,6 @@ const Header: React.FC = () => {
   const {data:{img_url:images}} = use(CampaignContext);
     const [currentImage, setCurrentImage] = useState(0);
     const [fade, setFade] = useState(true);
-    console.log(images.length);
 
     useEffect(() => {
         const interval = setInterval(() => {

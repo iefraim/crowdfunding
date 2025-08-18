@@ -17,3 +17,9 @@ export const useGetActiveTeam=():Team|undefined=>{
     const activeTeam=use(TeamContext)
     return teams.find(team => team.link===activeTeam);
 }
+
+export const useTeamDonations= (teamId: Number) => {
+    const { donations } = use(CampaignContext);
+    if(teamId===-1) return donations;//don't use team
+  return donations.filter(({ teamid }) => teamid == teamId);
+};
