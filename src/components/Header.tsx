@@ -12,9 +12,6 @@ const Header: React.FC = () => {
             setFade(false);
             setTimeout(() => {
                 setCurrentImage((prevImage) => {
-                    console.log("prevImage",prevImage);
-                    console.log("images.length", images.length);
-                    console.log("nextImage", (prevImage + 1) % images.length);
 
                     return (prevImage + 1) % images.length});
                 setFade(true);

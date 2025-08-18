@@ -14,7 +14,7 @@ const RightColumn: React.FC = () => {
 
         <Total/> 
       </div>
-        <div className="showMobile">    donate</div>
+
       <div className="col-xs-12 div--box donors">
         <TeamTotal />
         <Donations />

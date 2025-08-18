@@ -51,6 +51,7 @@ React.useEffect(() => {
     return (
             <CampaignContext.Provider value={campaignInfo}>
                <Header />
+                       <div className="showMobile">donate modal</div>
                <TeamContext.Provider value={teamLink}>
                 <HeaderText/>
                    <LeftColumn/>
