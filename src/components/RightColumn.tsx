@@ -4,15 +4,14 @@ import Total from "./Total";
 import TeamTotal from "./TeamTotal";
 import Donations from "./Donations";
 
-
 const RightColumn: React.FC = () => {
-//TODO
+  //TODO
   return (
     <div className="rightColumn col-md-4 col-sm-12 ">
       <div className="col-xs-12 div--box donors">
         <Countdown />
 
-        <Total/> 
+        <Total />
       </div>
 
       <div className="col-xs-12 div--box donors">

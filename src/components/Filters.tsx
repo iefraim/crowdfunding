@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 
-const Filters: React.FC<{filters:{
+const Filters: React.FC<{
+  filters: {
     text: string;
     sort: string;
-},setFilters:(filters: { text: string; sort: string; }) => void}> = ({filters,setFilters}) => {
-
-
-
+  };
+  setFilters: (filters: { text: string; sort: string }) => void;
+}> = ({ filters, setFilters }) => {
   const updateFilters = (): void => {
     const textInput: HTMLInputElement | null = document.getElementById(
       "filterTextInput"
@@ -15,7 +15,7 @@ const Filters: React.FC<{filters:{
       "sortFilter"
     ) as HTMLSelectElement | null;
     const text = textInput ? textInput.value.trim() : "";
-    const sort = sortInput?.value ?? "recent"
+    const sort = sortInput?.value ?? "recent";
     setFilters({ text, sort });
   };
 

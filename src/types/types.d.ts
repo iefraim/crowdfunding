@@ -5,7 +5,7 @@ export type Team = {
   goal: number;
   active?: Boolean;
   campaign_id?: number;
-  donationsTotal : number;
+  donationsTotal: number;
 };
 
 export type Donation = {
@@ -29,9 +29,8 @@ export type Campaign = {
   timezone: string;
   end_date: Date;
   active?: Boolean;
-  aboutheader:string;
-  abouttext:string;
+  aboutheader: string;
+  abouttext: string;
   multiple: number;
   img_url: string[];
-
 };

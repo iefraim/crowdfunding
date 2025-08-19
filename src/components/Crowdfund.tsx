@@ -1,13 +1,15 @@
 import React from "react";
 import Providers from "./Providers";
-import {HashRouter,Routes, Route } from "react-router";
+import { HashRouter, Routes, Route } from "react-router";
 
 const Crowdfund: React.FC = () => {
-	return <HashRouter>
+  return (
+    <HashRouter>
       <Routes>
         <Route path="/:teamLink?" element={<Providers />} />
       </Routes>
-    </HashRouter>;
+    </HashRouter>
+  );
 };
 
 export default Crowdfund;

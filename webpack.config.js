@@ -17,7 +17,7 @@ module.exports = {
         test: /\.s?css$/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
-    
+
       {
         test: /\.tsx?$/,
         loader: "ts-loader",
@@ -36,4 +36,3 @@ module.exports = {
     port: 8000,
   },
 };
-

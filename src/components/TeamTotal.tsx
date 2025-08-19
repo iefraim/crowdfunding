@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
 import ProgressBar from "./ProgressBar";
-import { useGetActiveTeam,useTeamDonations } from "../functions/data";
-import { useNavigate,NavLink } from "react-router";
+import { useGetActiveTeam, useTeamDonations } from "../functions/data";
+import { useNavigate, NavLink } from "react-router";
 import { TeamContext } from "./Providers";
 const TeamTotal: React.FC = () => {
-  const team = useGetActiveTeam()
+  const team = useGetActiveTeam();
   const navigate = useNavigate();
-  const teamLink=React.use(TeamContext)
-  if(!teamLink) return false; //no open team
+  const teamLink = React.use(TeamContext);
   if (!team) {
-    navigate("/");
     return false;
   } //team doesn't exist
   const donations = useTeamDonations(team.id);
