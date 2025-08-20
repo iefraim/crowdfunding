@@ -56,11 +56,14 @@ const Providers: React.FC = () => {
   return (
     <CampaignContext.Provider value={campaignInfo}>
       <Header />
-      <div className="showMobile">donate modal</div>
       <TeamContext.Provider value={teamLink}>
-        <HeaderText />
-        <LeftColumn />
-        <RightColumn />
+        <div className="container">
+          <HeaderText />
+          <main className="row">
+            <LeftColumn />
+            <RightColumn />
+          </main>
+        </div>
       </TeamContext.Provider>
     </CampaignContext.Provider>
   );

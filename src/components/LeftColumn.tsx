@@ -1,6 +1,7 @@
 import React from "react";
 import About from "./About";
 import Donate from "./Donate";
+import Teams from "./Teams";
 
 const LeftColumn: React.FC = () => {
   //TODO
@@ -11,7 +12,7 @@ const LeftColumn: React.FC = () => {
         <div className="hideMobile">
           <Donate />
         </div>
-        teams
+        <Teams />
       </div>
     </>
   );

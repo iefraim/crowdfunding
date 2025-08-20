@@ -46,6 +46,10 @@
   text-align: center;
 }
 
+.active-team {
+  border: solid thick settings.$primary;
+}
+
 .team__name {
   font-weight: bold;
   font-size: 18px;

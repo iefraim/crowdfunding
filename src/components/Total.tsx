@@ -5,7 +5,7 @@ import ProgressBar from "./ProgressBar";
 const Total: React.FC = () => {
   const {
     donations,
-    data: { goal, bonus_goal = 0, multiple },
+    data: { goal, bonus_goal = 0 },
   } = React.use(CampaignContext);
   const totalDonations = donations.reduce(
     (prev, curr) => prev + curr.amount * curr.multiple,

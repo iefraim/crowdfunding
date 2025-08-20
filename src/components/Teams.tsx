@@ -1,22 +1,23 @@
 import React from "react";
 import { CampaignContext } from "./Providers";
 import { useTeamDonations } from "../functions/data";
-
-const Team = ({ team }: any) => {
-  const donations = useTeamDonations(team.id);
-  return (
-    <li className="col-12 col-md-6 col-lg-4">
-      <div className="team">
-        <div className="team__name">{team.name}</div>
-        <div className="team__donations"></div>
-      </div>
-    </li>
-  );
-};
+import Team from "./Team";
 
 const Teams: React.FC = () => {
   const { teams } = React.use(CampaignContext);
-  const sortedTeams = [...teams].sort((a, b) => a.name.localeCompare(b.name));
+  const sortedTeams = teams.sort((a, b) => {
+    const donationsA = useTeamDonations(a.id);
+    const donationsB = useTeamDonations(b.id);
+    const totalA = donationsA.reduce(
+      (sum, donation) => sum + donation.amount,
+      0
+    );
+    const totalB = donationsB.reduce(
+      (sum, donation) => sum + donation.amount,
+      0
+    );
+    return totalB - totalA;
+  });
 
   return (
     <div className="div--box teams">
